@@ -129,7 +129,7 @@
         "id": "8f6b533a.841f4",
         "type": "tab",
         "label": "Events",
-        "disabled": true,
+        "disabled": false,
         "info": ""
     },
     {
@@ -711,7 +711,7 @@
     {
         "id": "e0e7ea5c.056af8",
         "type": "persist-store",
-        "filename": "/home/ubuntu/charts/hrs.json",
+        "filename": "/data/charts/hrs.json",
         "interval": "60"
     },
     {
@@ -776,25 +776,25 @@
     {
         "id": "bf1e2739.316828",
         "type": "persist-store",
-        "filename": "/home/ubuntu/charts/encltemp.json",
+        "filename": "/data/charts/encltemp.json",
         "interval": "60"
     },
     {
         "id": "193a7809.6a1ac8",
         "type": "persist-store",
-        "filename": "/home/ubuntu/charts/encltemp.json",
+        "filename": "/data/charts/encltemp.json",
         "interval": "60"
     },
     {
         "id": "3e3f6b1d.70f884",
         "type": "persist-store",
-        "filename": "/home/ubuntu/charts/a0.json",
+        "filename": "/data/charts/a0.json",
         "interval": "120"
     },
     {
         "id": "aa2941.be3166c",
         "type": "persist-store",
-        "filename": "/home/ubuntu/charts/a1.json",
+        "filename": "/data/charts/a1.json",
         "interval": "200"
     },
     {
@@ -960,13 +960,13 @@
     {
         "id": "54305fcfa53633c5",
         "type": "persist-store",
-        "filename": "/home/ubuntu/charts/a2.json",
+        "filename": "/data/charts/a2.json",
         "interval": "250"
     },
     {
         "id": "56ecdc3af1118b5f",
         "type": "persist-store",
-        "filename": "/home/ubuntu/charts/a3.json",
+        "filename": "/data/charts/a3.json",
         "interval": "275"
     },
     {
@@ -1040,7 +1040,7 @@
     {
         "id": "3534251d8384025c",
         "type": "persist-store",
-        "filename": "/home/ubuntu/charts/mtramps.json",
+        "filename": "/data/charts/mtramps.json",
         "interval": "60"
     },
     {
@@ -4167,14 +4167,14 @@
         "type": "file in",
         "z": "453d3af3.ea4724",
         "name": "",
-        "filename": "/home/ubuntu/Documents/alms.csv",
+        "filename": "/data/docs/alms.csv",
         "filenameType": "str",
         "format": "utf8",
         "chunk": false,
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 470,
+        "x": 420,
         "y": 100,
         "wires": [
             [
@@ -4324,7 +4324,7 @@
         "id": "c6076dfe.52f3c",
         "type": "exec",
         "z": "453d3af3.ea4724",
-        "command": "rm -r /home/ubuntu/Documents/alms.csv",
+        "command": "rm -r /data/docs/alms.csv",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
@@ -4332,7 +4332,7 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 540,
+        "x": 490,
         "y": 420,
         "wires": [
             [
@@ -4636,7 +4636,7 @@
         "type": "function",
         "z": "453d3af3.ea4724",
         "name": "",
-        "func": "var date;\nvar logcount = global.get(\"almcount\");\nif (logcount > 50){\n\ndate = new Date();\ndate = (date.getFullYear() + \"_\" + ('00' + (date.getMonth()+1)).slice(-2) + '-' + ('00' + date.getDate()).slice(-2));\n\nmsg.filename = \"/home/pi/Documents/almslog\" + date + \".csv\";\nreturn msg;}",
+        "func": "var date;\nvar logcount = global.get(\"almcount\");\nif (logcount > 50){\n\ndate = new Date();\ndate = (date.getFullYear() + \"_\" + ('00' + (date.getMonth()+1)).slice(-2) + '-' + ('00' + date.getDate()).slice(-2));\n\nmsg.filename = \"/data/docs/almslog\" + date + \".csv\";\nreturn msg;}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4655,7 +4655,8 @@
         "type": "file",
         "z": "453d3af3.ea4724",
         "name": "",
-        "filename": "",
+        "filename": "filename",
+        "filenameType": "msg",
         "appendNewline": true,
         "createDir": true,
         "overwriteFile": "true",
@@ -4760,7 +4761,8 @@
             [
                 "f5e00f4f.53f91",
                 "b2bfc982.fd3bd8",
-                "daeabf50.28b"
+                "daeabf50.28b",
+                "4ab427dcd66b9528"
             ]
         ]
     },
@@ -4982,6 +4984,23 @@
         "libs": [],
         "x": 650,
         "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4ab427dcd66b9528",
+        "type": "function",
+        "z": "7fff0426.068eec",
+        "name": "function 11",
+        "func": "global.set(\"almcount\", 0);\nglobal.set(\"sslogcnt\", 0);\nglobal.set(\"eventcnt\", 0);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 560,
         "wires": [
             []
         ]
@@ -24633,14 +24652,14 @@
         "type": "file in",
         "z": "8f6b533a.841f4",
         "name": "",
-        "filename": "/home/ubuntu/Documents/startstoplog.csv",
+        "filename": "/data/docs/startstoplog.csv",
         "filenameType": "str",
         "format": "utf8",
         "chunk": false,
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 490,
+        "x": 450,
         "y": 460,
         "wires": [
             [
@@ -24748,7 +24767,7 @@
         "id": "2190c2b6.31719e",
         "type": "exec",
         "z": "8f6b533a.841f4",
-        "command": "rm -r /home/ubuntu/Documents/startstoplog.csv",
+        "command": "rm -r /data/docs/startstoplog.csv",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
@@ -24756,7 +24775,7 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 600,
+        "x": 550,
         "y": 720,
         "wires": [
             [
@@ -25079,11 +25098,12 @@
         "type": "file",
         "z": "8f6b533a.841f4",
         "name": "",
-        "filename": "/home/pi/Documents/startstoplog.csv",
+        "filename": "/data/docs/startstoplog.csv",
+        "filenameType": "str",
         "appendNewline": true,
         "createDir": true,
         "overwriteFile": "false",
-        "x": 1050,
+        "x": 1110,
         "y": 80,
         "wires": [
             []
@@ -25128,14 +25148,14 @@
         "type": "file in",
         "z": "8f6b533a.841f4",
         "name": "",
-        "filename": "/home/ubuntu/Documents/eventlog.csv",
+        "filename": "/data/docs/eventlog.csv",
         "filenameType": "str",
         "format": "utf8",
         "chunk": false,
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 490,
+        "x": 450,
         "y": 1280,
         "wires": [
             [
@@ -25258,7 +25278,7 @@
         "id": "7a6fed515f7390b4",
         "type": "exec",
         "z": "8f6b533a.841f4",
-        "command": "rm -r /home/ubuntu/Documents/eventlog.csv",
+        "command": "rm -r /data/docs/eventlog.csv",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
@@ -25266,7 +25286,7 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 610,
+        "x": 560,
         "y": 1560,
         "wires": [
             [
@@ -25671,7 +25691,7 @@
         "type": "function",
         "z": "8f6b533a.841f4",
         "name": "",
-        "func": "\nvar logcnt =global.get(\"eventcnt\");\ndate = new Date();\ndate = (('00' + (date.getMonth()+1)).slice(-2) + '-' + ('00' + date.getDate()).slice(-2) + '-' + date.getFullYear() + ' ' + ('00' + date.getHours()).slice(-2) + ':' + ('00' + date.getMinutes()).slice(-2) + ':' + ('00' + date.getSeconds()).slice(-2));\n msg.payload = date + \", \" + msg.payload;  \n\nlogcnt = logcnt + 1;\nglobal.set(\"eventcnt\", logcnt);\nnode.status(msg.payload, \"Logcnt-\" + logcnt);\n\nreturn msg;",
+        "func": "\nvar logcnt =global.get(\"eventcnt\");\nvar date = new Date();\ndate = (('00' + (date.getMonth()+1)).slice(-2) + '-' + ('00' + date.getDate()).slice(-2) + '-' + date.getFullYear() + ' ' + ('00' + date.getHours()).slice(-2) + ':' + ('00' + date.getMinutes()).slice(-2) + ':' + ('00' + date.getSeconds()).slice(-2));\n msg.payload = date + \", \" + msg.payload;  \n\nlogcnt = logcnt + 1;\nglobal.set(\"eventcnt\", logcnt);\nnode.status(msg.payload +  logcnt);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -25719,7 +25739,7 @@
         "type": "function",
         "z": "8f6b533a.841f4",
         "name": "",
-        "func": "date = new Date();\ndate = (('00' + (date.getMonth()+1)).slice(-2) + '-' + ('00' + date.getDate()).slice(-2) + '-' + date.getFullYear() + ' ' + ('00' + date.getHours()).slice(-2) + ':' + ('00' + date.getMinutes()).slice(-2) + ':' + ('00' + date.getSeconds()).slice(-2));\nvar cnt = global.get(\"sslogcnt\");\ncnt = cnt + 1;\nglobal.set(\"sslogcnt\", cnt);\nmsg.payload = date + \", \" + msg.payload;\nreturn msg;",
+        "func": "var date = new Date();\ndate = (('00' + (date.getMonth()+1)).slice(-2) + '-' + ('00' + date.getDate()).slice(-2) + '-' + date.getFullYear() + ' ' + ('00' + date.getHours()).slice(-2) + ':' + ('00' + date.getMinutes()).slice(-2) + ':' + ('00' + date.getSeconds()).slice(-2));\nvar cnt = global.get(\"sslogcnt\");\ncnt = cnt + 1;\nglobal.set(\"sslogcnt\", cnt);\nmsg.payload = date + \", \" + msg.payload;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -25970,7 +25990,7 @@
         "type": "function",
         "z": "8f6b533a.841f4",
         "name": "",
-        "func": "\nvar sslogcount = global.get(\"sslogcnt\");\nif (sslogcount > 50){\ndate = new Date();\ndate = (date.getFullYear() + \"_\" + ('00' + (date.getMonth()+1)).slice(-2) + '-' + ('00' + date.getDate()).slice(-2));\n\nmsg.filename = \"/home/pi/Documents/startstoplog\" + date + \".csv\";\nreturn msg;}",
+        "func": "\nvar sslogcount = global.get(\"sslogcnt\");\nif (sslogcount > 50){\n var date = new Date();\ndate = (date.getFullYear() + \"_\" + ('00' + (date.getMonth()+1)).slice(-2) + '-' + ('00' + date.getDate()).slice(-2));\n\nmsg.filename = \"/data/docs/startstoplog\" + date + \".csv\";\nreturn msg;}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -25989,7 +26009,8 @@
         "type": "file",
         "z": "8f6b533a.841f4",
         "name": "",
-        "filename": "",
+        "filename": "filename",
+        "filenameType": "msg",
         "appendNewline": true,
         "createDir": true,
         "overwriteFile": "true",
@@ -26040,7 +26061,7 @@
         "type": "function",
         "z": "8f6b533a.841f4",
         "name": "",
-        "func": "\nvar logcount = global.get(\"eventcnt\");\nif (logcount > 50){\ndate = new Date();\ndate = (date.getFullYear() + \"_\" + ('00' + (date.getMonth()+1)).slice(-2) + '-' + ('00' + date.getDate()).slice(-2));\n\nmsg.filename = \"/home/pi/Documents/eventlog\" + date + \".csv\";\nreturn msg;}",
+        "func": "\nvar logcount = global.get(\"eventcnt\");\nif (logcount > 50){\nvar date = new Date();\ndate = (date.getFullYear() + \"_\" + ('00' + (date.getMonth()+1)).slice(-2) + '-' + ('00' + date.getDate()).slice(-2));\n\nmsg.filename = \"/data/docs/eventlog\" + date + \".csv\";\nreturn msg;}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -26316,7 +26337,7 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "change",
-        "payload": "/home/ubuntu/Documents",
+        "payload": "/data/docs",
         "payloadType": "str",
         "x": 150,
         "y": 120,
