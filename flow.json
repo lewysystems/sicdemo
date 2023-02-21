@@ -21,13 +21,6 @@
         "info": ""
     },
     {
-        "id": "453d3af3.ea4724",
-        "type": "tab",
-        "label": "Log",
-        "disabled": false,
-        "info": ""
-    },
-    {
         "id": "7fff0426.068eec",
         "type": "tab",
         "label": "Powerup",
@@ -126,6 +119,13 @@
         "info": ""
     },
     {
+        "id": "453d3af3.ea4724",
+        "type": "tab",
+        "label": "Log",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "8f6b533a.841f4",
         "type": "tab",
         "label": "Events",
@@ -153,6 +153,14 @@
         "label": "WIFI Management",
         "disabled": false,
         "info": ""
+    },
+    {
+        "id": "ee2acfc78930b2b8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": true,
+        "info": "",
+        "env": []
     },
     {
         "id": "9947504b.85595",
@@ -305,7 +313,7 @@
             }
         },
         "site": {
-            "name": "SIC Dashboard",
+            "name": "SIC",
             "hideToolbar": "false",
             "allowSwipe": "false",
             "lockMenu": "false",
@@ -1063,6 +1071,15 @@
         "collapse": true
     },
     {
+        "id": "e0c3e8c1.0cc748",
+        "type": "ui_group",
+        "name": "Garage",
+        "tab": "",
+        "order": 2,
+        "disp": false,
+        "width": "10"
+    },
+    {
         "id": "447d21ab.f9cd6",
         "type": "file",
         "z": "9947504b.85595",
@@ -1301,10 +1318,13 @@
         "order": 3,
         "width": 0,
         "height": 0,
-        "passthru": false,
+        "passthru": true,
         "mode": "number",
         "delay": 300,
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 330,
         "y": 200,
         "wires": [
@@ -1324,10 +1344,13 @@
         "order": 4,
         "width": 0,
         "height": 0,
-        "passthru": false,
+        "passthru": true,
         "mode": "number",
         "delay": 300,
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 320,
         "y": 280,
         "wires": [
@@ -1373,9 +1396,11 @@
         "passthru": false,
         "outs": "all",
         "topic": "",
+        "topicType": "str",
         "min": 0,
         "max": "100",
         "step": "0.25",
+        "className": "",
         "x": 330,
         "y": 140,
         "wires": [
@@ -1517,6 +1542,7 @@
         "width": 0,
         "height": 0,
         "passthru": false,
+        "multiple": false,
         "options": [
             {
                 "label": "",
@@ -1546,6 +1572,8 @@
         ],
         "payload": "",
         "topic": "",
+        "topicType": "str",
+        "className": "",
         "x": 720,
         "y": 440,
         "wires": [
@@ -1735,10 +1763,13 @@
         "order": 10,
         "width": 0,
         "height": 0,
-        "passthru": false,
+        "passthru": true,
         "mode": "number",
         "delay": 300,
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 360,
         "y": 560,
         "wires": [
@@ -1758,10 +1789,13 @@
         "order": 11,
         "width": 0,
         "height": 0,
-        "passthru": false,
+        "passthru": true,
         "mode": "number",
         "delay": 300,
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 360,
         "y": 600,
         "wires": [
@@ -1818,6 +1852,7 @@
         "passthru": true,
         "decouple": "false",
         "topic": "",
+        "topicType": "str",
         "style": "",
         "onvalue": "true",
         "onvalueType": "bool",
@@ -1827,6 +1862,8 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
+        "animate": true,
+        "className": "",
         "x": 500,
         "y": 460,
         "wires": [
@@ -1974,6 +2011,7 @@
         "passthru": true,
         "decouple": "false",
         "topic": "",
+        "topicType": "str",
         "style": "",
         "onvalue": "true",
         "onvalueType": "bool",
@@ -1983,6 +2021,8 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
+        "animate": true,
+        "className": "",
         "x": 530,
         "y": 680,
         "wires": [
@@ -2124,6 +2164,9 @@
         "mode": "number",
         "delay": 300,
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 580,
         "y": 820,
         "wires": [
@@ -2724,9 +2767,7 @@
         "y": 187.25,
         "wires": [
             [
-                "bb45da66bb60a656",
-                "535e1b70.774284",
-                "844b7825.ab6018"
+                "bb45da66bb60a656"
             ]
         ]
     },
@@ -2859,9 +2900,7 @@
         "x": 130,
         "y": 380,
         "wires": [
-            [
-                "e21c373c.d5d798"
-            ]
+            []
         ]
     },
     {
@@ -3151,6 +3190,9 @@
         "mode": "text",
         "delay": "0",
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 140,
         "y": 740,
         "wires": [
@@ -3317,6 +3359,9 @@
         "mode": "text",
         "delay": "0",
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 240,
         "y": 940,
         "wires": [
@@ -3354,6 +3399,9 @@
         "mode": "text",
         "delay": "0",
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 310,
         "y": 980,
         "wires": [
@@ -3535,6 +3583,7 @@
         "label": "Version",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
+        "className": "",
         "x": 290,
         "y": 60,
         "wires": []
@@ -3575,12 +3624,13 @@
         "nodata": "",
         "dot": false,
         "ymin": "0",
-        "ymax": "100",
+        "ymax": "200",
         "removeOlder": "4",
         "removeOlderPoints": "",
         "removeOlderUnit": "3600",
         "cutout": 0,
         "useOneColor": false,
+        "useUTC": false,
         "colors": [
             "#2f9a28",
             "#a8481f",
@@ -3593,6 +3643,8 @@
             "#c5b0d5"
         ],
         "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
         "x": 980,
         "y": 180,
         "wires": [
@@ -3864,7 +3916,7 @@
         "y": 100,
         "wires": [
             [
-                "ee4e810eb95e4f8e"
+                "9817d475e8fee380"
             ]
         ]
     },
@@ -3887,6 +3939,7 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
+        "payload": "",
         "payloadType": "date",
         "x": 130,
         "y": 100,
@@ -3977,25 +4030,6 @@
         "wires": []
     },
     {
-        "id": "ee4e810eb95e4f8e",
-        "type": "ui_template",
-        "z": "1842a961.504507",
-        "group": "fd4cbea3.6101d",
-        "name": "header",
-        "order": 16,
-        "width": 0,
-        "height": 0,
-        "format": "<style>\n    #headerStatus {\n        font-weight: bold;\n        text-transform: uppercase;\n    }\n    #headerStatus.online {\n        color: lime;\n    }\n    #headerStatus.offline {\n        color: tomato;\n    }\n    #headerStatus.Alarm {\n        color: red;\n    }\n    }\n    #headerStatus.project {\n        color: lightgray;\n    }\n</style>\n<script id=\"titleScript\" type=\"text/javascript\">\n$(function() {\n    if($('.md-toolbar-tools').length){\n        initHeader();\n    } else setTimeout(initHeader, 500)\n});\n\nfunction initHeader(){\n    if (!$('#headerStatus').length) {\n        var toolbar = $('.md-toolbar-tools');\n        var div = $('<div/>');\n        var p = $('<p id=\"headerStatus\" />');\n        div[0].style.margin = '5px 5px 5px auto';\n        div.append(p);\n        toolbar.append(div);\n    }\n}\n</script>\n<script>\n    (function(scope) {\n        scope.$watch('msg', function(data) {\n            var elem = document.getElementById(\"headerStatus\")\n            if(elem !== null) {\n                elem.className = data.topic;\n                elem.innerHTML = data.payload;\n            }\n        });\n    })(scope);\n</script>\n\n",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "templateScope": "local",
-        "x": 630,
-        "y": 160,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "f1dec89a0706337a",
         "type": "inject",
         "z": "1842a961.504507",
@@ -4013,36 +4047,15 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "topic": "",
+        "topic": "online",
         "payload": "online",
         "payloadType": "str",
-        "x": 350,
+        "x": 370,
         "y": 140,
         "wires": [
             [
-                "ee4e810eb95e4f8e"
+                "60a7496ff103a5e3"
             ]
-        ]
-    },
-    {
-        "id": "1764290eb7756342",
-        "type": "ui_template",
-        "z": "1842a961.504507",
-        "group": "fe762942.fd8b08",
-        "name": "Header Status",
-        "order": 2,
-        "width": "0",
-        "height": "0",
-        "format": "<style>\n    #headerStatus {\n        font-weight: bold;\n        text-transform: uppercase;\n    }\n    #headerStatus.online {\n        color: lime;\n    }\n    #headerStatus.offline {\n        color: tomato;\n    }\n    #headerStatus.Alarm {\n        color: tomato;\n    }\n    }\n    #headerStatus.project {\n        color: lightgray;\n    }\n</style>\n\n\n\n",
-        "storeOutMessages": false,
-        "fwdInMessages": false,
-        "resendOnRefresh": false,
-        "templateScope": "global",
-        "className": "",
-        "x": 660,
-        "y": 100,
-        "wires": [
-            []
         ]
     },
     {
@@ -4050,18 +4063,27 @@
         "type": "inject",
         "z": "1842a961.504507",
         "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "topic": "",
+        "topic": "offline",
         "payload": "offline",
         "payloadType": "str",
-        "x": 350,
+        "x": 370,
         "y": 180,
         "wires": [
             [
-                "ee4e810eb95e4f8e"
+                "60a7496ff103a5e3"
             ]
         ]
     },
@@ -4070,7 +4092,7 @@
         "type": "function",
         "z": "1842a961.504507",
         "name": "alarm",
-        "func": "var alm = global.get(\"alarm\");\nvar proj = global.get('sitename');\nif (alm){\nmsg.topic = \"Alarm\";\nmsg.payload = \"Alarm\";}\nelse{msg.topic = \"project\";\nmsg.payload = proj;}\nreturn msg;",
+        "func": "var alm = \"Alarm\"; //global.get(\"alarm\");\nvar proj = global.get('sitename');\nif (alm){\nmsg.topic = \"Alarm\";\nmsg.payload = \"Alarm\";}\nelse{msg.topic = \"project\";\nmsg.payload = proj;\nreturn msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4080,7 +4102,7 @@
         "y": 220,
         "wires": [
             [
-                "ee4e810eb95e4f8e"
+                "9817d475e8fee380"
             ]
         ]
     },
@@ -4124,7 +4146,9 @@
         "format": "<md-button class=\"vibrate filled touched bigfont rounded\" style=\"background-color:transparent!important\" ng-click=\"send({payload: '3'})\">\n       <i class=\"material-icons\" >\n           <div style=\"color:{{msg.topic.perm}}\">access_time</div>\n           </i>\n</md-button> ",
         "storeOutMessages": true,
         "fwdInMessages": false,
+        "resendOnRefresh": false,
         "templateScope": "local",
+        "className": "",
         "x": 700,
         "y": 480,
         "wires": [
@@ -4153,295 +4177,9 @@
         ]
     },
     {
-        "id": "9c834f36291d74f0",
-        "type": "comment",
+        "id": "298ced6192865079",
+        "type": "inject",
         "z": "1842a961.504507",
-        "name": "test",
-        "info": "<script id=\"titleScript\" type=\"text/javascript\">\n$(function() {\n    if($('.md-toolbar-tools').length){\n        initHeader();\n    } else setTimeout(initHeader, 500)\n});\n\nfunction initHeader(){\n    if (!$('#headerStatus').length) {\n        var toolbar = $('.md-toolbar-tools');\n        var div = $('<div/>');\n        var p = $('<p id=\"headerStatus\" />');\n        div[0].style.margin = '5px 5px 5px auto';\n        div.append(p);\n        toolbar.append(div);\n    }\n}\n</script>",
-        "x": 830,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "804a3297.4fd92",
-        "type": "file in",
-        "z": "453d3af3.ea4724",
-        "name": "",
-        "filename": "/data/docs/alms.csv",
-        "filenameType": "str",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 420,
-        "y": 100,
-        "wires": [
-            [
-                "d3eab888.22b2e8"
-            ]
-        ]
-    },
-    {
-        "id": "e5538d37.2534b",
-        "type": "ui_button",
-        "z": "453d3af3.ea4724",
-        "d": true,
-        "name": "",
-        "group": "8d058cd6.60efd",
-        "order": 5,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Read Log",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "",
-        "x": 120,
-        "y": 100,
-        "wires": [
-            [
-                "804a3297.4fd92"
-            ]
-        ]
-    },
-    {
-        "id": "8362ce3b.1c8d2",
-        "type": "ui_template",
-        "z": "453d3af3.ea4724",
-        "group": "8d058cd6.60efd",
-        "name": "",
-        "order": 6,
-        "width": "0",
-        "height": "0",
-        "format": "<style>\n    #mylog {\n        min-height: 300px;\n        padding: 0;\n        background-color: transparent!important;\n        white-space: pre;\n        color:var(--nr-dashboard-widgetTextColor);\n    }\n</style>\n<div layout=\"row\" layout-align=\"start center\">\n  <span flex>Date Time</span>\n  <span flex>Description</span>\n  \n</div>\n<div id=\"mylog\" ng-bind=\"msg.payload\" contenteditable=\"true\"></div>\n\n",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "templateScope": "local",
-        "x": 1120,
-        "y": 100,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "28e96686.0448ea",
-        "type": "change",
-        "z": "453d3af3.ea4724",
-        "name": "",
-        "rules": [
-            {
-                "t": "change",
-                "p": "payload",
-                "pt": "msg",
-                "from": "\\n",
-                "fromt": "str",
-                "to": "<br />",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 880,
-        "y": 100,
-        "wires": [
-            [
-                "8362ce3b.1c8d2"
-            ]
-        ]
-    },
-    {
-        "id": "e64f7569.3560c8",
-        "type": "csv",
-        "z": "453d3af3.ea4724",
-        "name": "",
-        "sep": ",",
-        "hdrin": false,
-        "hdrout": "none",
-        "multi": "mult",
-        "ret": "\\n",
-        "temp": "",
-        "skip": "0",
-        "strings": true,
-        "include_empty_strings": false,
-        "include_null_values": false,
-        "x": 590,
-        "y": 300,
-        "wires": [
-            [
-                "910b88d.4430078"
-            ]
-        ]
-    },
-    {
-        "id": "910b88d.4430078",
-        "type": "ui_template",
-        "z": "453d3af3.ea4724",
-        "group": "8d058cd6.60efd",
-        "name": "CSS: ui-table",
-        "order": 2,
-        "width": "0",
-        "height": "0",
-        "format": "<style>\n\n  .tabulator{padding-left:2px;border:1px solid #000;background-color:#202529;font-size:17px}\n  \n  .tabulator .tabulator-header{border-bottom:0px solid #000;background-color:#202529}\n  .tabulator-col-content{background-color:#202529;height:37px}\n\n  .tabulator-row{min-height:31px;background-color:#181c1f}\n  .tabulator-row:nth-child(2n){background-color:#202529}\n\n  .tabulator-row .tabulator-cell{border-right:0px solid #888}\n  .tabulator .tabulator-header .tabulator-col{border-right:0px solid #aaa}\n\n</style>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "templateScope": "local",
-        "x": 730,
-        "y": 300,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d3eab888.22b2e8",
-        "type": "function",
-        "z": "453d3af3.ea4724",
-        "name": "",
-        "func": "\nvar data = msg.payload;\ndata=data.toString().split('\\n');\nvar revdata= [];\nvar i;\nvar res=data.length;\nfor (let i = 1; i < res; i++) {revdata[res-i-1] = data[i-1]}\nmsg.payload = \"\";\nfor (let i = 0; i < res-1; i++) {msg.payload = msg.payload + revdata[i] + '\\n'}\n\nnode.status(res);\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 610,
-        "y": 100,
-        "wires": [
-            [
-                "28e96686.0448ea",
-                "39ba0e16.ebcbc2",
-                "28ad48450fd23171"
-            ]
-        ]
-    },
-    {
-        "id": "c6076dfe.52f3c",
-        "type": "exec",
-        "z": "453d3af3.ea4724",
-        "command": "rm -r /data/docs/alms.csv",
-        "addpay": false,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 490,
-        "y": 420,
-        "wires": [
-            [
-                "d8d6d504.f113f8"
-            ],
-            [
-                "d8d6d504.f113f8"
-            ],
-            [
-                "d8d6d504.f113f8"
-            ]
-        ]
-    },
-    {
-        "id": "9cb560ef.d6c91",
-        "type": "inject",
-        "z": "453d3af3.ea4724",
-        "name": "",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 120,
-        "y": 420,
-        "wires": [
-            [
-                "c6076dfe.52f3c"
-            ]
-        ]
-    },
-    {
-        "id": "d8d6d504.f113f8",
-        "type": "debug",
-        "z": "453d3af3.ea4724",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 850,
-        "y": 420,
-        "wires": []
-    },
-    {
-        "id": "416b7c0a.d06c44",
-        "type": "comment",
-        "z": "453d3af3.ea4724",
-        "name": "Delete Data File",
-        "info": "",
-        "x": 500,
-        "y": 380,
-        "wires": []
-    },
-    {
-        "id": "f1c1a4d1.06c078",
-        "type": "ui_button",
-        "z": "453d3af3.ea4724",
-        "d": true,
-        "name": "",
-        "group": "8d058cd6.60efd",
-        "order": 7,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Delete Alarm Log",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "1",
-        "payloadType": "num",
-        "topic": "",
-        "x": 270,
-        "y": 480,
-        "wires": [
-            [
-                "c6076dfe.52f3c",
-                "16df490.e8071b7",
-                "f402ba8b.44c0a8"
-            ]
-        ]
-    },
-    {
-        "id": "16df490.e8071b7",
-        "type": "function",
-        "z": "453d3af3.ea4724",
-        "name": "",
-        "func": "msg.payload = \" \";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 610,
-        "y": 180,
-        "wires": [
-            [
-                "8362ce3b.1c8d2"
-            ]
-        ]
-    },
-    {
-        "id": "6ff1ad11.cb8a44",
-        "type": "inject",
-        "z": "453d3af3.ea4724",
         "name": "",
         "props": [
             {
@@ -4454,293 +4192,118 @@
         ],
         "repeat": "",
         "crontab": "",
-        "once": true,
-        "onceDelay": "10",
+        "once": false,
+        "onceDelay": 0.1,
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 170,
-        "y": 160,
+        "x": 120,
+        "y": 200,
         "wires": [
             [
-                "804a3297.4fd92"
+                "e6abd743eb75454c"
             ]
         ]
     },
     {
-        "id": "f402ba8b.44c0a8",
-        "type": "function",
-        "z": "453d3af3.ea4724",
+        "id": "816cfc9b7327f310",
+        "type": "inject",
+        "z": "1842a961.504507",
         "name": "",
-        "func": "global.set(\"almcount\", 0);\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 470,
-        "y": 500,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "39ba0e16.ebcbc2",
-        "type": "delay",
-        "z": "453d3af3.ea4724",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "outputs": 1,
-        "x": 180,
-        "y": 260,
-        "wires": [
-            [
-                "70c3ae3c.d1585"
-            ]
-        ]
-    },
-    {
-        "id": "70c3ae3c.d1585",
-        "type": "function",
-        "z": "453d3af3.ea4724",
-        "name": "",
-        "func": "msg.payload = 1;\nvar almcount = global.get(\"almcount\");\nif (almcount > 50){global.set(\"almcount\", 0);\nreturn msg;}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
         "x": 350,
         "y": 280,
         "wires": [
             [
-                "c6076dfe.52f3c",
-                "16df490.e8071b7"
+                "9817d475e8fee380"
             ]
         ]
     },
     {
-        "id": "6799536e.06887c",
-        "type": "inject",
-        "z": "453d3af3.ea4724",
+        "id": "bc2aa47626ed3451",
+        "type": "comment",
+        "z": "1842a961.504507",
         "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "1",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 230,
-        "y": 560,
-        "wires": [
-            [
-                "62badb9.55c8324"
-            ]
-        ]
-    },
-    {
-        "id": "62badb9.55c8324",
-        "type": "function",
-        "z": "453d3af3.ea4724",
-        "name": "",
-        "func": "var cnt = global.get(\"almcount\");\nmsg.payload = cnt;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 440,
-        "y": 560,
-        "wires": [
-            [
-                "bd3ca1a4.75348"
-            ]
-        ]
-    },
-    {
-        "id": "bd3ca1a4.75348",
-        "type": "ui_text",
-        "z": "453d3af3.ea4724",
-        "group": "8d058cd6.60efd",
-        "order": 8,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "Log Count",
-        "format": "{{msg.payload}}",
-        "layout": "row-left",
-        "x": 670,
-        "y": 540,
+        "info": "<script id=\"titleScript\" type=\"text/javascript\">\n    $('#titlewords').remove();\n    $('#titleStatus').remove();\n    var toolbar = $('.md-toolbar-tools');\n    var div = $('<div style=\"text-align:center; width:100%;\"/>');\n    var p = $('<p/ id=\"titlewords\">');\n    \n    $('#titleScript').parent().hide();\n    div.append(p);\n    toolbar.append(div);\n\n    function displayTitle(lh) {\n        p.text(lh); \n    }\n\n    // Watch the payload and update the title\n    (function(scope) {\n        scope.$watch('msg.payload', function(data) {\n            displayTitle(data);\n        });\n    })(scope);\n</script>\n",
+        "x": 820,
+        "y": 100,
         "wires": []
     },
     {
-        "id": "b7ae25d9.c3c358",
+        "id": "9817d475e8fee380",
+        "type": "ui_template",
+        "z": "1842a961.504507",
+        "group": "fe762942.fd8b08",
+        "name": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "format": "<script id=\"titleScript\" type=\"text/javascript\">\n    $('#titlewords').remove();\nvar toolbar = $('.md-toolbar-tools');\nvar div = $('\n<div style=\"text-align:center; width:100%;\" />');\nvar p = $('<p / id=\"titlewords\">');\n\n    $('#titleScript').parent().hide();\n    div.append(p);\n    toolbar.append(div);\n\n    function displayTitle(lh) {\n    p.text(lh);\n    }\n\n    // Watch the payload and update the title\n    (function(scope) {\n    scope.$watch('msg.payload', function(data) {\n    displayTitle(data);\n    });\n    })(scope);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "global",
+        "className": "",
+        "x": 640,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ccc60bede64f4dd2",
         "type": "comment",
-        "z": "453d3af3.ea4724",
-        "name": "Delete after 50 entries",
-        "info": "",
-        "x": 360,
+        "z": "1842a961.504507",
+        "name": "",
+        "info": "<style>\n    #headerStatus {\n        font-weight: bold;\n        text-transform: uppercase;\n    }\n\n    #headerStatus.online {\n        color: lime;\n    }\n\n    #headerStatus.offline {\n        color: tomato;\n    }\n\n    #headerStatus.Alarm {\n        color: red;\n    }\n    }\n\n    #headerStatus.project {\n        color: lightgray;\n    }\n</style>",
+        "x": 840,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "47b2593f4d960c60",
+        "type": "comment",
+        "z": "1842a961.504507",
+        "name": "",
+        "info": "\n<script id=\"titleScript\" type=\"text/javascript\">\n    $(function() {\n    if($('.md-toolbar-tools').length){\n        initHeader();\n    } else setTimeout(initHeader, 500)\n});\n\nfunction initHeader(){\n    if (!$('#headerStatus').length) {\n        var toolbar = $('.md-toolbar-tools');\n        var div = $('<div/>');\n        var p = $('<p id=\"headerStatus\" />');\n        div[0].style.margin = '5px 5px 5px auto';\n        div.append(p);\n        toolbar.append(div);\n    }\n}\n</script>\n\n<script>\n    (function(scope) {\n        scope.$watch('msg', function(data) {\n            var elem = document.getElementById(\"headerStatus\")\n            if(elem !== null) {\n                elem.className = data.topic;\n                elem.innerHTML = data.payload;\n            }\n        });\n    })(scope);\n</script>",
+        "x": 840,
         "y": 220,
         "wires": []
     },
     {
-        "id": "a8c2985e.d23ad8",
+        "id": "60a7496ff103a5e3",
         "type": "ui_template",
-        "z": "453d3af3.ea4724",
-        "group": "8d058cd6.60efd",
-        "name": "ui_temlplate - present download links on dashboard",
-        "order": 10,
+        "z": "1842a961.504507",
+        "group": "fe762942.fd8b08",
+        "name": "",
+        "order": 0,
         "width": 0,
         "height": 0,
-        "format": "<script type=\"text/javascript\">\n\n</script>\n\n<style>\n.button { \n         background-color: transparent!important;\n         padding: 8px 16px;\n         display: inline-block;\n         text-decoration: none;\n         color: var(--nr-dashboard-widgetTextColor);\n         border-radius: 3px;\n}\n.button:hover{ background-color: #0066FF;}\n</style>\n\n<md-button class=\"vibrate filled touched bigfont rounded\" style=\"background-color:transparent!important\" >\n       <i class=\"material-icons\" >\n           <span style=\"color:{{msg.payload.perm}}\">get_app</span>\n           </i>\n           <a href=\"/alms.csv\" class=\"button \">Download Alarm Log</a>\n</md-button> \n\n",
+        "format": "<script>\n    scope.$watch('msg', function(data) {\n            var elem = document.getElementById(data.topic)\n            if(elem !== null) {\n                if (data.hasOwnProperty('fontFamily')) {elem.style.fontFamily = data.fontFamily}\n                if (data.hasOwnProperty('fontStyle')) {elem.style.fontStyle = data.fontStyle}\n                if (data.hasOwnProperty('color')) {elem.style.color = data.color}\n                if (data.hasOwnProperty('fontSize')) {elem.style.fontSize = data.fontSize}\n                if (data.hasOwnProperty('fontWeight')) {elem.style.fontWeight = data.fontWeight}\n                if (data.hasOwnProperty('payload')) {elem.innerHTML = data.payload};\n                if (data.hasOwnProperty('image')) {elem.src = data.image};\n                \n            }\n        });\n    })(scope);\n</script>",
         "storeOutMessages": true,
         "fwdInMessages": true,
-        "templateScope": "local",
-        "x": 410,
-        "y": 680,
+        "resendOnRefresh": true,
+        "templateScope": "global",
+        "className": "",
+        "x": 640,
+        "y": 260,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "bd3910af.f7be9",
-        "type": "comment",
-        "z": "453d3af3.ea4724",
-        "name": "Download File Change  IP",
-        "info": "",
-        "x": 340,
-        "y": 640,
-        "wires": []
-    },
-    {
-        "id": "a1aedbc9153c46e6",
-        "type": "function",
-        "z": "453d3af3.ea4724",
-        "name": "",
-        "func": "var date;\nvar logcount = global.get(\"almcount\");\nif (logcount > 50){\n\ndate = new Date();\ndate = (date.getFullYear() + \"_\" + ('00' + (date.getMonth()+1)).slice(-2) + '-' + ('00' + date.getDate()).slice(-2));\n\nmsg.filename = \"/data/docs/almslog\" + date + \".csv\";\nreturn msg;}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 960,
-        "y": 240,
-        "wires": [
-            [
-                "f854a6bf9406589b"
-            ]
-        ]
-    },
-    {
-        "id": "f854a6bf9406589b",
-        "type": "file",
-        "z": "453d3af3.ea4724",
-        "name": "",
-        "filename": "filename",
-        "filenameType": "msg",
-        "appendNewline": true,
-        "createDir": true,
-        "overwriteFile": "true",
-        "encoding": "none",
-        "x": 1110,
-        "y": 240,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "28ad48450fd23171",
-        "type": "delay",
-        "z": "453d3af3.ea4724",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "2",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 790,
-        "y": 240,
-        "wires": [
-            [
-                "a1aedbc9153c46e6"
-            ]
-        ]
-    },
-    {
-        "id": "61c43b0a736c049e",
-        "type": "comment",
-        "z": "453d3af3.ea4724",
-        "name": "Create Old Logs",
-        "info": "",
-        "x": 870,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "fbb0d15a9ae8cc8a",
-        "type": "link in",
-        "z": "453d3af3.ea4724",
-        "name": "AlmLog",
-        "links": [
-            "b8c59ff05db4d998"
-        ],
-        "x": 155,
-        "y": 40,
-        "wires": [
-            [
-                "2e716841c40dd5cf"
-            ]
-        ]
-    },
-    {
-        "id": "2e716841c40dd5cf",
-        "type": "delay",
-        "z": "453d3af3.ea4724",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "2",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 280,
-        "y": 40,
-        "wires": [
-            [
-                "804a3297.4fd92"
-            ]
         ]
     },
     {
@@ -5352,6 +4915,7 @@
         "passthru": true,
         "decouple": "false",
         "topic": "",
+        "topicType": "str",
         "style": "",
         "onvalue": "1",
         "onvalueType": "num",
@@ -5361,6 +4925,8 @@
         "offvalueType": "num",
         "officon": "",
         "offcolor": "",
+        "animate": true,
+        "className": "",
         "x": 1510,
         "y": 300,
         "wires": [
@@ -5661,11 +5227,12 @@
         "type": "file",
         "z": "caed099b.012a78",
         "name": "",
-        "filename": "/home/pi/Documents/alms.csv",
+        "filename": "/data/docs/alms.csv",
+        "filenameType": "str",
         "appendNewline": true,
         "createDir": true,
         "overwriteFile": "false",
-        "x": 1630,
+        "x": 1660,
         "y": 160,
         "wires": [
             []
@@ -5960,10 +5527,13 @@
         "order": 3,
         "width": 0,
         "height": 0,
-        "passthru": false,
+        "passthru": true,
         "mode": "number",
         "delay": 300,
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 440,
         "y": 1440,
         "wires": [
@@ -6030,10 +5600,13 @@
         "order": 3,
         "width": 0,
         "height": 0,
-        "passthru": false,
+        "passthru": true,
         "mode": "number",
         "delay": 300,
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 440,
         "y": 1480,
         "wires": [
@@ -6100,10 +5673,13 @@
         "order": 3,
         "width": 0,
         "height": 0,
-        "passthru": false,
+        "passthru": true,
         "mode": "number",
         "delay": 300,
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 440,
         "y": 1520,
         "wires": [
@@ -6170,10 +5746,13 @@
         "order": 3,
         "width": 0,
         "height": 0,
-        "passthru": false,
+        "passthru": true,
         "mode": "number",
         "delay": 300,
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 440,
         "y": 1560,
         "wires": [
@@ -8535,12 +8114,12 @@
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#008000",
+                "color": "#ff0000",
                 "value": "0",
                 "valueType": "num"
             },
             {
-                "color": "#ff0000",
+                "color": "#008000",
                 "value": "1",
                 "valueType": "num"
             }
@@ -9520,6 +9099,9 @@
         "mode": "number",
         "delay": 300,
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 530,
         "y": 1620,
         "wires": [
@@ -11833,21 +11415,6 @@
         ]
     },
     {
-        "id": "327b7aba.fe1ba6",
-        "type": "i2c in",
-        "z": "14c2a8c4.3c0637",
-        "name": "",
-        "busno": "1",
-        "address": "24",
-        "command": "5",
-        "count": "2",
-        "x": 450,
-        "y": 200,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "6c08d843.6f6058",
         "type": "inject",
         "z": "14c2a8c4.3c0637",
@@ -11875,21 +11442,6 @@
                 "97de2978.522338",
                 "47c8ef0a.fbecf"
             ]
-        ]
-    },
-    {
-        "id": "f6919f51.cd937",
-        "type": "i2c scan",
-        "z": "14c2a8c4.3c0637",
-        "name": "",
-        "busno": "1",
-        "x": 480,
-        "y": 80,
-        "wires": [
-            [
-                "b4c55dc3.64084"
-            ],
-            []
         ]
     },
     {
@@ -12046,23 +11598,6 @@
         "x": 610,
         "y": 80,
         "wires": []
-    },
-    {
-        "id": "3f03dc15.b45054",
-        "type": "i2c out",
-        "z": "14c2a8c4.3c0637",
-        "name": "",
-        "busno": "1",
-        "address": "24",
-        "command": "1",
-        "payload": "payload",
-        "payloadType": "msg",
-        "count": "1",
-        "x": 450,
-        "y": 280,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "a97d82a0.ca7f4",
@@ -19589,10 +19124,13 @@
         "order": 5,
         "width": 0,
         "height": 0,
-        "passthru": false,
+        "passthru": true,
         "mode": "number",
         "delay": 300,
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 490,
         "y": 100,
         "wires": [
@@ -19612,10 +19150,13 @@
         "order": 6,
         "width": 0,
         "height": 0,
-        "passthru": false,
+        "passthru": true,
         "mode": "number",
         "delay": 300,
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 490,
         "y": 140,
         "wires": [
@@ -19635,10 +19176,13 @@
         "order": 2,
         "width": 0,
         "height": 0,
-        "passthru": false,
+        "passthru": true,
         "mode": "number",
         "delay": 300,
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 450,
         "y": 540,
         "wires": [
@@ -19839,6 +19383,7 @@
         "width": 0,
         "height": 0,
         "passthru": true,
+        "multiple": false,
         "options": [
             {
                 "label": "500 MCM",
@@ -19923,6 +19468,8 @@
         ],
         "payload": "",
         "topic": "",
+        "topicType": "str",
+        "className": "",
         "x": 420,
         "y": 120,
         "wires": [
@@ -20010,10 +19557,13 @@
         "order": 5,
         "width": 0,
         "height": 0,
-        "passthru": false,
+        "passthru": true,
         "mode": "number",
         "delay": 300,
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 440,
         "y": 180,
         "wires": [
@@ -20158,10 +19708,12 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "{{msg.color}}",
+        "className": "",
         "icon": "",
         "payload": "PRESS",
         "payloadType": "str",
         "topic": "",
+        "topicType": "str",
         "x": 500,
         "y": 120,
         "wires": [
@@ -20455,6 +20007,7 @@
         "width": 0,
         "height": 0,
         "passthru": false,
+        "multiple": false,
         "options": [
             {
                 "label": "Input 1.0",
@@ -20469,6 +20022,8 @@
         ],
         "payload": "",
         "topic": "",
+        "topicType": "str",
+        "className": "",
         "x": 450,
         "y": 540,
         "wires": [
@@ -20669,10 +20224,13 @@
         "order": 4,
         "width": 0,
         "height": 0,
-        "passthru": false,
+        "passthru": true,
         "mode": "number",
         "delay": 300,
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 500,
         "y": 460,
         "wires": [
@@ -20692,10 +20250,13 @@
         "order": 5,
         "width": 0,
         "height": 0,
-        "passthru": false,
+        "passthru": true,
         "mode": "number",
         "delay": 300,
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 490,
         "y": 500,
         "wires": [
@@ -22778,33 +22339,6 @@
         ]
     },
     {
-        "id": "f322aecf.8d1c5",
-        "type": "inject",
-        "z": "6157092d.8b7638",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "20",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 120,
-        "y": 1040,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "f8c93cbe.077ae",
         "type": "function",
         "z": "6157092d.8b7638",
@@ -24009,7 +23543,7 @@
         "order": 17,
         "width": 0,
         "height": 0,
-        "passthru": false,
+        "passthru": true,
         "outs": "all",
         "topic": "",
         "topicType": "str",
@@ -24055,7 +23589,7 @@
         "order": 18,
         "width": 0,
         "height": 0,
-        "passthru": false,
+        "passthru": true,
         "outs": "all",
         "topic": "",
         "topicType": "str",
@@ -24648,6 +24182,589 @@
         ]
     },
     {
+        "id": "804a3297.4fd92",
+        "type": "file in",
+        "z": "453d3af3.ea4724",
+        "name": "",
+        "filename": "/data/docs/alms.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 420,
+        "y": 100,
+        "wires": [
+            [
+                "d3eab888.22b2e8"
+            ]
+        ]
+    },
+    {
+        "id": "e5538d37.2534b",
+        "type": "ui_button",
+        "z": "453d3af3.ea4724",
+        "d": true,
+        "name": "",
+        "group": "8d058cd6.60efd",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Read Log",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 120,
+        "y": 100,
+        "wires": [
+            [
+                "804a3297.4fd92"
+            ]
+        ]
+    },
+    {
+        "id": "8362ce3b.1c8d2",
+        "type": "ui_template",
+        "z": "453d3af3.ea4724",
+        "group": "8d058cd6.60efd",
+        "name": "",
+        "order": 6,
+        "width": "0",
+        "height": "0",
+        "format": "<style>\n    #mylog {\n        min-height: 300px;\n        padding: 0;\n        background-color: transparent!important;\n        white-space: pre;\n        color:var(--nr-dashboard-widgetTextColor);\n    }\n</style>\n<div layout=\"row\" layout-align=\"start center\">\n  <span flex>Date Time</span>\n  <span flex>Description</span>\n  \n</div>\n<div id=\"mylog\" ng-bind=\"msg.payload\" contenteditable=\"true\"></div>\n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 1120,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "28e96686.0448ea",
+        "type": "change",
+        "z": "453d3af3.ea4724",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "\\n",
+                "fromt": "str",
+                "to": "<br />",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 100,
+        "wires": [
+            [
+                "8362ce3b.1c8d2"
+            ]
+        ]
+    },
+    {
+        "id": "e64f7569.3560c8",
+        "type": "csv",
+        "z": "453d3af3.ea4724",
+        "name": "",
+        "sep": ",",
+        "hdrin": false,
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": false,
+        "include_null_values": false,
+        "x": 590,
+        "y": 300,
+        "wires": [
+            [
+                "910b88d.4430078"
+            ]
+        ]
+    },
+    {
+        "id": "910b88d.4430078",
+        "type": "ui_template",
+        "z": "453d3af3.ea4724",
+        "group": "8d058cd6.60efd",
+        "name": "CSS: ui-table",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "format": "<style>\n\n  .tabulator{padding-left:2px;border:1px solid #000;background-color:#202529;font-size:17px}\n  \n  .tabulator .tabulator-header{border-bottom:0px solid #000;background-color:#202529}\n  .tabulator-col-content{background-color:#202529;height:37px}\n\n  .tabulator-row{min-height:31px;background-color:#181c1f}\n  .tabulator-row:nth-child(2n){background-color:#202529}\n\n  .tabulator-row .tabulator-cell{border-right:0px solid #888}\n  .tabulator .tabulator-header .tabulator-col{border-right:0px solid #aaa}\n\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 730,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d3eab888.22b2e8",
+        "type": "function",
+        "z": "453d3af3.ea4724",
+        "name": "",
+        "func": "\nvar data = msg.payload;\ndata=data.toString().split('\\n');\nvar revdata= [];\nvar i;\nvar res=data.length;\nfor (let i = 1; i < res; i++) {revdata[res-i-1] = data[i-1]}\nmsg.payload = \"\";\nfor (let i = 0; i < res-1; i++) {msg.payload = msg.payload + revdata[i] + '\\n'}\n\nnode.status(res);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 100,
+        "wires": [
+            [
+                "28e96686.0448ea",
+                "39ba0e16.ebcbc2",
+                "28ad48450fd23171"
+            ]
+        ]
+    },
+    {
+        "id": "c6076dfe.52f3c",
+        "type": "exec",
+        "z": "453d3af3.ea4724",
+        "command": "sudo rm -r /data/docs/alms.csv",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 510,
+        "y": 420,
+        "wires": [
+            [
+                "d8d6d504.f113f8"
+            ],
+            [
+                "d8d6d504.f113f8"
+            ],
+            [
+                "d8d6d504.f113f8"
+            ]
+        ]
+    },
+    {
+        "id": "9cb560ef.d6c91",
+        "type": "inject",
+        "z": "453d3af3.ea4724",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 420,
+        "wires": [
+            [
+                "c6076dfe.52f3c"
+            ]
+        ]
+    },
+    {
+        "id": "d8d6d504.f113f8",
+        "type": "debug",
+        "z": "453d3af3.ea4724",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 850,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "416b7c0a.d06c44",
+        "type": "comment",
+        "z": "453d3af3.ea4724",
+        "name": "Delete Data File",
+        "info": "",
+        "x": 500,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "f1c1a4d1.06c078",
+        "type": "ui_button",
+        "z": "453d3af3.ea4724",
+        "d": true,
+        "name": "",
+        "group": "8d058cd6.60efd",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Delete Alarm Log",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "",
+        "x": 270,
+        "y": 480,
+        "wires": [
+            [
+                "c6076dfe.52f3c",
+                "16df490.e8071b7",
+                "f402ba8b.44c0a8"
+            ]
+        ]
+    },
+    {
+        "id": "16df490.e8071b7",
+        "type": "function",
+        "z": "453d3af3.ea4724",
+        "name": "",
+        "func": "msg.payload = \" \";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 180,
+        "wires": [
+            [
+                "8362ce3b.1c8d2"
+            ]
+        ]
+    },
+    {
+        "id": "6ff1ad11.cb8a44",
+        "type": "inject",
+        "z": "453d3af3.ea4724",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "10",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "804a3297.4fd92"
+            ]
+        ]
+    },
+    {
+        "id": "f402ba8b.44c0a8",
+        "type": "function",
+        "z": "453d3af3.ea4724",
+        "name": "",
+        "func": "global.set(\"almcount\", 0);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "39ba0e16.ebcbc2",
+        "type": "delay",
+        "z": "453d3af3.ea4724",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "outputs": 1,
+        "x": 180,
+        "y": 260,
+        "wires": [
+            [
+                "70c3ae3c.d1585"
+            ]
+        ]
+    },
+    {
+        "id": "70c3ae3c.d1585",
+        "type": "function",
+        "z": "453d3af3.ea4724",
+        "name": "",
+        "func": "msg.payload = 1;\nvar almcount = global.get(\"almcount\");\nif (almcount > 50){global.set(\"almcount\", 0);\nreturn msg;}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 280,
+        "wires": [
+            [
+                "c6076dfe.52f3c",
+                "16df490.e8071b7"
+            ]
+        ]
+    },
+    {
+        "id": "6799536e.06887c",
+        "type": "inject",
+        "z": "453d3af3.ea4724",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 230,
+        "y": 560,
+        "wires": [
+            [
+                "62badb9.55c8324"
+            ]
+        ]
+    },
+    {
+        "id": "62badb9.55c8324",
+        "type": "function",
+        "z": "453d3af3.ea4724",
+        "name": "",
+        "func": "var cnt = global.get(\"almcount\");\nmsg.payload = cnt;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 560,
+        "wires": [
+            [
+                "bd3ca1a4.75348"
+            ]
+        ]
+    },
+    {
+        "id": "bd3ca1a4.75348",
+        "type": "ui_text",
+        "z": "453d3af3.ea4724",
+        "group": "8d058cd6.60efd",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Log Count",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "x": 670,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "b7ae25d9.c3c358",
+        "type": "comment",
+        "z": "453d3af3.ea4724",
+        "name": "Delete after 50 entries",
+        "info": "",
+        "x": 360,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "a8c2985e.d23ad8",
+        "type": "ui_template",
+        "z": "453d3af3.ea4724",
+        "group": "8d058cd6.60efd",
+        "name": "ui_temlplate - present download links on dashboard",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "format": "<script type=\"text/javascript\">\n\n</script>\n\n<style>\n.button { \n         background-color: transparent!important;\n         padding: 8px 16px;\n         display: inline-block;\n         text-decoration: none;\n         color: var(--nr-dashboard-widgetTextColor);\n         border-radius: 3px;\n}\n.button:hover{ background-color: #0066FF;}\n</style>\n\n<md-button class=\"vibrate filled touched bigfont rounded\" style=\"background-color:transparent!important\" >\n       <i class=\"material-icons\" >\n           <span style=\"color:{{msg.payload.perm}}\">get_app</span>\n           </i>\n           <a href=\"/alms.csv\" class=\"button \">Download Alarm Log</a>\n</md-button> \n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 410,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bd3910af.f7be9",
+        "type": "comment",
+        "z": "453d3af3.ea4724",
+        "name": "Download File Change  IP",
+        "info": "",
+        "x": 340,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "a1aedbc9153c46e6",
+        "type": "function",
+        "z": "453d3af3.ea4724",
+        "name": "",
+        "func": "var date;\nvar logcount = global.get(\"almcount\");\nif (logcount > 50){\n\ndate = new Date();\ndate = (date.getFullYear() + \"_\" + ('00' + (date.getMonth()+1)).slice(-2) + '-' + ('00' + date.getDate()).slice(-2));\n\nmsg.filename = \"/data/docs/almslog\" + date + \".csv\";\nreturn msg;}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 240,
+        "wires": [
+            [
+                "f854a6bf9406589b"
+            ]
+        ]
+    },
+    {
+        "id": "f854a6bf9406589b",
+        "type": "file",
+        "z": "453d3af3.ea4724",
+        "name": "",
+        "filename": "filename",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1110,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "28ad48450fd23171",
+        "type": "delay",
+        "z": "453d3af3.ea4724",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 790,
+        "y": 240,
+        "wires": [
+            [
+                "a1aedbc9153c46e6"
+            ]
+        ]
+    },
+    {
+        "id": "61c43b0a736c049e",
+        "type": "comment",
+        "z": "453d3af3.ea4724",
+        "name": "Create Old Logs",
+        "info": "",
+        "x": 870,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "fbb0d15a9ae8cc8a",
+        "type": "link in",
+        "z": "453d3af3.ea4724",
+        "name": "AlmLog",
+        "links": [
+            "b8c59ff05db4d998"
+        ],
+        "x": 155,
+        "y": 40,
+        "wires": [
+            [
+                "2e716841c40dd5cf"
+            ]
+        ]
+    },
+    {
+        "id": "2e716841c40dd5cf",
+        "type": "delay",
+        "z": "453d3af3.ea4724",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 280,
+        "y": 40,
+        "wires": [
+            [
+                "804a3297.4fd92"
+            ]
+        ]
+    },
+    {
         "id": "acb85365.7ce97",
         "type": "file in",
         "z": "8f6b533a.841f4",
@@ -24767,7 +24884,7 @@
         "id": "2190c2b6.31719e",
         "type": "exec",
         "z": "8f6b533a.841f4",
-        "command": "rm -r /data/docs/startstoplog.csv",
+        "command": "sudo rm -r /data/docs/startstoplog.csv",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
@@ -24775,7 +24892,7 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 550,
+        "x": 570,
         "y": 720,
         "wires": [
             [
@@ -25278,7 +25395,7 @@
         "id": "7a6fed515f7390b4",
         "type": "exec",
         "z": "8f6b533a.841f4",
-        "command": "rm -r /data/docs/eventlog.csv",
+        "command": "sudo rm -r /data/docs/eventlog.csv",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
@@ -25286,7 +25403,7 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 560,
+        "x": 580,
         "y": 1560,
         "wires": [
             [
@@ -25600,11 +25717,12 @@
         "type": "file",
         "z": "8f6b533a.841f4",
         "name": "",
-        "filename": "/home/pi/Documents/eventlog.csv",
+        "filename": "/data/docs/eventlog.csv",
+        "filenameType": "str",
         "appendNewline": true,
         "createDir": true,
         "overwriteFile": "false",
-        "x": 1110,
+        "x": 1160,
         "y": 1060,
         "wires": [
             []
@@ -26080,7 +26198,8 @@
         "type": "file",
         "z": "8f6b533a.841f4",
         "name": "",
-        "filename": "",
+        "filename": "filename",
+        "filenameType": "msg",
         "appendNewline": true,
         "createDir": true,
         "overwriteFile": "true",
