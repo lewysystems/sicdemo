@@ -143,7 +143,7 @@
         "id": "4961a2178ba0730f",
         "type": "tab",
         "label": "Admin",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
@@ -151,16 +151,8 @@
         "id": "f0a27113.452c7",
         "type": "tab",
         "label": "WIFI Management",
-        "disabled": false,
-        "info": ""
-    },
-    {
-        "id": "ee2acfc78930b2b8",
-        "type": "tab",
-        "label": "Flow 1",
         "disabled": true,
-        "info": "",
-        "env": []
+        "info": ""
     },
     {
         "id": "9947504b.85595",
@@ -1071,13 +1063,20 @@
         "collapse": true
     },
     {
-        "id": "e0c3e8c1.0cc748",
+        "id": "c519da4c.f6bf9",
         "type": "ui_group",
-        "name": "Garage",
-        "tab": "",
-        "order": 2,
+        "name": "Default",
+        "tab": "c63bab3.e433ad8",
+        "order": 1,
         "disp": false,
-        "width": "10"
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "c63bab3.e433ad8",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard"
     },
     {
         "id": "447d21ab.f9cd6",
@@ -1845,8 +1844,8 @@
         "name": "",
         "label": "PID Enable",
         "tooltip": "",
-        "group": "6dee1a4c.a66424",
-        "order": 1,
+        "group": "b1ecb38b600fbbdb",
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -3892,6 +3891,35 @@
         ]
     },
     {
+        "id": "c585b8bc9bd7cb92",
+        "type": "inject",
+        "z": "7d24d67.5c3b728",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "60",
+        "payloadType": "str",
+        "x": 90,
+        "y": 280,
+        "wires": [
+            [
+                "346a682c.0d2b98"
+            ]
+        ]
+    },
+    {
         "id": "14219165.d3aa1f",
         "type": "comment",
         "z": "1842a961.504507",
@@ -3916,7 +3944,8 @@
         "y": 100,
         "wires": [
             [
-                "9817d475e8fee380"
+                "60a7496ff103a5e3",
+                "ff28f78e.f7d758"
             ]
         ]
     },
@@ -4053,9 +4082,7 @@
         "x": 370,
         "y": 140,
         "wires": [
-            [
-                "60a7496ff103a5e3"
-            ]
+            []
         ]
     },
     {
@@ -4102,7 +4129,7 @@
         "y": 220,
         "wires": [
             [
-                "9817d475e8fee380"
+                "60a7496ff103a5e3"
             ]
         ]
     },
@@ -4229,9 +4256,7 @@
         "x": 350,
         "y": 280,
         "wires": [
-            [
-                "9817d475e8fee380"
-            ]
+            []
         ]
     },
     {
@@ -4239,31 +4264,10 @@
         "type": "comment",
         "z": "1842a961.504507",
         "name": "",
-        "info": "<script id=\"titleScript\" type=\"text/javascript\">\n    $('#titlewords').remove();\n    $('#titleStatus').remove();\n    var toolbar = $('.md-toolbar-tools');\n    var div = $('<div style=\"text-align:center; width:100%;\"/>');\n    var p = $('<p/ id=\"titlewords\">');\n    \n    $('#titleScript').parent().hide();\n    div.append(p);\n    toolbar.append(div);\n\n    function displayTitle(lh) {\n        p.text(lh); \n    }\n\n    // Watch the payload and update the title\n    (function(scope) {\n        scope.$watch('msg.payload', function(data) {\n            displayTitle(data);\n        });\n    })(scope);\n</script>\n",
+        "info": "<script id=\"titleScript\" type=\"text/javascript\">\n    $('#titlewords').remove();\n   // $('#titleStatus').remove();\n    var toolbar = $('.md-toolbar-tools');\n    var div = $('<div style=\"text-align:center; width:100%;\"/>');\n    var p = $('<p/ id=\"titlewords\">');\n    \n    $('#titleScript').parent().hide();\n    div.append(p);\n    toolbar.append(div);\n\n    function displayTitle(lh) {\n        p.text(lh); \n    }\n\n    // Watch the payload and update the title\n    (function(scope) {\n        scope.$watch('msg.payload', function(data) {\n            displayTitle(data);\n        });\n    })(scope);\n</script>\n",
         "x": 820,
-        "y": 100,
+        "y": 160,
         "wires": []
-    },
-    {
-        "id": "9817d475e8fee380",
-        "type": "ui_template",
-        "z": "1842a961.504507",
-        "group": "fe762942.fd8b08",
-        "name": "",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "format": "<script id=\"titleScript\" type=\"text/javascript\">\n    $('#titlewords').remove();\nvar toolbar = $('.md-toolbar-tools');\nvar div = $('\n<div style=\"text-align:center; width:100%;\" />');\nvar p = $('<p / id=\"titlewords\">');\n\n    $('#titleScript').parent().hide();\n    div.append(p);\n    toolbar.append(div);\n\n    function displayTitle(lh) {\n    p.text(lh);\n    }\n\n    // Watch the payload and update the title\n    (function(scope) {\n    scope.$watch('msg.payload', function(data) {\n    displayTitle(data);\n    });\n    })(scope);\n</script>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "global",
-        "className": "",
-        "x": 640,
-        "y": 200,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "ccc60bede64f4dd2",
@@ -4271,8 +4275,8 @@
         "z": "1842a961.504507",
         "name": "",
         "info": "<style>\n    #headerStatus {\n        font-weight: bold;\n        text-transform: uppercase;\n    }\n\n    #headerStatus.online {\n        color: lime;\n    }\n\n    #headerStatus.offline {\n        color: tomato;\n    }\n\n    #headerStatus.Alarm {\n        color: red;\n    }\n    }\n\n    #headerStatus.project {\n        color: lightgray;\n    }\n</style>",
-        "x": 840,
-        "y": 160,
+        "x": 780,
+        "y": 60,
         "wires": []
     },
     {
@@ -4281,8 +4285,8 @@
         "z": "1842a961.504507",
         "name": "",
         "info": "\n<script id=\"titleScript\" type=\"text/javascript\">\n    $(function() {\n    if($('.md-toolbar-tools').length){\n        initHeader();\n    } else setTimeout(initHeader, 500)\n});\n\nfunction initHeader(){\n    if (!$('#headerStatus').length) {\n        var toolbar = $('.md-toolbar-tools');\n        var div = $('<div/>');\n        var p = $('<p id=\"headerStatus\" />');\n        div[0].style.margin = '5px 5px 5px auto';\n        div.append(p);\n        toolbar.append(div);\n    }\n}\n</script>\n\n<script>\n    (function(scope) {\n        scope.$watch('msg', function(data) {\n            var elem = document.getElementById(\"headerStatus\")\n            if(elem !== null) {\n                elem.className = data.topic;\n                elem.innerHTML = data.payload;\n            }\n        });\n    })(scope);\n</script>",
-        "x": 840,
-        "y": 220,
+        "x": 820,
+        "y": 200,
         "wires": []
     },
     {
@@ -4294,13 +4298,65 @@
         "order": 0,
         "width": 0,
         "height": 0,
-        "format": "<script>\n    scope.$watch('msg', function(data) {\n            var elem = document.getElementById(data.topic)\n            if(elem !== null) {\n                if (data.hasOwnProperty('fontFamily')) {elem.style.fontFamily = data.fontFamily}\n                if (data.hasOwnProperty('fontStyle')) {elem.style.fontStyle = data.fontStyle}\n                if (data.hasOwnProperty('color')) {elem.style.color = data.color}\n                if (data.hasOwnProperty('fontSize')) {elem.style.fontSize = data.fontSize}\n                if (data.hasOwnProperty('fontWeight')) {elem.style.fontWeight = data.fontWeight}\n                if (data.hasOwnProperty('payload')) {elem.innerHTML = data.payload};\n                if (data.hasOwnProperty('image')) {elem.src = data.image};\n                \n            }\n        });\n    })(scope);\n</script>",
+        "format": "",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
-        "templateScope": "global",
+        "templateScope": "local",
+        "className": "",
+        "x": 600,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cec7fbbe547e6aea",
+        "type": "comment",
+        "z": "1842a961.504507",
+        "name": "",
+        "info": "<script>\n    scope.$watch('msg', function(data) {\n            var elem = document.getElementById(data.topic)\n            if(elem !== null) { data.color = 'red';\n             //   if (data.hasOwnProperty('fontFamily')) {elem.style.fontFamily = data.fontFamily};\n             //   if (data.hasOwnProperty('fontStyle')) {elem.style.fontStyle = data.fontStyle};\n                if (data.hasOwnProperty('color')) {elem.style.color = data.color};\n              //  if (data.hasOwnProperty('fontSize')) {elem.style.fontSize = data.fontSize};\n             //   if (data.hasOwnProperty('fontWeight')) {elem.style.fontWeight = data.fontWeight};\n                if (data.hasOwnProperty('payload')) {elem.innerHTML = data.payload};\n             //   if (data.hasOwnProperty('image')) {elem.src = data.image};\n                \n            }\n        });\n    })(scope);\n</script>",
+        "x": 820,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "e2a53ffe747fcc05",
+        "type": "ui_template",
+        "z": "1842a961.504507",
+        "group": "fe762942.fd8b08",
+        "name": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n    #headerStatus {\n        font-weight: bold;\n        text-transform: uppercase;\n    }\n\n    #headerStatus.online {\n        color: lime;\n    }\n\n    #headerStatus.offline {\n        color: tomato;\n    }\n\n    #headerStatus.Alarm {\n        color: red;\n    }\n    }\n\n    #headerStatus.project {\n        color: lightgray;\n    }\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
         "className": "",
         "x": 640,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ff28f78e.f7d758",
+        "type": "ui_template",
+        "z": "1842a961.504507",
+        "group": "c519da4c.f6bf9",
+        "name": "Logo / Clock",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "format": "\n<script id=\"titleScript\" type=\"text/javascript\">\n    $('#titlewords').remove();\n   // $('#titleStatus').remove();\n    var toolbar = $('.md-toolbar-tools');\n    var div = $('<div style=\"text-align:center; width:100%;\"/>');\n    var p = $('<p/ id=\"titlewords\">');\n    \n    $('#titleScript').parent().hide();\n    div.append(p);\n    toolbar.append(div);\n\n    function displayTitle(lh) {\n        p.text(lh); \n    }\n\n    // Watch the payload and update the title\n    (function(scope) {\n        scope.$watch('msg.payload', function(data) {\n            displayTitle(data);\n        });\n    })(scope);\n</script>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "global",
+        "className": "",
+        "x": 610,
         "y": 260,
         "wires": [
             []
@@ -8159,8 +8215,8 @@
         "shape": "circle",
         "showGlow": true,
         "name": "i7 led",
-        "x": 250,
-        "y": 540,
+        "x": 310,
+        "y": 560,
         "wires": []
     },
     {
@@ -8579,7 +8635,7 @@
         "type": "function",
         "z": "caed099b.012a78",
         "name": "",
-        "func": "var vfdrun = global.get(\"vfdrun\");\nvar sd =flow.get(\"sda0\");\nvar name = global.get(\"a0name\");\nvar alm = flow.get(\"alma0\");\nvar lolo = global.get(\"a0lolo\"); \nvar hihi =  global.get(\"a0hihi\");\n\nif (vfdrun == 1 && sd == 1 && alm == 0){\n\nif (msg.payload > hihi){\nmsg.topic = name + \" HiHi\";  \nflow.set(\"alma0\", 1);\nreturn msg;}\n\nif (msg.payload < lolo){\nmsg.topic = name + \" LoLo\"; \nflow.set(\"alma0\", 1);\nreturn msg;}\n\n}",
+        "func": "var vfdrun = global.get(\"vfdrun\");\nvar sd =flow.get(\"sda0\");\nvar name = global.get(\"a0name\");\nvar alm = flow.get(\"alma0\");\nvar lolo = global.get(\"a0lolo\"); \nvar hihi =  global.get(\"a0hihi\");\nif (global.get(\"a0restartdelay\") > 0) {\n    global.set(\"restart\", 1);\n    global.set(\"restarttime\",\n        global.get(\"a0restartdelay\"))\n} \n\nif (vfdrun == 1 && sd == 1 && alm == 0){\n\nif (msg.payload > hihi){\nmsg.topic = name + \" HiHi\";  \nflow.set(\"alma0\", 1);\nreturn msg;}\n\nif (msg.payload < lolo){\nmsg.topic = name + \" LoLo\"; \nflow.set(\"alma0\", 1);\nreturn msg;}\n\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -8598,7 +8654,7 @@
         "type": "function",
         "z": "caed099b.012a78",
         "name": "",
-        "func": "var vfdrun = global.get(\"vfdrun\");\nvar sd =flow.get(\"sda1\");\nvar name = global.get(\"a1name\");\nvar alm = flow.get(\"alma1\");\nvar lolo = global.get(\"a1lolo\"); \nvar hihi =  global.get(\"a1hihi\");\n\nif (vfdrun == 1 && sd == 1 && alm == 0){\n\nif (msg.payload > hihi){\nmsg.topic = name + \" HiHi\";  \nflow.set(\"alma1\", 1);\nreturn msg;}\n\nif (msg.payload < lolo){\nmsg.topic = name + \" LoLo\"; \nflow.set(\"alma1\", 1);\nreturn msg;}\n\n}",
+        "func": "var vfdrun = global.get(\"vfdrun\");\nvar sd =flow.get(\"sda1\");\nvar name = global.get(\"a1name\");\nvar alm = flow.get(\"alma1\");\nvar lolo = global.get(\"a1lolo\"); \nvar hihi =  global.get(\"a1hihi\");\nif (global.get(\"a1restartdelay\") > 0) {\n    global.set(\"restart\", 1);\n    global.set(\"restarttime\",\n        global.get(\"a1restartdelay\"))\n} \n\nif (vfdrun == 1 && sd == 1 && alm == 0){\n\nif (msg.payload > hihi){\nmsg.topic = name + \" HiHi\";  \nflow.set(\"alma1\", 1);\nreturn msg;}\n\nif (msg.payload < lolo){\nmsg.topic = name + \" LoLo\"; \nflow.set(\"alma1\", 1);\nreturn msg;}\n\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -8617,7 +8673,7 @@
         "type": "function",
         "z": "caed099b.012a78",
         "name": "",
-        "func": "var vfdrun = global.get(\"vfdrun\");\nvar sd =flow.get(\"sda2\");\nvar name = global.get(\"a2name\");\nvar alm = flow.get(\"alma2\");\nvar lolo = global.get(\"a2lolo\"); \nvar hihi =  global.get(\"a2hihi\");\n\nif (vfdrun == 1 && sd == 1 && alm == 0){\n\nif (msg.payload > hihi){\nmsg.topic = name + \" HiHi\";  \nflow.set(\"alma2\", 1);\nreturn msg;}\n\nif (msg.payload < lolo){\nmsg.topic = name + \" LoLo\"; \nflow.set(\"alma2\", 1);\nreturn msg;}\n\n}",
+        "func": "var vfdrun = global.get(\"vfdrun\");\nvar sd =flow.get(\"sda2\");\nvar name = global.get(\"a2name\");\nvar alm = flow.get(\"alma2\");\nvar lolo = global.get(\"a2lolo\"); \nvar hihi =  global.get(\"a2hihi\");\nif (global.get(\"a2restartdelay\") > 0) {\n    global.set(\"restart\", 1);\n    global.set(\"restarttime\",\n        global.get(\"a2restartdelay\"))\n} \n\nif (vfdrun == 1 && sd == 1 && alm == 0){\n\nif (msg.payload > hihi){\nmsg.topic = name + \" HiHi\";  \nflow.set(\"alma2\", 1);\nreturn msg;}\n\nif (msg.payload < lolo){\nmsg.topic = name + \" LoLo\"; \nflow.set(\"alma2\", 1);\nreturn msg;}\n\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -8636,7 +8692,7 @@
         "type": "function",
         "z": "caed099b.012a78",
         "name": "",
-        "func": "var vfdrun = global.get(\"vfdrun\");\nvar sd =flow.get(\"sda3\");\nvar name = global.get(\"a3name\");\nvar alm = flow.get(\"alma3\");\nvar lolo = global.get(\"a3lolo\"); \nvar hihi =  global.get(\"a3hihi\");\n\nif (vfdrun == 1 && sd == 1 && alm == 0){\n\nif (msg.payload > hihi){\nmsg.topic = name + \" HiHi\";  \nflow.set(\"alma3\", 1);\nreturn msg;}\n\nif (msg.payload < lolo){\nmsg.topic = name + \" LoLo\"; \nflow.set(\"alma3\", 1);\nreturn msg;}\n\n}",
+        "func": "var vfdrun = global.get(\"vfdrun\");\nvar sd =flow.get(\"sda3\");\nvar name = global.get(\"a3name\");\nvar alm = flow.get(\"alma3\");\nvar lolo = global.get(\"a3lolo\"); \nvar hihi =  global.get(\"a3hihi\");\nif (global.get(\"a3restartdelay\") > 0) {\n    global.set(\"restart\", 1);\n    global.set(\"restarttime\",\n        global.get(\"a3restartdelay\"))\n} \n\nif (vfdrun == 1 && sd == 1 && alm == 0){\n\nif (msg.payload > hihi){\nmsg.topic = name + \" HiHi\";  \nflow.set(\"alma3\", 1);\nreturn msg;}\n\nif (msg.payload < lolo){\nmsg.topic = name + \" LoLo\"; \nflow.set(\"alma3\", 1);\nreturn msg;}\n\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -9458,7 +9514,8 @@
         "wires": [
             [
                 "4267f79e1a315ea1",
-                "6c28d5e73f2876ee"
+                "6c28d5e73f2876ee",
+                "6f58210d0cbd91b6"
             ]
         ]
     },
@@ -10024,7 +10081,8 @@
         "y": 180,
         "wires": [
             [
-                "d9d5e84c.24c808"
+                "d9d5e84c.24c808",
+                "67e908807274afa1"
             ]
         ]
     },
@@ -10265,7 +10323,8 @@
         "y": 180,
         "wires": [
             [
-                "dcde2fb90fdcbec5"
+                "dcde2fb90fdcbec5",
+                "2248546fc3dfaff4"
             ]
         ]
     },
@@ -10644,7 +10703,9 @@
         "format": "<md-button class=\"vibrate filled touched bigfont rounded\" style=\"background-color:transparent!important\" ng-click=\"send({payload: 'lock'})\">\n       <i class=\"material-icons\" >\n           <span style=\"color:{{msg.payload.lock}}\"><div ng-bind-html=\"msg.topic\"></div></span>\n           </i>\n</md-button> ",
         "storeOutMessages": true,
         "fwdInMessages": false,
+        "resendOnRefresh": false,
         "templateScope": "local",
+        "className": "",
         "x": 1120,
         "y": 420,
         "wires": [
@@ -10726,7 +10787,8 @@
         "y": 480,
         "wires": [
             [
-                "e22cbb0256e47cce"
+                "e22cbb0256e47cce",
+                "b78905ef90989353"
             ]
         ]
     },
@@ -11415,6 +11477,53 @@
         ]
     },
     {
+        "id": "2248546fc3dfaff4",
+        "type": "function",
+        "z": "5643e3d0.aa409c",
+        "name": "function 12",
+        "func": "global.set(\"restart\", 0)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "13fae15c056c9358",
+        "type": "debug",
+        "z": "5643e3d0.aa409c",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "b78905ef90989353",
+        "type": "link out",
+        "z": "5643e3d0.aa409c",
+        "name": "lock",
+        "mode": "link",
+        "links": [
+            "f9e85fa0a38f2183"
+        ],
+        "x": 1265,
+        "y": 480,
+        "wires": []
+    },
+    {
         "id": "6c08d843.6f6058",
         "type": "inject",
         "z": "14c2a8c4.3c0637",
@@ -11785,12 +11894,12 @@
         "type": "file",
         "z": "14c2a8c4.3c0637",
         "name": "",
-        "filename": "/home/ubuntu/Documents/data.csv",
+        "filename": "/data/docs/data.csv",
         "filenameType": "str",
         "appendNewline": true,
         "createDir": true,
         "overwriteFile": "false",
-        "x": 930,
+        "x": 880,
         "y": 600,
         "wires": [
             []
@@ -17623,6 +17732,35 @@
         ]
     },
     {
+        "id": "eaf36686dcae5582",
+        "type": "inject",
+        "z": "2a060dac.22fa72",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 740,
+        "y": 760,
+        "wires": [
+            [
+                "e07be9bb06fe0750"
+            ]
+        ]
+    },
+    {
         "id": "38d06437.f5944c",
         "type": "inject",
         "z": "80125eca.4c773",
@@ -19929,47 +20067,6 @@
         ]
     },
     {
-        "id": "277b3ddbc6fe63fa",
-        "type": "function",
-        "z": "d505f30f.8dea9",
-        "name": "output on",
-        "func": "var o4sel = global.get(\"o4sel\");\nvar o4ondelay = global.get(\"o4ondelay\") * 1000;\nif (o4sel == 0){\nif (msg.payload == 1){\nmsg.delay = o4ondelay;\nmsg.payload = 1;\nreturn msg;}}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 380,
-        "y": 600,
-        "wires": [
-            [
-                "8f1b8ef87121b01a",
-                "227c5e8a7c795577",
-                "9e7c40a1d6b87957"
-            ]
-        ]
-    },
-    {
-        "id": "dee41761f0daa5cd",
-        "type": "function",
-        "z": "d505f30f.8dea9",
-        "name": "output off",
-        "func": "var o4sel = global.get(\"o4sel\");\nvar o4offdelay = global.get(\"o4ffdelay\") * 1000;\nif (o4sel == 0){\nif (msg.payload == 0){\nmsg.delay = o4offdelay;\nmsg.payload = 0;\nreturn msg;}}",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 380,
-        "y": 640,
-        "wires": [
-            [
-                "f03b5ba75b81b4ee",
-                "227c5e8a7c795577"
-            ]
-        ]
-    },
-    {
         "id": "f03b5ba75b81b4ee",
         "type": "delay",
         "z": "d505f30f.8dea9",
@@ -19987,7 +20084,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 700,
-        "y": 620,
+        "y": 640,
         "wires": [
             [
                 "44880353757ba5af"
@@ -20123,7 +20220,8 @@
         "y": 680,
         "wires": [
             [
-                "8f1b8ef87121b01a"
+                "8f1b8ef87121b01a",
+                "227c5e8a7c795577"
             ]
         ]
     },
@@ -20132,17 +20230,18 @@
         "type": "function",
         "z": "d505f30f.8dea9",
         "name": "",
-        "func": "var o4sel = global.get(\"o4sel\");\nvar vfdrun = global.get(\"vfdrun\");\nvar o4offdelay = global.get(\"o4ffdelay\") * 1000;\nif (o4sel == 1){\nif (vfdrun == 0){\nmsg.delay = o4offdelay;\nmsg.payload = 0;\nreturn msg;}}",
+        "func": "var o4sel = global.get(\"o4sel\");\nvar vfdrun = global.get(\"vfdrun\");\nvar o4offdelay = global.get(\"o4ffdelay\") * 1000;\nvar o4ondelay = global.get(\"o4ondelay\") * 1000;\n\nif (o4sel == 1) {\n    if (vfdrun == 1) {\n        msg.delay = o4ondelay;\n        msg.payload = 1;\n        return msg;\n    }\n    if (vfdrun == 0) {\n        msg.delay = o4offdelay;\n        msg.payload = 0;\n        return msg;\n    }\n}\n\nif (o4sel == 0){\n    if (msg.payload == 0){\n            msg.delay = o4offdelay;\n            return msg;\n        }\n     if (msg.payload == 1) { \n         msg.delay = o4ondelay;\n         return msg;}}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
-        "y": 720,
+        "x": 360,
+        "y": 820,
         "wires": [
             [
-                "8f1b8ef87121b01a"
+                "8f1b8ef87121b01a",
+                "227c5e8a7c795577"
             ]
         ]
     },
@@ -20170,7 +20269,6 @@
         "y": 720,
         "wires": [
             [
-                "edeb72fd431551e9",
                 "91e3b7db57aab2be"
             ]
         ]
@@ -20347,14 +20445,14 @@
         "type": "function",
         "z": "d505f30f.8dea9",
         "name": "",
-        "func": "if (msg.payload ==1 ){msg.payload = \"Input 5 On\"\nreturn msg;}\nif (msg.payload ==9 ){msg.payload = \"Input 5 Off\"\nreturn msg;}",
+        "func": "if (msg.payload ==1 ){msg.payload = \"Input 0.4 On\"\nreturn msg;}\nif (msg.payload ==9 ){msg.payload = \"Input 0.4 Off\"\nreturn msg;}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 630,
-        "y": 680,
+        "x": 660,
+        "y": 700,
         "wires": [
             [
                 "e0e7b4e39adce452"
@@ -20388,9 +20486,44 @@
         "shape": "circle",
         "showGlow": true,
         "name": "I1.0 led",
-        "x": 410,
-        "y": 780,
+        "x": 340,
+        "y": 900,
         "wires": []
+    },
+    {
+        "id": "9da0a00a140d03c0",
+        "type": "ui_switch",
+        "z": "d505f30f.8dea9",
+        "name": "",
+        "label": "Input 1.0",
+        "tooltip": "",
+        "group": "c59adf5a.9e87a",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 160,
+        "y": 820,
+        "wires": [
+            [
+                "91e3b7db57aab2be",
+                "9e7c40a1d6b87957"
+            ]
+        ]
     },
     {
         "id": "d8fe390a.24b108",
@@ -22053,7 +22186,7 @@
         "type": "function",
         "z": "6157092d.8b7638",
         "name": "RPM",
-        "func": "var slip = flow.get(\"slip\");\nvar amps = flow.get(\"amps\");\nvar npamps = flow.get(\"npamps\");\nvar loadratio = amps/npamps;\nvar actualslip = slip*loadratio;\nvar nprpm = global.get(\"nprpm\");\nvar rpm;\nvar poles = flow.get(\"poles\");\nvar freq = msg.payload;\nif(loadratio<0.5){actualslip = 0;}\nrpm = freq*120/poles;\nrpm = rpm - actualslip*nprpm;\nflow.set(\"rpm\", rpm);\nmsg.payload = rpm.toFixed(0);\n\nreturn msg;",
+        "func": "var slip = flow.get(\"slip\");\nvar amps = flow.get(\"amps\");\nvar npamps = flow.get(\"npamps\");\nvar loadratio = amps/npamps;\nvar actualslip = slip*loadratio;\nvar nprpm = global.get(\"nprpm\");\nvar rpm;\nvar poles = flow.get(\"poles\");\nvar freq = msg.payload;\nif(loadratio<0.5){actualslip = 0;}\nrpm = freq*120/poles;\nrpm = rpm - actualslip*nprpm;\nflow.set(\"rpm\", rpm);\nmsg.payload = rpm.toFixed(0);\nif (msg.payload <0) {msg.payload = 0;}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -22324,7 +22457,7 @@
         "type": "function",
         "z": "6157092d.8b7638",
         "name": "mtr torque",
-        "func": "var mtrtorq;\nvar loadrpm = flow.get(\"loadrpm\");\nvar mtrhp = msg.payload;\nvar gearratio = global.get(\"gearratio\");\nvar loadtorq = mtrhp*5252/(loadrpm)*gearratio;\nmsg.payload = loadtorq.toFixed(1);\nreturn msg;",
+        "func": "var mtrtorq;\nvar loadrpm = flow.get(\"loadrpm\");\nvar mtrhp = msg.payload;\nvar gearratio = global.get(\"gearratio\");\nvar loadtorq = mtrhp*5252/(loadrpm)*gearratio;\nmsg.payload = loadtorq.toFixed(1);\nif (msg.payload < 0){msg.payload = 0;};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -24776,8 +24909,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 450,
-        "y": 460,
+        "x": 420,
+        "y": 520,
         "wires": [
             [
                 "f281c066.fcd96"
@@ -24804,7 +24937,7 @@
         "payloadType": "str",
         "topic": "",
         "x": 100,
-        "y": 460,
+        "y": 520,
         "wires": [
             [
                 "acb85365.7ce97"
@@ -24825,7 +24958,7 @@
         "fwdInMessages": true,
         "templateScope": "local",
         "x": 1100,
-        "y": 460,
+        "y": 520,
         "wires": [
             []
         ]
@@ -24852,7 +24985,7 @@
         "to": "",
         "reg": false,
         "x": 860,
-        "y": 460,
+        "y": 520,
         "wires": [
             [
                 "b505d13.4b3b63"
@@ -24871,7 +25004,7 @@
         "finalize": "",
         "libs": [],
         "x": 640,
-        "y": 460,
+        "y": 520,
         "wires": [
             [
                 "d4201de3.92911",
@@ -24884,7 +25017,7 @@
         "id": "2190c2b6.31719e",
         "type": "exec",
         "z": "8f6b533a.841f4",
-        "command": "sudo rm -r /data/docs/startstoplog.csv",
+        "command": "rm -r /data/docs/startstoplog.csv",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
@@ -24892,8 +25025,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 570,
-        "y": 720,
+        "x": 550,
+        "y": 780,
         "wires": [
             [
                 "319866fb.b77a4a"
@@ -24919,7 +25052,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 300,
-        "y": 720,
+        "y": 780,
         "wires": [
             [
                 "2190c2b6.31719e"
@@ -24937,7 +25070,7 @@
         "tostatus": false,
         "complete": "false",
         "x": 890,
-        "y": 720,
+        "y": 780,
         "wires": []
     },
     {
@@ -24947,7 +25080,7 @@
         "name": "Delete Data File",
         "info": "",
         "x": 540,
-        "y": 660,
+        "y": 720,
         "wires": []
     },
     {
@@ -24970,7 +25103,7 @@
         "payloadType": "num",
         "topic": "",
         "x": 260,
-        "y": 780,
+        "y": 840,
         "wires": [
             [
                 "2190c2b6.31719e",
@@ -24991,7 +25124,7 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 600,
+        "y": 660,
         "wires": [
             [
                 "b505d13.4b3b63"
@@ -25020,7 +25153,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 540,
+        "y": 600,
         "wires": [
             [
                 "acb85365.7ce97"
@@ -25039,7 +25172,7 @@
         "finalize": "",
         "libs": [],
         "x": 500,
-        "y": 780,
+        "y": 840,
         "wires": [
             []
         ]
@@ -25061,7 +25194,7 @@
         "drop": false,
         "outputs": 1,
         "x": 160,
-        "y": 660,
+        "y": 720,
         "wires": [
             [
                 "ff924175.173dc"
@@ -25080,7 +25213,7 @@
         "finalize": "",
         "libs": [],
         "x": 320,
-        "y": 660,
+        "y": 720,
         "wires": [
             [
                 "c2ab4d02.48c19",
@@ -25110,7 +25243,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 250,
-        "y": 820,
+        "y": 880,
         "wires": [
             [
                 "8d1b6ffd.910dc"
@@ -25129,7 +25262,7 @@
         "finalize": "",
         "libs": [],
         "x": 420,
-        "y": 820,
+        "y": 880,
         "wires": [
             [
                 "4406db87.5a1d64"
@@ -25149,7 +25282,7 @@
         "format": "{{msg.payload}}",
         "layout": "row-left",
         "x": 600,
-        "y": 820,
+        "y": 880,
         "wires": []
     },
     {
@@ -25159,7 +25292,7 @@
         "name": "Delete after 50 entries",
         "info": "",
         "x": 300,
-        "y": 620,
+        "y": 680,
         "wires": []
     },
     {
@@ -25176,7 +25309,7 @@
         "fwdInMessages": true,
         "templateScope": "local",
         "x": 450,
-        "y": 920,
+        "y": 980,
         "wires": [
             []
         ]
@@ -25188,7 +25321,7 @@
         "name": "Download File Change  IP",
         "info": "",
         "x": 400,
-        "y": 880,
+        "y": 940,
         "wires": []
     },
     {
@@ -25243,7 +25376,7 @@
         "drop": false,
         "outputs": 1,
         "x": 620,
-        "y": 540,
+        "y": 600,
         "wires": [
             [
                 "acb85365.7ce97"
@@ -25256,7 +25389,7 @@
         "z": "8f6b533a.841f4",
         "name": "Events",
         "info": "",
-        "x": 270,
+        "x": 150,
         "y": 1020,
         "wires": []
     },
@@ -25273,7 +25406,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 450,
-        "y": 1280,
+        "y": 1380,
         "wires": [
             [
                 "481a07491a9be73c"
@@ -25300,7 +25433,7 @@
         "payloadType": "str",
         "topic": "",
         "x": 120,
-        "y": 1280,
+        "y": 1380,
         "wires": [
             [
                 "11fef965fa1974c7"
@@ -25321,7 +25454,7 @@
         "fwdInMessages": true,
         "templateScope": "local",
         "x": 1120,
-        "y": 1280,
+        "y": 1380,
         "wires": [
             []
         ]
@@ -25348,7 +25481,7 @@
         "to": "",
         "reg": false,
         "x": 880,
-        "y": 1280,
+        "y": 1380,
         "wires": [
             [
                 "e9957fa70bc356c5"
@@ -25367,7 +25500,7 @@
         "complete": "payload",
         "targetType": "msg",
         "x": 880,
-        "y": 1360,
+        "y": 1460,
         "wires": []
     },
     {
@@ -25382,7 +25515,7 @@
         "finalize": "",
         "libs": [],
         "x": 660,
-        "y": 1280,
+        "y": 1380,
         "wires": [
             [
                 "d0c9f76a71970380",
@@ -25404,7 +25537,7 @@
         "oldrc": false,
         "name": "",
         "x": 580,
-        "y": 1560,
+        "y": 1660,
         "wires": [
             [
                 "8ab32acdc0b5d31a"
@@ -25430,7 +25563,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 320,
-        "y": 1560,
+        "y": 1660,
         "wires": [
             [
                 "7a6fed515f7390b4"
@@ -25448,7 +25581,7 @@
         "tostatus": false,
         "complete": "false",
         "x": 910,
-        "y": 1560,
+        "y": 1660,
         "wires": []
     },
     {
@@ -25458,7 +25591,7 @@
         "name": "Delete Data File",
         "info": "",
         "x": 560,
-        "y": 1500,
+        "y": 1600,
         "wires": []
     },
     {
@@ -25481,7 +25614,7 @@
         "payloadType": "num",
         "topic": "",
         "x": 270,
-        "y": 1620,
+        "y": 1720,
         "wires": [
             [
                 "7a6fed515f7390b4",
@@ -25502,7 +25635,7 @@
         "finalize": "",
         "libs": [],
         "x": 610,
-        "y": 1360,
+        "y": 1460,
         "wires": [
             [
                 "e9957fa70bc356c5"
@@ -25531,7 +25664,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 170,
-        "y": 1340,
+        "y": 1440,
         "wires": [
             [
                 "11fef965fa1974c7"
@@ -25550,7 +25683,7 @@
         "finalize": "",
         "libs": [],
         "x": 530,
-        "y": 1640,
+        "y": 1740,
         "wires": [
             []
         ]
@@ -25572,7 +25705,7 @@
         "drop": false,
         "outputs": 1,
         "x": 180,
-        "y": 1440,
+        "y": 1540,
         "wires": [
             [
                 "d0e4f80a088f6980"
@@ -25591,7 +25724,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 1440,
+        "y": 1540,
         "wires": [
             [
                 "7a6fed515f7390b4",
@@ -25621,7 +25754,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 290,
-        "y": 1700,
+        "y": 1800,
         "wires": [
             [
                 "88470795d14f081f"
@@ -25640,7 +25773,7 @@
         "finalize": "",
         "libs": [],
         "x": 500,
-        "y": 1700,
+        "y": 1800,
         "wires": [
             [
                 "833245d7f687dd4b"
@@ -25660,7 +25793,7 @@
         "format": "{{msg.payload}}",
         "layout": "row-left",
         "x": 750,
-        "y": 1680,
+        "y": 1780,
         "wires": []
     },
     {
@@ -25670,7 +25803,7 @@
         "name": "Delete after 50 entries",
         "info": "",
         "x": 360,
-        "y": 1400,
+        "y": 1500,
         "wires": []
     },
     {
@@ -25687,7 +25820,7 @@
         "fwdInMessages": true,
         "templateScope": "local",
         "x": 480,
-        "y": 1740,
+        "y": 1840,
         "wires": [
             []
         ]
@@ -25844,8 +25977,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 210,
-        "y": 1080,
+        "x": 180,
+        "y": 1060,
         "wires": [
             [
                 "ce567389c0939567"
@@ -25863,7 +25996,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 780,
+        "x": 800,
         "y": 100,
         "wires": [
             [
@@ -26095,7 +26228,7 @@
         "links": [
             "b43a966c189203bc"
         ],
-        "x": 165,
+        "x": 415,
         "y": 1120,
         "wires": [
             [
@@ -26261,7 +26394,7 @@
         "stat": true,
         "showWarnings": false,
         "x": 390,
-        "y": 420,
+        "y": 480,
         "wires": [
             []
         ]
@@ -26282,7 +26415,7 @@
         "stat": true,
         "showWarnings": false,
         "x": 520,
-        "y": 420,
+        "y": 480,
         "wires": [
             []
         ]
@@ -26424,6 +26557,41 @@
         "wires": [
             [
                 "1c5c4737abab203f"
+            ]
+        ]
+    },
+    {
+        "id": "f9e85fa0a38f2183",
+        "type": "link in",
+        "z": "8f6b533a.841f4",
+        "name": "link in 1",
+        "links": [
+            "b78905ef90989353"
+        ],
+        "x": 415,
+        "y": 1160,
+        "wires": [
+            [
+                "cba8e18f90b6b22a"
+            ]
+        ]
+    },
+    {
+        "id": "cba8e18f90b6b22a",
+        "type": "function",
+        "z": "8f6b533a.841f4",
+        "name": "function 13",
+        "func": "msg.payload = msg.topic;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 1160,
+        "wires": [
+            [
+                "4a955bdf07796aa2"
             ]
         ]
     },
