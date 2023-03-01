@@ -353,25 +353,6 @@
         "collapse": true
     },
     {
-        "id": "3331e171.1a052e",
-        "type": "serial-port",
-        "serialport": "/dev/ttyUSB0",
-        "serialbaud": "115200",
-        "databits": "8",
-        "parity": "none",
-        "stopbits": "1",
-        "waitfor": "",
-        "dtr": "none",
-        "rts": "none",
-        "cts": "none",
-        "dsr": "none",
-        "newline": "100",
-        "bin": "bin",
-        "out": "time",
-        "addchar": "",
-        "responsetimeout": "1000"
-    },
-    {
         "id": "347794ab.4617dc",
         "type": "ui_group",
         "name": "Clock",
@@ -1077,6 +1058,34 @@
         "type": "ui_tab",
         "name": "Home",
         "icon": "dashboard"
+    },
+    {
+        "id": "4a6429b4.097758",
+        "type": "ui_group",
+        "name": "test",
+        "tab": "a15e3d6a.2ebff",
+        "order": 2,
+        "disp": false,
+        "width": "10",
+        "collapse": false
+    },
+    {
+        "id": "a15e3d6a.2ebff",
+        "type": "ui_tab",
+        "name": "test",
+        "icon": "",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "951f63e6.78df",
+        "type": "ui_group",
+        "name": "Garage",
+        "tab": "",
+        "order": 2,
+        "disp": false,
+        "width": "10"
     },
     {
         "id": "447d21ab.f9cd6",
@@ -3420,9 +3429,7 @@
         "x": 470,
         "y": 980,
         "wires": [
-            [
-                "73e23cfe.343624"
-            ]
+            []
         ]
     },
     {
@@ -3496,48 +3503,6 @@
         "wires": [
             [
                 "f9009a51.ac6ce8"
-            ]
-        ]
-    },
-    {
-        "id": "73e23cfe.343624",
-        "type": "function",
-        "z": "7d24d67.5c3b728",
-        "name": "",
-        "func": "var txt = msg.payload;\n\nmsg.payload = \"page0.tsite.txt=\\\"\"+ txt +\"\\\"\" ;//\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 650,
-        "y": 920,
-        "wires": [
-            [
-                "38e93e1d.0b3322"
-            ]
-        ]
-    },
-    {
-        "id": "452917a1.3dabf8",
-        "type": "serial out",
-        "z": "7d24d67.5c3b728",
-        "name": "HMI",
-        "serial": "3331e171.1a052e",
-        "x": 1030,
-        "y": 920,
-        "wires": []
-    },
-    {
-        "id": "38e93e1d.0b3322",
-        "type": "function",
-        "z": "7d24d67.5c3b728",
-        "name": "format output",
-        "func": "var str = msg.payload;\nvar buf = [];\n\nfor (var i=0, l = str.length; i < l; i++) {\n    var ascii = str.charCodeAt(i);\n    buf.push(ascii);\n}\nbuf.push(255);\nbuf.push(255);\nbuf.push(255);\n\nmsg.payload = new Buffer(buf);\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 850,
-        "y": 920,
-        "wires": [
-            [
-                "452917a1.3dabf8"
             ]
         ]
     },
@@ -3944,8 +3909,7 @@
         "y": 100,
         "wires": [
             [
-                "60a7496ff103a5e3",
-                "ff28f78e.f7d758"
+                "91670c03.c29ad"
             ]
         ]
     },
@@ -4082,7 +4046,9 @@
         "x": 370,
         "y": 140,
         "wires": [
-            []
+            [
+                "91670c03.c29ad"
+            ]
         ]
     },
     {
@@ -4110,7 +4076,7 @@
         "y": 180,
         "wires": [
             [
-                "60a7496ff103a5e3"
+                "91670c03.c29ad"
             ]
         ]
     },
@@ -4119,7 +4085,7 @@
         "type": "function",
         "z": "1842a961.504507",
         "name": "alarm",
-        "func": "var alm = \"Alarm\"; //global.get(\"alarm\");\nvar proj = global.get('sitename');\nif (alm){\nmsg.topic = \"Alarm\";\nmsg.payload = \"Alarm\";}\nelse{msg.topic = \"project\";\nmsg.payload = proj;\nreturn msg;\n}\n",
+        "func": "var alm = global.get(\"alarm\");\n\nif (alm){\nmsg.topic = \"Alarm\";\nmsg.payload = \"Alarm\";\n\nreturn msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4129,7 +4095,7 @@
         "y": 220,
         "wires": [
             [
-                "60a7496ff103a5e3"
+                "1b2bf7e093b86132"
             ]
         ]
     },
@@ -4233,33 +4199,6 @@
         ]
     },
     {
-        "id": "816cfc9b7327f310",
-        "type": "inject",
-        "z": "1842a961.504507",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "x": 350,
-        "y": 280,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "bc2aa47626ed3451",
         "type": "comment",
         "z": "1842a961.504507",
@@ -4290,27 +4229,6 @@
         "wires": []
     },
     {
-        "id": "60a7496ff103a5e3",
-        "type": "ui_template",
-        "z": "1842a961.504507",
-        "group": "fe762942.fd8b08",
-        "name": "",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "format": "",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 600,
-        "y": 160,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "cec7fbbe547e6aea",
         "type": "comment",
         "z": "1842a961.504507",
@@ -4321,27 +4239,6 @@
         "wires": []
     },
     {
-        "id": "e2a53ffe747fcc05",
-        "type": "ui_template",
-        "z": "1842a961.504507",
-        "group": "fe762942.fd8b08",
-        "name": "",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "format": "<style>\n    #headerStatus {\n        font-weight: bold;\n        text-transform: uppercase;\n    }\n\n    #headerStatus.online {\n        color: lime;\n    }\n\n    #headerStatus.offline {\n        color: tomato;\n    }\n\n    #headerStatus.Alarm {\n        color: red;\n    }\n    }\n\n    #headerStatus.project {\n        color: lightgray;\n    }\n</style>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 640,
-        "y": 60,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "ff28f78e.f7d758",
         "type": "ui_template",
         "z": "1842a961.504507",
@@ -4350,17 +4247,54 @@
         "order": 0,
         "width": 0,
         "height": 0,
-        "format": "\n<script id=\"titleScript\" type=\"text/javascript\">\n    $('#titlewords').remove();\n   // $('#titleStatus').remove();\n    var toolbar = $('.md-toolbar-tools');\n    var div = $('<div style=\"text-align:center; width:100%;\"/>');\n    var p = $('<p/ id=\"titlewords\">');\n    \n    $('#titleScript').parent().hide();\n    div.append(p);\n    toolbar.append(div);\n\n    function displayTitle(lh) {\n        p.text(lh); \n    }\n\n    // Watch the payload and update the title\n    (function(scope) {\n        scope.$watch('msg.payload', function(data) {\n            displayTitle(data);\n        });\n    })(scope);\n</script>\n",
+        "format": "<script>\n    scope.$watch('msg', function(data) {\n            var elem = document.getElementById(data.topic)\n            if(elem !== null) { data.color = 'red';\n             //   if (data.hasOwnProperty('fontFamily')) {elem.style.fontFamily = data.fontFamily};\n             //   if (data.hasOwnProperty('fontStyle')) {elem.style.fontStyle = data.fontStyle};\n                if (data.hasOwnProperty('color')) {elem.style.color = data.color};\n              //  if (data.hasOwnProperty('fontSize')) {elem.style.fontSize = data.fontSize};\n             //   if (data.hasOwnProperty('fontWeight')) {elem.style.fontWeight = data.fontWeight};\n                if (data.hasOwnProperty('payload')) {elem.innerHTML = data.payload};\n             //   if (data.hasOwnProperty('image')) {elem.src = data.image};\n                \n            }\n        });\n    })(scope);\n</script>\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
-        "templateScope": "global",
+        "templateScope": "local",
         "className": "",
-        "x": 610,
+        "x": 590,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "91670c03.c29ad",
+        "type": "ui_template",
+        "z": "1842a961.504507",
+        "group": "fd4cbea3.6101d",
+        "name": "Clock Toolbar",
+        "order": 6,
+        "width": "0",
+        "height": "0",
+        "format": "<script id=\"titleScript\" type=\"text/javascript\">\n    $('#clock').remove();\n    var toolbar = $('.md-toolbar-tools');\n    var div = $('<div/>');\n    var p = $('<p/ id=\"clock\">');\n    \n    $('#titleScript').parent().hide();\n    div.append(p);\n    div[0].style.margin = '5px 5px 5px auto';\n    toolbar.append(div);\n\n    function displayTitle(lh) {\n        p.text(lh); \n    }\n    \n    function upTime() {\n        var d = new Date();\n      //  p.text(d.toLocaleTimeString('en-US'));\n    }\n\n    \n\n    // Watch the payload and update the title\n    (function(scope) {\n        scope.$watch('msg.payload', function(data) {\n            displayTitle(data);\n        });\n        setInterval(upTime,1000);\n    })(scope);\n</script>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 590,
         "y": 260,
         "wires": [
             []
         ]
+    },
+    {
+        "id": "1b2bf7e093b86132",
+        "type": "debug",
+        "z": "1842a961.504507",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 300,
+        "wires": []
     },
     {
         "id": "e4b2165b.92a278",
@@ -4639,8 +4573,7 @@
         "y": 140,
         "wires": [
             [
-                "2cbc5854.6a4c98",
-                "f57949f4.d37c38"
+                "2cbc5854.6a4c98"
             ]
         ]
     },
@@ -4659,8 +4592,7 @@
         "y": 220,
         "wires": [
             [
-                "15eb0199.fa1ede",
-                "f57949f4.d37c38"
+                "15eb0199.fa1ede"
             ]
         ]
     },
@@ -4679,8 +4611,7 @@
         "y": 180,
         "wires": [
             [
-                "f5df31b5.4e193",
-                "f57949f4.d37c38"
+                "f5df31b5.4e193"
             ]
         ]
     },
@@ -4699,8 +4630,7 @@
         "y": 260,
         "wires": [
             [
-                "e0975401.659108",
-                "f57949f4.d37c38"
+                "e0975401.659108"
             ]
         ]
     },
@@ -4758,8 +4688,7 @@
         "y": 80,
         "wires": [
             [
-                "966a52c6.96916",
-                "f57949f4.d37c38"
+                "966a52c6.96916"
             ]
         ]
     },
@@ -5137,22 +5066,6 @@
         ]
     },
     {
-        "id": "75305e45.ee757",
-        "type": "function",
-        "z": "caed099b.012a78",
-        "name": "format output",
-        "func": "var str = msg.payload;\nvar buf = [];\n\nfor (var i=0, l = str.length; i < l; i++) {\n    var ascii = str.charCodeAt(i);\n    buf.push(ascii);\n}\nbuf.push(255);\nbuf.push(255);\nbuf.push(255);\n\nmsg.payload = new Buffer(buf);\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1750,
-        "y": 680,
-        "wires": [
-            [
-                "df26beea.31614"
-            ]
-        ]
-    },
-    {
         "id": "df1ef189.a8c8a",
         "type": "function",
         "z": "caed099b.012a78",
@@ -5166,20 +5079,8 @@
         "x": 750,
         "y": 760,
         "wires": [
-            [
-                "75305e45.ee757"
-            ]
+            []
         ]
-    },
-    {
-        "id": "df26beea.31614",
-        "type": "serial out",
-        "z": "caed099b.012a78",
-        "name": "HMI",
-        "serial": "3331e171.1a052e",
-        "x": 1770,
-        "y": 740,
-        "wires": []
     },
     {
         "id": "a3c37d48.52a09",
@@ -5253,9 +5154,7 @@
         "x": 1480,
         "y": 820,
         "wires": [
-            [
-                "75305e45.ee757"
-            ]
+            []
         ]
     },
     {
@@ -5318,9 +5217,7 @@
         "x": 1450,
         "y": 900,
         "wires": [
-            [
-                "75305e45.ee757"
-            ]
+            []
         ]
     },
     {
@@ -5424,25 +5321,6 @@
         "wires": []
     },
     {
-        "id": "f57949f4.d37c38",
-        "type": "function",
-        "z": "caed099b.012a78",
-        "name": "",
-        "func": "var date = new Date();\ndate = (('00' + (date.getMonth()+1)).slice(-2) + '-' + ('00' + date.getDate()).slice(-2) + '-' + date.getFullYear() + ' ' + ('00' + date.getHours()).slice(-2) + ':' + ('00' + date.getMinutes()).slice(-2) + ':' + ('00' + date.getSeconds()).slice(-2));\nvar text;\n\nif (msg.payload === 1){\n    if (msg.topic == \"almi0\"){text = date + \", \" +  global.get(\"i0name\");\n  msg.payload = \"page0.t3.txt=\\\"\"+ text +\"\\\"\" }\n   if (msg.topic == \"almi1\"){text = date + \", \" +  global.get(\"i1name\");\n  msg.payload = \"page0.t3.txt=\\\"\"+ text +\"\\\"\" ; }\n    if (msg.topic == \"almi2\"){text = date + \", \" +  global.get(\"i2name\");\n  msg.payload = \"page0.t3.txt=\\\"\"+ text +\"\\\"\" ; }\n  if (msg.topic == \"almi3\"){text = date + \", \" +  global.get(\"i3name\");\n  msg.payload = \"page0.t3.txt=\\\"\"+ text +\"\\\"\" ; }\n  if (msg.topic == \"almi4\"){text = date + \", \" +  global.get(\"i4name\");\n  msg.payload = \"page0.t3.txt=\\\"\"+ text +\"\\\"\" ; }\n  if (msg.topic == \"almi5\"){text = date + \", \" +  global.get(\"i5name\");\n  msg.payload = \"page0.t3.txt=\\\"\"+ text +\"\\\"\" ; }\n}else\n{\n//msg.payload = \"page0.t3.txt=\\\"\"+ \" \" +\"\\\"\" ;//   \n}\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1540,
-        "y": 620,
-        "wires": [
-            [
-                "75305e45.ee757"
-            ]
-        ]
-    },
-    {
         "id": "a0db4546.4d3f88",
         "type": "inject",
         "z": "caed099b.012a78",
@@ -5515,22 +5393,6 @@
         "y": 1160,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "9fe55999.8fd6c8",
-        "type": "function",
-        "z": "caed099b.012a78",
-        "name": "",
-        "func": "\nif (global.get(\"alarm\") === 0) {msg.payload = 0}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 990,
-        "y": 2080,
-        "wires": [
-            [
-                "3b53be1d.c32a42"
-            ]
         ]
     },
     {
@@ -5928,9 +5790,7 @@
         "x": 750,
         "y": 660,
         "wires": [
-            [
-                "75305e45.ee757"
-            ]
+            []
         ]
     },
     {
@@ -5947,9 +5807,7 @@
         "x": 760,
         "y": 860,
         "wires": [
-            [
-                "75305e45.ee757"
-            ]
+            []
         ]
     },
     {
@@ -5966,9 +5824,7 @@
         "x": 750,
         "y": 960,
         "wires": [
-            [
-                "75305e45.ee757"
-            ]
+            []
         ]
     },
     {
@@ -6094,278 +5950,6 @@
         "wires": [
             [
                 "dfe96028.ee108"
-            ]
-        ]
-    },
-    {
-        "id": "99fee66c.da5a98",
-        "type": "serial in",
-        "z": "caed099b.012a78",
-        "name": "HMI",
-        "serial": "3331e171.1a052e",
-        "x": 70,
-        "y": 2180,
-        "wires": [
-            [
-                "d764c39c.42c",
-                "96c0fe6c.7e96f",
-                "45b08d1f.c16974",
-                "5cf39b7b.deb444",
-                "17da67df.1cb248"
-            ]
-        ]
-    },
-    {
-        "id": "d764c39c.42c",
-        "type": "function",
-        "z": "caed099b.012a78",
-        "name": "Event",
-        "func": "msg.payload = msg.payload[0];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 310,
-        "y": 2140,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "77aec672.f1db28",
-        "type": "debug",
-        "z": "caed099b.012a78",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 510,
-        "y": 2100,
-        "wires": []
-    },
-    {
-        "id": "96c0fe6c.7e96f",
-        "type": "function",
-        "z": "caed099b.012a78",
-        "name": "Page",
-        "func": "msg.payload = msg.payload[1];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 310,
-        "y": 2180,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "5cf39b7b.deb444",
-        "type": "function",
-        "z": "caed099b.012a78",
-        "name": "ID",
-        "func": "msg.payload = msg.payload[2];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 310,
-        "y": 2220,
-        "wires": [
-            [
-                "77aec672.f1db28"
-            ]
-        ]
-    },
-    {
-        "id": "45b08d1f.c16974",
-        "type": "function",
-        "z": "caed099b.012a78",
-        "name": "State",
-        "func": "msg.payload = msg.payload[7];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 290,
-        "y": 2280,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "17da67df.1cb248",
-        "type": "switch",
-        "z": "caed099b.012a78",
-        "name": "",
-        "property": "payload[2]",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "12",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "18",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "19",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "8",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "9",
-                "vt": "num"
-            },
-            {
-                "t": "eq",
-                "v": "17",
-                "vt": "num"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 6,
-        "x": 490,
-        "y": 2180,
-        "wires": [
-            [
-                "e6332691.eca388"
-            ],
-            [
-                "846f50eb.88638"
-            ],
-            [
-                "70c47225.bfa62c"
-            ],
-            [
-                "7d822b12.d564f4"
-            ],
-            [],
-            [
-                "7edf7ee7.b3635"
-            ]
-        ]
-    },
-    {
-        "id": "e6332691.eca388",
-        "type": "function",
-        "z": "caed099b.012a78",
-        "name": "Start",
-        "func": "var perm = global.get(\"perm\");\nvar vfdrun = global.get(\"vfdrun\");\nif (perm) {global.set(\"vfdrun\",1)}\nnode.status(perm + \" \" + vfdrun);",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 710,
-        "y": 2140,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "846f50eb.88638",
-        "type": "function",
-        "z": "caed099b.012a78",
-        "name": "Stop",
-        "func": "global.set(\"vfdrun\", 0);",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 720,
-        "y": 2200,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "70c47225.bfa62c",
-        "type": "function",
-        "z": "caed099b.012a78",
-        "name": "Reset",
-        "func": "global.set(\"reset\", true);",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 730,
-        "y": 2240,
-        "wires": [
-            [
-                "9fe55999.8fd6c8"
-            ]
-        ]
-    },
-    {
-        "id": "7d822b12.d564f4",
-        "type": "function",
-        "z": "caed099b.012a78",
-        "name": "Beacon",
-        "func": "if (msg.payload[7] == 1 ){\n   \nmsg.payload=\"Beacon Armed\"\n    global.set('beacon', 1)\n    var txt = 'Armed'\n    var color = 65438;\n    msg.payload = \"page0.tB1.txt=\\\"\"+ txt +\"\\\"\" ;\n}\nelse {msg.payload=\"Beacon Disarmed\"\n    global.set('beacon', 0)\n    txt = 'DisArmed'\n    msg.payload = \"page0.tB1.txt=\\\"\"+ txt +\"\\\"\";\n}\n\n return msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 740,
-        "y": 2280,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "7edf7ee7.b3635",
-        "type": "function",
-        "z": "caed099b.012a78",
-        "name": "Clear",
-        "func": "\nif (global.get(\"alarm\") === 0) {msg.payload = 0}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 730,
-        "y": 2360,
-        "wires": [
-            [
-                "3c4db87e.e58ab8"
-            ]
-        ]
-    },
-    {
-        "id": "3c4db87e.e58ab8",
-        "type": "function",
-        "z": "caed099b.012a78",
-        "name": "Alarm State",
-        "func": "//if (msg.payload === 0){\n  msg.payload = \"page0.t3.txt=\\\"\"+ \" \" +\"\\\"\" ;//  \n//}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 950,
-        "y": 2360,
-        "wires": [
-            [
-                "75305e45.ee757"
-            ]
-        ]
-    },
-    {
-        "id": "6f8baa5a.c30f54",
-        "type": "inject",
-        "z": "caed099b.012a78",
-        "name": "",
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 670,
-        "y": 2420,
-        "wires": [
-            [
-                "3c4db87e.e58ab8"
             ]
         ]
     },
@@ -8220,16 +7804,6 @@
         "wires": []
     },
     {
-        "id": "143df2770fc3aefa",
-        "type": "comment",
-        "z": "caed099b.012a78",
-        "name": "vfdrun",
-        "info": "",
-        "x": 700,
-        "y": 2100,
-        "wires": []
-    },
-    {
         "id": "1fa91b4f7124f8e2",
         "type": "function",
         "z": "caed099b.012a78",
@@ -9749,7 +9323,6 @@
         "wires": [
             [
                 "a515a3bd.d9fcb",
-                "2c402484.5795ac",
                 "bb28abc3.6f23f8"
             ]
         ]
@@ -9795,88 +9368,6 @@
         "wires": [
             [
                 "7d4b3632.3aec78"
-            ]
-        ]
-    },
-    {
-        "id": "2c402484.5795ac",
-        "type": "delay",
-        "z": "119ca35.22f805d",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "500",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "outputs": 1,
-        "x": 210,
-        "y": 600,
-        "wires": [
-            [
-                "a72e1c06.26e0d"
-            ]
-        ]
-    },
-    {
-        "id": "209287c8.db9f28",
-        "type": "serial out",
-        "z": "119ca35.22f805d",
-        "name": "HMI",
-        "serial": "3331e171.1a052e",
-        "x": 930,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "59274eac.92afc",
-        "type": "function",
-        "z": "119ca35.22f805d",
-        "name": "format output",
-        "func": "var str = msg.payload;\nvar buf = [];\n\nfor (var i=0, l = str.length; i < l; i++) {\n    var ascii = str.charCodeAt(i);\n    buf.push(ascii);\n}\nbuf.push(255);\nbuf.push(255);\nbuf.push(255);\n\nmsg.payload = new Buffer(buf);\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 730,
-        "y": 600,
-        "wires": [
-            [
-                "209287c8.db9f28"
-            ]
-        ]
-    },
-    {
-        "id": "fcee070a.baf748",
-        "type": "function",
-        "z": "119ca35.22f805d",
-        "name": "cmd to hmi",
-        "func": "var last_update = global.get('last_update');\nvar missatge = \"null\";\nflow.set('page', 3);\nswitch (flow.get('page')){\n    case 0: \n        missatge =\"Estat_actual (\"+ last_update +\")\";\n        msg.payload = \"t2.txt=\\\"\"+ missatge +\"\\\"\";\n       break;\n       \n    case 3:\n        missatge =\" \"+ last_update +\" \";\n        msg.payload = \"t2.txt=\\\"\"+ missatge +\"\\\"\";\n        break;\n    \n    default:\n      //  msg = undefined;\n}\n \nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 530,
-        "y": 600,
-        "wires": [
-            [
-                "59274eac.92afc"
-            ]
-        ]
-    },
-    {
-        "id": "a72e1c06.26e0d",
-        "type": "function",
-        "z": "119ca35.22f805d",
-        "name": "Time",
-        "func": "var now = new Date();\nglobal.set('last_update', now.toLocaleString('es-ES'));\nnode.status({\"text\": global.get('last_update')});\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 350,
-        "y": 600,
-        "wires": [
-            [
-                "fcee070a.baf748"
             ]
         ]
     },
@@ -10113,35 +9604,6 @@
         ]
     },
     {
-        "id": "d3169606.62d238",
-        "type": "function",
-        "z": "5643e3d0.aa409c",
-        "name": "format output",
-        "func": "var str = msg.payload;\nvar buf = [];\n\nfor (var i=0, l = str.length; i < l; i++) {\n    var ascii = str.charCodeAt(i);\n    buf.push(ascii);\n}\nbuf.push(255);\nbuf.push(255);\nbuf.push(255);\n\nmsg.payload = new Buffer(buf);\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 870,
-        "y": 300,
-        "wires": [
-            [
-                "71eafd3a.e0a1c4"
-            ]
-        ]
-    },
-    {
-        "id": "71eafd3a.e0a1c4",
-        "type": "serial out",
-        "z": "5643e3d0.aa409c",
-        "name": "",
-        "serial": "3331e171.1a052e",
-        "x": 1050,
-        "y": 300,
-        "wires": []
-    },
-    {
         "id": "88d2e75c.449038",
         "type": "change",
         "z": "5643e3d0.aa409c",
@@ -10344,25 +9806,6 @@
         "wires": [
             [
                 "b1fc2115238f6ee1"
-            ]
-        ]
-    },
-    {
-        "id": "b1daa7dd.6d7eb8",
-        "type": "function",
-        "z": "5643e3d0.aa409c",
-        "name": "",
-        "func": "var color = 1024;\nvar coloron = 34784;\nvar vfdrun = global.get(\"vfdrun\");\nif (vfdrun ===1){\n    msg.payload =  \"page0.bstart.bco=\"+ coloron +\"\";}\n    else {msg.payload =  \"page0.bstart.bco=\"+ color +\"\";}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 680,
-        "y": 300,
-        "wires": [
-            [
-                "d3169606.62d238"
             ]
         ]
     },
@@ -11587,7 +11030,6 @@
         "wires": [
             [
                 "97de2978.522338",
-                "34ec5ac5.50f2c6",
                 "47c8ef0a.fbecf"
             ]
         ]
@@ -11650,48 +11092,6 @@
         "x": 780,
         "y": 440,
         "wires": []
-    },
-    {
-        "id": "464675ff.2376ec",
-        "type": "function",
-        "z": "14c2a8c4.3c0637",
-        "name": "format output",
-        "func": "var str = msg.payload;\nvar buf = [];\n\nfor (var i=0, l = str.length; i < l; i++) {\n    var ascii = str.charCodeAt(i);\n    buf.push(ascii);\n}\nbuf.push(255);\nbuf.push(255);\nbuf.push(255);\n\nmsg.payload = new Buffer(buf);\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 970,
-        "y": 300,
-        "wires": [
-            [
-                "7c4bc53a.df4dac"
-            ]
-        ]
-    },
-    {
-        "id": "7c4bc53a.df4dac",
-        "type": "serial out",
-        "z": "14c2a8c4.3c0637",
-        "name": "",
-        "serial": "3331e171.1a052e",
-        "x": 1170,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "34ec5ac5.50f2c6",
-        "type": "function",
-        "z": "14c2a8c4.3c0637",
-        "name": "",
-        "func": "var txt = msg.payload;\n\n msg.payload = \"page0.ttemp.txt=\\\"\"+ txt +\"\\\"\" ;\nnode.status(txt);\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 800,
-        "y": 300,
-        "wires": [
-            [
-                "464675ff.2376ec"
-            ]
-        ]
     },
     {
         "id": "b4c55dc3.64084",
@@ -12553,9 +11953,7 @@
         "x": 430,
         "y": 900,
         "wires": [
-            [
-                "c39fa6d5.78ee88"
-            ]
+            []
         ]
     },
     {
@@ -12569,9 +11967,7 @@
         "x": 430,
         "y": 940,
         "wires": [
-            [
-                "c39fa6d5.78ee88"
-            ]
+            []
         ]
     },
     {
@@ -12585,9 +11981,7 @@
         "x": 430,
         "y": 980,
         "wires": [
-            [
-                "c39fa6d5.78ee88"
-            ]
+            []
         ]
     },
     {
@@ -12601,9 +11995,7 @@
         "x": 430,
         "y": 1020,
         "wires": [
-            [
-                "c39fa6d5.78ee88"
-            ]
+            []
         ]
     },
     {
@@ -13998,32 +13390,6 @@
         ]
     },
     {
-        "id": "c39fa6d5.78ee88",
-        "type": "function",
-        "z": "1845960d.82fd2a",
-        "name": "format output",
-        "func": "var str = msg.payload;\nvar buf = [];\n\nfor (var i=0, l = str.length; i < l; i++) {\n    var ascii = str.charCodeAt(i);\n    buf.push(ascii);\n}\nbuf.push(255);\nbuf.push(255);\nbuf.push(255);\n\nmsg.payload = new Buffer(buf);\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1270,
-        "y": 440,
-        "wires": [
-            [
-                "aa44fbe9.1979e8"
-            ]
-        ]
-    },
-    {
-        "id": "aa44fbe9.1979e8",
-        "type": "serial out",
-        "z": "1845960d.82fd2a",
-        "name": "HMI",
-        "serial": "3331e171.1a052e",
-        "x": 1290,
-        "y": 500,
-        "wires": []
-    },
-    {
         "id": "3a73c819.245298",
         "type": "inject",
         "z": "1845960d.82fd2a",
@@ -14054,9 +13420,7 @@
         "x": 1160,
         "y": 720,
         "wires": [
-            [
-                "c39fa6d5.78ee88"
-            ]
+            []
         ]
     },
     {
@@ -16780,39 +16144,8 @@
         "x": 1330,
         "y": 1120,
         "wires": [
-            [
-                "237264a7.f52aec"
-            ]
+            []
         ]
-    },
-    {
-        "id": "237264a7.f52aec",
-        "type": "function",
-        "z": "2a060dac.22fa72",
-        "name": "format output",
-        "func": "var str = msg.payload;\nvar buf = [];\n\nfor (var i=0, l = str.length; i < l; i++) {\n    var ascii = str.charCodeAt(i);\n    buf.push(ascii);\n}\nbuf.push(255);\nbuf.push(255);\nbuf.push(255);\n\nmsg.payload = new Buffer(buf);\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1510,
-        "y": 1120,
-        "wires": [
-            [
-                "a53d1554.b84b68"
-            ]
-        ]
-    },
-    {
-        "id": "a53d1554.b84b68",
-        "type": "serial out",
-        "z": "2a060dac.22fa72",
-        "name": "HMI",
-        "serial": "3331e171.1a052e",
-        "x": 1570,
-        "y": 1040,
-        "wires": []
     },
     {
         "id": "201e08c3.f83178",
@@ -21868,32 +21201,6 @@
         ]
     },
     {
-        "id": "81bc1ad5.7b3918",
-        "type": "function",
-        "z": "6157092d.8b7638",
-        "name": "format output",
-        "func": "var str = msg.payload;\nvar buf = [];\n\nfor (var i=0, l = str.length; i < l; i++) {\n    var ascii = str.charCodeAt(i);\n    buf.push(ascii);\n}\nbuf.push(255);\nbuf.push(255);\nbuf.push(255);\n\nmsg.payload = new Buffer(buf);\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1930,
-        "y": 1100,
-        "wires": [
-            [
-                "14b57624.1b624a"
-            ]
-        ]
-    },
-    {
-        "id": "14b57624.1b624a",
-        "type": "serial out",
-        "z": "6157092d.8b7638",
-        "name": "HMI",
-        "serial": "3331e171.1a052e",
-        "x": 1950,
-        "y": 1160,
-        "wires": []
-    },
-    {
         "id": "cd2bcb79.621458",
         "type": "function",
         "z": "6157092d.8b7638",
@@ -21904,9 +21211,7 @@
         "x": 1710,
         "y": 980,
         "wires": [
-            [
-                "81bc1ad5.7b3918"
-            ]
+            []
         ]
     },
     {
@@ -21971,9 +21276,7 @@
         "x": 1690,
         "y": 1020,
         "wires": [
-            [
-                "81bc1ad5.7b3918"
-            ]
+            []
         ]
     },
     {
@@ -21990,9 +21293,7 @@
         "x": 1700,
         "y": 1060,
         "wires": [
-            [
-                "81bc1ad5.7b3918"
-            ]
+            []
         ]
     },
     {
