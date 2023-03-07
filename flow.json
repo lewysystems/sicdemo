@@ -1045,6 +1045,20 @@
         "hidden": false
     },
     {
+        "id": "0696b699f0a77d63",
+        "type": "influxdb",
+        "hostname": "129.146.220.64",
+        "port": "8086",
+        "protocol": "http",
+        "database": "sicdata",
+        "name": "influxdb",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://lewysystems.com:8086",
+        "rejectUnauthorized": true
+    },
+    {
         "id": "447d21ab.f9cd6",
         "type": "file",
         "z": "9947504b.85595",
@@ -1454,7 +1468,8 @@
                 "196096fa.6287d9",
                 "6a282ff0.327f6",
                 "69060f977431b4e6",
-                "4825edbf552c6933"
+                "4825edbf552c6933",
+                "0727a798029b072e"
             ]
         ]
     },
@@ -2549,7 +2564,8 @@
         "y": 620,
         "wires": [
             [
-                "8075e06235bb667f"
+                "8075e06235bb667f",
+                "96f4c2cf16fc67e2"
             ]
         ]
     },
@@ -2616,6 +2632,62 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "0727a798029b072e",
+        "type": "function",
+        "z": "99100446.f792b8",
+        "name": "function 21",
+        "func": "var val = msg.payload;\nmsg.payload = [{\n    pv: val\n},\n{\n    tag1: \"value\"\n}\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1050,
+        "y": 400,
+        "wires": [
+            [
+                "8b352f1802738e31"
+            ]
+        ]
+    },
+    {
+        "id": "96f4c2cf16fc67e2",
+        "type": "function",
+        "z": "99100446.f792b8",
+        "name": "function 22",
+        "func": "var val = msg.payload;\nmsg.payload = [{\n    pid_sp: val\n},\n{\n    tag1: \"value\"\n}\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 700,
+        "wires": [
+            [
+                "8b352f1802738e31"
+            ]
+        ]
+    },
+    {
+        "id": "8b352f1802738e31",
+        "type": "influxdb out",
+        "z": "99100446.f792b8",
+        "influxdb": "0696b699f0a77d63",
+        "name": "",
+        "measurement": "pv",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "lewysystems",
+        "bucket": "sicpi",
+        "x": 1270,
+        "y": 420,
+        "wires": []
     },
     {
         "id": "9f7c6b07.b2ae48",
@@ -2745,13 +2817,14 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 501,
-        "y": 179,
+        "x": 520,
+        "y": 180,
         "wires": [
             [
                 "d4c79ff5.b9bab",
                 "49d61b90.ef4664",
-                "31242180.7fe63e"
+                "31242180.7fe63e",
+                "81f2665e8ae145da"
             ],
             [
                 "31242180.7fe63e"
@@ -3754,7 +3827,8 @@
             [
                 "31242180.7fe63e",
                 "49d61b90.ef4664",
-                "2c338c2e1171cd24"
+                "2c338c2e1171cd24",
+                "ceec882e75dd7eea"
             ]
         ]
     },
@@ -3784,6 +3858,70 @@
         "wires": [
             [
                 "346a682c.0d2b98"
+            ]
+        ]
+    },
+    {
+        "id": "81f2665e8ae145da",
+        "type": "function",
+        "z": "7d24d67.5c3b728",
+        "name": "function 14",
+        "func": "var val = msg.payload;\nmsg.payload = [{\n    cpu_temperatue: val\n},\n{\n    tag1: \"value\"\n}\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c19c74fe386acee9",
+        "type": "comment",
+        "z": "7d24d67.5c3b728",
+        "name": "to influxdb",
+        "info": "",
+        "x": 980,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "b8c4b6e31581f5f6",
+        "type": "influxdb out",
+        "z": "7d24d67.5c3b728",
+        "influxdb": "0696b699f0a77d63",
+        "name": "",
+        "measurement": "picpu",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "lewysystems",
+        "bucket": "cpu",
+        "x": 1220,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "ceec882e75dd7eea",
+        "type": "function",
+        "z": "7d24d67.5c3b728",
+        "name": "function 20",
+        "func": "var val = msg.payload;\nmsg.payload = [{\n    temperatue: val\n},\n{\n    tag1: \"value\"\n}\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 300,
+        "wires": [
+            [
+                "b8c4b6e31581f5f6"
             ]
         ]
     },
@@ -3997,9 +4135,7 @@
         "x": 310,
         "y": 220,
         "wires": [
-            [
-                "1b2bf7e093b86132"
-            ]
+            []
         ]
     },
     {
@@ -4161,22 +4297,6 @@
         "wires": [
             []
         ]
-    },
-    {
-        "id": "1b2bf7e093b86132",
-        "type": "debug",
-        "z": "1842a961.504507",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 380,
-        "y": 300,
-        "wires": []
     },
     {
         "id": "e4b2165b.92a278",
@@ -4979,7 +5099,7 @@
         "type": "function",
         "z": "caed099b.012a78",
         "name": "",
-        "func": "var volts;\nvar val;\nvar intVal;\nvar a1name = global.get(\"a1name\");\nvar min = global.get(\"a1min\");\nvar max = global.get(\"a1scale\");\nvar units = global.get(\"units1\");\nmsg.payload = flow.get(\"a1\");\n//volts =msg.A1[\"ADS1115 • I2C_ADDRESS_0x48 • Channel A1-GND • Voltage\"];\nvolts = msg.payload; //[\"/dev/i2c-1\"].ads1115[\"0x48\"].singleEnded.channel_1.Volts\n\n// for 4-20ma 200ohm \n// 0 = 0.8V 20ma = 4v\n// normalize 0-1   z = x-min/(max-min)\nval = volts; //Analog scale\nval = (volts-0.8)/(4.09-0.8);\nmsg.payload = val.toFixed(2);\n\nval = val*max;\nval = ((val+min)/(max+min))*max;\nmsg.payload = val.toFixed(2);\nmsg.topic = a1name;\n\nvar a1 = Number(msg.payload);\nglobal.set(\"a1\",a1);\nmsg.units = units;\nnode.status(msg.payload + \" \" + msg.units);\nreturn msg;",
+        "func": "var volts;\nvar val;\nvar intVal;\nvar a1name = global.get(\"a1name\");\nvar min = global.get(\"a1min\");\nvar max = global.get(\"a1scale\");\nvar units = global.get(\"units1\");\nmsg.payload = flow.get(\"a1\");\n//volts =msg.A1[\"ADS1115 • I2C_ADDRESS_0x48 • Channel A1-GND • Voltage\"];\nvolts = msg.payload; //[\"/dev/i2c-1\"].ads1115[\"0x48\"].singleEnded.channel_1.Volts\n\n// for 4-20ma 200ohm \n// 0 = 0.8V 20ma = 4v\n// normalize 0-1   z = x-min/(max-min)\nval = volts; //Analog scale\nval = (volts-0.8)/(4.09-0.8);\nmsg.payload = val.toFixed(2);\n\nval = val*max;\nval = ((val+min)/(max+min))*max;\nmsg.payload = val.toFixed(2);\nmsg.topic = a1name;\n\nvar a1 = Number(msg.payload);\nglobal.set(\"a1\",a1);\nmsg.units = units;\nmsg.payload = Number(msg.payload);\nnode.status(msg.payload + \" \" + msg.units);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4992,7 +5112,8 @@
                 "df1ef189.a8c8a",
                 "fc4c6149.4dd1f",
                 "f8d187e3.127d88",
-                "ec7c15c6.d21078"
+                "ec7c15c6.d21078",
+                "960fcdb62d3e1867"
             ]
         ]
     },
@@ -5117,7 +5238,7 @@
         "type": "function",
         "z": "caed099b.012a78",
         "name": "",
-        "func": "var volts;\nvar val;\nvar intVal;\nmsg.payload =flow.get(\"a0\");\nvar a0name = global.get(\"a0name\");\nvar min = global.get(\"a0min\");\nvar max = global.get(\"a0scale\");\nvar units = global.get(\"units0\");\n//volts =msg.A0[\"ADS1115 • I2C_ADDRESS_0x48 • Channel A0-GND • Voltage\"];\nvolts = msg.payload; //[\"/dev/i2c-1\"].ads1115[\"0x48\"].singleEnded.channel_0.Volts\n\n// for 4-20ma 200ohm \n// 0 = 0.8V 20ma = 4v\n// normalize 0-1   z = x-min/(max-min)\nval = volts; //Analog scale\nval = (volts-0.8)/(4.09-0.8);\nmsg.payload = val.toFixed(2);\n\nval = val*max;\nval = ((val+min)/(max+min))*max;\nmsg.payload = val.toFixed(2);\nmsg.topic = a0name;\n\nvar a0 = Number(msg.payload);\nglobal.set(\"a0\",a0);\nmsg.units = units;\nnode.status(msg.payload + \" \" + msg.units);\nreturn msg;",
+        "func": "var volts;\nvar val;\nvar intVal;\nmsg.payload =flow.get(\"a0\");\nvar a0name = global.get(\"a0name\");\nvar min = global.get(\"a0min\");\nvar max = global.get(\"a0scale\");\nvar units = global.get(\"units0\");\n//volts =msg.A0[\"ADS1115 • I2C_ADDRESS_0x48 • Channel A0-GND • Voltage\"];\nvolts = msg.payload; //[\"/dev/i2c-1\"].ads1115[\"0x48\"].singleEnded.channel_0.Volts\n\n// for 4-20ma 200ohm \n// 0 = 0.8V 20ma = 4v\n// normalize 0-1   z = x-min/(max-min)\nval = volts; //Analog scale\nval = (volts-0.8)/(4.09-0.8);\nmsg.payload = val.toFixed(2);\n\nval = val*max;\nval = ((val+min)/(max+min))*max;\nmsg.payload = val.toFixed(2);\nmsg.topic = a0name;\n\nvar a0 = Number(msg.payload);\nglobal.set(\"a0\",a0);\nmsg.units = units;\nmsg.payload = Number(msg.payload);\nnode.status(msg.payload + \" \" + msg.units);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5130,7 +5251,8 @@
                 "89326120.8e0f2",
                 "6cf4096f.9b4568",
                 "8158d488fff88be3",
-                "c90b424e.0d783"
+                "c90b424e.0d783",
+                "a981f4a3be5080bb"
             ]
         ]
     },
@@ -5139,7 +5261,7 @@
         "type": "function",
         "z": "caed099b.012a78",
         "name": "",
-        "func": "var volts;\nvar val;\nvar intVal;\nvar a2name = global.get(\"a2name\");\nvar min = global.get(\"a2min\");\nvar max = global.get(\"a2scale\");\nvar units = global.get(\"units2\");\nmsg.payload = flow.get(\"a2\");\n//volts =msg.A2[\"ADS1115 • I2C_ADDRESS_0x48 • Channel A2-GND • Voltage\"];\nvolts = msg.payload; //[\"/dev/i2c-1\"].ads1115[\"0x48\"].singleEnded.channel_2.Volts\n\n// for 4-20ma 200ohm \n// 0 = 0.8V 20ma = 4v\n// normalize 0-1   z = x-min/(max-min)\nval = volts; //Analog scale\nval = (volts-0.8)/(4.09-0.8);\nmsg.payload = val.toFixed(2);\nnode.status(msg.payload);\n\nval = val*max;\nval = ((val+min)/(max+min))*max;\nmsg.payload = val.toFixed(2);\nnode.status(msg.payload);\nmsg.topic = a2name;\nvar a2 = Number(msg.payload);\nglobal.set(\"a2\",a2);\nmsg.units = units;\nnode.status(msg.payload + \" \" + msg.units);\nreturn msg;",
+        "func": "var volts;\nvar val;\nvar intVal;\nvar a2name = global.get(\"a2name\");\nvar min = global.get(\"a2min\");\nvar max = global.get(\"a2scale\");\nvar units = global.get(\"units2\");\nmsg.payload = flow.get(\"a2\");\n//volts =msg.A2[\"ADS1115 • I2C_ADDRESS_0x48 • Channel A2-GND • Voltage\"];\nvolts = msg.payload; //[\"/dev/i2c-1\"].ads1115[\"0x48\"].singleEnded.channel_2.Volts\n\n// for 4-20ma 200ohm \n// 0 = 0.8V 20ma = 4v\n// normalize 0-1   z = x-min/(max-min)\nval = volts; //Analog scale\nval = (volts-0.8)/(4.09-0.8);\nmsg.payload = val.toFixed(2);\nnode.status(msg.payload);\n\nval = val*max;\nval = ((val+min)/(max+min))*max;\nmsg.payload = val.toFixed(2);\nnode.status(msg.payload);\nmsg.topic = a2name;\nvar a2 = Number(msg.payload);\nglobal.set(\"a2\",a2);\nmsg.units = units;\nmsg.payload = Number(msg.payload);\nnode.status(msg.payload + \" \" + msg.units);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5152,7 +5274,8 @@
                 "b86130ba.93d3c",
                 "ba0f4c3.f6d77b",
                 "85f1fedc.9b947",
-                "689af2d25392074b"
+                "689af2d25392074b",
+                "55c5c317c28f07ab"
             ]
         ]
     },
@@ -5161,7 +5284,7 @@
         "type": "function",
         "z": "caed099b.012a78",
         "name": "",
-        "func": "var volts;\nvar val;\nvar intVal;\nvar a3name = global.get(\"a3name\");\nvar min = global.get(\"a3min\");\nvar max = global.get(\"a3scale\");\nvar units = global.get(\"units3\");\nmsg.payload = flow.get(\"a3\");\n//volts =msg.A3[\"ADS1115 • I2C_ADDRESS_0x48 • Channel A3-GND • Voltage\"];\nvolts =msg.payload; //[\"/dev/i2c-1\"].ads1115[\"0x48\"].singleEnded.channel_3.Volts\n\n// for 4-20ma 200ohm \n// 0 = 0.8V 20ma = 4v\n// normalize 0-1   z = x-min/(max-min)\nval = volts; //Analog scale\nval = (volts-0.8)/(4.09-0.8);\nmsg.payload = val.toFixed(2);\nnode.status(msg.payload);\n\nval = val*max;\nval = ((val+min)/(max+min))*max;\nmsg.payload = val.toFixed(2);\nnode.status(msg.payload);\nmsg.topic = a3name;\nvar a3 = Number(msg.payload);\nglobal.set(\"a3\",a3);\nmsg.units = units;\nnode.status(msg.payload + \" \" + msg.topic);\nreturn msg;",
+        "func": "var volts;\nvar val;\nvar intVal;\nvar a3name = global.get(\"a3name\");\nvar min = global.get(\"a3min\");\nvar max = global.get(\"a3scale\");\nvar units = global.get(\"units3\");\nmsg.payload = flow.get(\"a3\");\n//volts =msg.A3[\"ADS1115 • I2C_ADDRESS_0x48 • Channel A3-GND • Voltage\"];\nvolts =msg.payload; //[\"/dev/i2c-1\"].ads1115[\"0x48\"].singleEnded.channel_3.Volts\n\n// for 4-20ma 200ohm \n// 0 = 0.8V 20ma = 4v\n// normalize 0-1   z = x-min/(max-min)\nval = volts; //Analog scale\nval = (volts-0.8)/(4.09-0.8);\nmsg.payload = val.toFixed(2);\nnode.status(msg.payload);\n\nval = val*max;\nval = ((val+min)/(max+min))*max;\nmsg.payload = val.toFixed(2);\nnode.status(msg.payload);\nmsg.topic = a3name;\nvar a3 = Number(msg.payload);\nglobal.set(\"a3\",a3);\nmsg.units = units;\nmsg.payload = Number(msg.payload);\nnode.status(msg.payload + \" \" + msg.topic);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5174,7 +5297,8 @@
                 "74b33261.c7d01c",
                 "a7672cc7.a71ba",
                 "57689f72.2010b",
-                "491c2d700549a268"
+                "491c2d700549a268",
+                "61e22802d7d14473"
             ]
         ]
     },
@@ -5734,7 +5858,8 @@
         "y": 140,
         "wires": [
             [
-                "9be66766419bfc25"
+                "9be66766419bfc25",
+                "b4e09c82965bd5af"
             ]
         ]
     },
@@ -9035,6 +9160,181 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "b4e09c82965bd5af",
+        "type": "function",
+        "z": "caed099b.012a78",
+        "name": "function 15",
+        "func": "var val = msg.payload;\nmsg.payload = [{\n    analog0: val\n},\n{\n    tag1: \"value\"\n}\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "425bbe2cfc4b11b9",
+        "type": "comment",
+        "z": "caed099b.012a78",
+        "name": "to influxdb",
+        "info": "",
+        "x": 1160,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "a981f4a3be5080bb",
+        "type": "function",
+        "z": "caed099b.012a78",
+        "name": "function 16",
+        "func": "var val = msg.payload;\nmsg.payload = [{\n\n    analog0: val\n    \n},\n{\n    tag1: \"value\"\n\n}\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 620,
+        "wires": [
+            [
+                "8c6a13bba76ef4ba"
+            ]
+        ]
+    },
+    {
+        "id": "960fcdb62d3e1867",
+        "type": "function",
+        "z": "caed099b.012a78",
+        "name": "function 17",
+        "func": "var val = msg.payload;\nmsg.payload = [{\n\n    analog1: val\n\n},\n{\n    tag1: \"value\"\n\n}\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 1040,
+        "wires": [
+            [
+                "bb7f0d6ab56aaa7b"
+            ]
+        ]
+    },
+    {
+        "id": "55c5c317c28f07ab",
+        "type": "function",
+        "z": "caed099b.012a78",
+        "name": "function 18",
+        "func": "var val = msg.payload;\nmsg.payload = [{\n\n    analog2: val\n\n},\n{\n    tag1: \"value\"\n\n}\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 1080,
+        "wires": [
+            [
+                "0206391b0e1044bf"
+            ]
+        ]
+    },
+    {
+        "id": "61e22802d7d14473",
+        "type": "function",
+        "z": "caed099b.012a78",
+        "name": "function 19",
+        "func": "var val = msg.payload;\nmsg.payload = [{\n\n    analog3: val\n\n},\n{\n    tag1: \"value\"\n\n}\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 1120,
+        "wires": [
+            [
+                "c2761d70d5bd7a5b"
+            ]
+        ]
+    },
+    {
+        "id": "8c6a13bba76ef4ba",
+        "type": "influxdb out",
+        "z": "caed099b.012a78",
+        "influxdb": "0696b699f0a77d63",
+        "name": "sicdata",
+        "measurement": "analogs",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "s",
+        "retentionPolicyV18Flux": "",
+        "org": "lewysystems",
+        "bucket": "sicpi",
+        "x": 860,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "bb7f0d6ab56aaa7b",
+        "type": "influxdb out",
+        "z": "caed099b.012a78",
+        "influxdb": "0696b699f0a77d63",
+        "name": "",
+        "measurement": "analogs",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "lewysystems",
+        "bucket": "sicpi",
+        "x": 1100,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "0206391b0e1044bf",
+        "type": "influxdb out",
+        "z": "caed099b.012a78",
+        "influxdb": "0696b699f0a77d63",
+        "name": "",
+        "measurement": "analogs",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "lewysystems",
+        "bucket": "sicpi",
+        "x": 1100,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "c2761d70d5bd7a5b",
+        "type": "influxdb out",
+        "z": "caed099b.012a78",
+        "influxdb": "0696b699f0a77d63",
+        "name": "",
+        "measurement": "analogs",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "lewysystems",
+        "bucket": "sicpi",
+        "x": 1240,
+        "y": 1100,
+        "wires": []
     },
     {
         "id": "42adb2f2.72fb3c",
@@ -19925,7 +20225,8 @@
                 "6803a0a2.3e0e1",
                 "4b12c7f1.3425a8",
                 "dac077484dda3e55",
-                "7c9bf428.69991c"
+                "7c9bf428.69991c",
+                "2cb5bc93377c1a89"
             ]
         ]
     },
@@ -21325,11 +21626,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
-        "y": 1880,
+        "x": 120,
+        "y": 1380,
         "wires": [
             [
-                "0d997b3d96b15778"
+                "9dfe6370.d9919"
             ]
         ]
     },
@@ -22763,7 +23064,7 @@
         "type": "function",
         "z": "6157092d.8b7638",
         "name": "",
-        "func": "msg.payload = msg.payload/100;\nvar maxfreq = global.get(\"maxfreq\");\nif(msg.payload > maxfreq){msg.payload = maxfreq;}\nvar minfreq = global.get(\"minfreq\");\nif(msg.payload < minfreq){msg.payload = minfreq;}\nmsg.payload = msg.payload*100\nif (global.get(\"vfdrun\") == 1) { msg.payload = msg.payload; }\nelse { msg.payload = 0; }\nif (global.get(\"pidon\")){msg.payload = global.get(\"pidout\")*0.6*100}\nmsg.payload = Math.round(msg.payload *10)/10\nif (global.get(\"vfdrun\") == 0) {msg.payload = 0};\nnode.status(msg.payload);\nreturn msg;\n",
+        "func": "msg.payload = msg.payload / 100;\n\nif (global.get(\"vfdrun\") == 1) { msg.payload = msg.payload; }\nelse { msg.payload = 0; }\nif (global.get(\"pidon\")) { msg.payload = global.get(\"pidout\") * 0.6 / 100 }\n\nvar maxfreq = global.get(\"maxfreq\");\nif (msg.payload > maxfreq) { msg.payload = maxfreq; }\nvar minfreq = global.get(\"minfreq\");\nif (msg.payload < minfreq) { msg.payload = minfreq; }\nmsg.payload = msg.payload * 100\n\nmsg.payload = Math.round(msg.payload * 10) / 10\nif (global.get(\"vfdrun\") == 0) { msg.payload = 0 };\nnode.status(msg.payload);\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -23298,6 +23599,43 @@
                 "c90f901dfcac3be0"
             ]
         ]
+    },
+    {
+        "id": "2cb5bc93377c1a89",
+        "type": "function",
+        "z": "6157092d.8b7638",
+        "name": "function 23",
+        "func": "var val = msg.payload;\nmsg.payload = [{\n    freq: val\n},\n{\n    tag1: \"value\"\n}\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 360,
+        "wires": [
+            [
+                "2f8119b58fa5c817"
+            ]
+        ]
+    },
+    {
+        "id": "2f8119b58fa5c817",
+        "type": "influxdb out",
+        "z": "6157092d.8b7638",
+        "influxdb": "0696b699f0a77d63",
+        "name": "",
+        "measurement": "freq",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "lewysystems",
+        "bucket": "sicpi",
+        "x": 1490,
+        "y": 320,
+        "wires": []
     },
     {
         "id": "804a3297.4fd92",
