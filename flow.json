@@ -201,7 +201,7 @@
         "type": "ui_group",
         "name": "Misc",
         "tab": "cd21e088.86c04",
-        "order": 4,
+        "order": 6,
         "disp": true,
         "width": "6",
         "collapse": true
@@ -211,7 +211,7 @@
         "type": "ui_group",
         "name": "Monitors",
         "tab": "cd21e088.86c04",
-        "order": 3,
+        "order": 5,
         "disp": true,
         "width": "6",
         "collapse": true
@@ -229,7 +229,7 @@
         "id": "e8b3923f.12d47",
         "type": "ui_base",
         "theme": {
-            "name": "theme-dark",
+            "name": "theme-custom",
             "lightTheme": {
                 "default": "#0094CE",
                 "baseColor": "#0094CE",
@@ -245,53 +245,53 @@
                 "reset": false
             },
             "customTheme": {
-                "name": "Untitled Theme 1",
+                "name": "Untitled Theme 2",
                 "default": "#4B7930",
-                "baseColor": "#415336",
+                "baseColor": "#6d8c5a",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
                 "reset": false
             },
             "themeState": {
                 "base-color": {
-                    "default": "#097479",
-                    "value": "#097479",
+                    "default": "#415336",
+                    "value": "#6d8c5a",
                     "edited": true
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#097479",
+                    "value": "#6d8c5a",
                     "edited": false
                 },
                 "page-backgroundColor": {
-                    "value": "#111111",
+                    "value": "#fafafa",
                     "edited": false
                 },
                 "page-sidebar-backgroundColor": {
-                    "value": "#333333",
+                    "value": "#ffffff",
                     "edited": false
                 },
                 "group-textColor": {
-                    "value": "#0eb8c0",
-                    "edited": false
+                    "value": "#1c2815",
+                    "edited": true
                 },
                 "group-borderColor": {
-                    "value": "#555555",
+                    "value": "#ffffff",
                     "edited": false
                 },
                 "group-backgroundColor": {
-                    "value": "#333333",
-                    "edited": false
+                    "value": "#f8f8f7",
+                    "edited": true
                 },
                 "widget-textColor": {
-                    "value": "#eeeeee",
-                    "edited": false
+                    "value": "#524c4c",
+                    "edited": true
                 },
                 "widget-backgroundColor": {
-                    "value": "#097479",
+                    "value": "#6d8c5a",
                     "edited": false
                 },
                 "widget-borderColor": {
-                    "value": "#333333",
-                    "edited": false
+                    "value": "#fdf7f7",
+                    "edited": true
                 },
                 "base-font": {
                     "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
@@ -367,7 +367,7 @@
         "type": "ui_group",
         "name": "Analogs",
         "tab": "cd21e088.86c04",
-        "order": 6,
+        "order": 2,
         "disp": true,
         "width": "6",
         "collapse": true
@@ -625,7 +625,7 @@
         "type": "ui_group",
         "name": "VFD",
         "tab": "cd21e088.86c04",
-        "order": 5,
+        "order": 7,
         "disp": true,
         "width": "6",
         "collapse": true
@@ -870,7 +870,7 @@
         "type": "ui_group",
         "name": "PID",
         "tab": "cd21e088.86c04",
-        "order": 2,
+        "order": 3,
         "disp": true,
         "width": "6",
         "collapse": true
@@ -1057,6 +1057,39 @@
         "influxdbVersion": "2.0",
         "url": "http://lewysystems.com:8086",
         "rejectUnauthorized": true
+    },
+    {
+        "id": "ea2e39f7b78f6a20",
+        "type": "ui_group",
+        "name": "RunHours",
+        "tab": "f58365ab.42f598",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "f7625cd8d06a0235",
+        "type": "ui_group",
+        "name": "CPU",
+        "tab": "f58365ab.42f598",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "7194ab31f4d3b0cf",
+        "type": "ui_group",
+        "name": "Demo Controls",
+        "tab": "cd21e088.86c04",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": true,
+        "className": ""
     },
     {
         "id": "447d21ab.f9cd6",
@@ -3552,10 +3585,10 @@
         "type": "ui_chart",
         "z": "7d24d67.5c3b728",
         "name": "",
-        "group": "820af12a.cbee8",
+        "group": "f7625cd8d06a0235",
         "order": 4,
-        "width": 0,
-        "height": 0,
+        "width": "0",
+        "height": "0",
         "label": "CPU Temperature",
         "chartType": "line",
         "legend": "true",
@@ -3596,10 +3629,10 @@
         "type": "ui_chart",
         "z": "7d24d67.5c3b728",
         "name": "",
-        "group": "820af12a.cbee8",
-        "order": 6,
-        "width": 0,
-        "height": 0,
+        "group": "f7625cd8d06a0235",
+        "order": 5,
+        "width": "0",
+        "height": "0",
         "label": "CPU Load",
         "chartType": "line",
         "legend": "false",
@@ -3614,6 +3647,7 @@
         "removeOlderUnit": "3600",
         "cutout": 0,
         "useOneColor": false,
+        "useUTC": false,
         "colors": [
             "#2a8b23",
             "#aec7e8",
@@ -3626,6 +3660,8 @@
             "#c5b0d5"
         ],
         "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
         "x": 550,
         "y": 220,
         "wires": [
@@ -4690,7 +4726,7 @@
         "type": "function",
         "z": "caed099b.012a78",
         "name": "",
-        "func": "msg.topic = \"almi0\";\nvar iostatus = msg.payload;\n\n\nif (iostatus === 1) {\n    msg.payload = 1;global.set(\"alarm\", true);flow.set(\"almi0\", 1);\n    node.status(msg.payload + \" \" + iostatus);\n    global.set(\"enable\", 1);\n    return msg;\n}\n\nelse {msg.payload = 0; flow.set(\"almi0\", 0); global.set(\"enable\", 0)}\n",
+        "func": "msg.topic = \"almi0\";\nvar iostatus = msg.payload;\n\n\nif (iostatus === 0) {\n    msg.payload = 1;global.set(\"alarm\", true);flow.set(\"almi0\", 1);\n    node.status(msg.payload + \" \" + iostatus);\n    global.set(\"enable\", 0);\n    return msg;\n}\n\nelse {msg.payload = 0; flow.set(\"almi0\", 0); global.set(\"enable\", 1)}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5721,8 +5757,8 @@
         "name": "a1",
         "group": "24345615.900bea",
         "order": 2,
-        "width": 0,
-        "height": 0,
+        "width": "3",
+        "height": "3",
         "gtype": "gage",
         "title": "{{msg.topic}}",
         "label": "{{msg.units}}",
@@ -5736,6 +5772,8 @@
         ],
         "seg1": "",
         "seg2": "",
+        "diff": false,
+        "className": "",
         "x": 790,
         "y": 1260,
         "wires": []
@@ -5747,8 +5785,8 @@
         "name": "a2",
         "group": "24345615.900bea",
         "order": 3,
-        "width": 0,
-        "height": 0,
+        "width": "3",
+        "height": "3",
         "gtype": "gage",
         "title": "{{msg.topic}}",
         "label": "{{msg.units}}",
@@ -5762,6 +5800,8 @@
         ],
         "seg1": "",
         "seg2": "",
+        "diff": false,
+        "className": "",
         "x": 790,
         "y": 1340,
         "wires": []
@@ -5773,8 +5813,8 @@
         "name": "a3",
         "group": "24345615.900bea",
         "order": 4,
-        "width": 0,
-        "height": 0,
+        "width": "3",
+        "height": "3",
         "gtype": "gage",
         "title": "{{msg.topic}}",
         "label": "{{msg.units}}",
@@ -5788,6 +5828,8 @@
         ],
         "seg1": "",
         "seg2": "",
+        "diff": false,
+        "className": "",
         "x": 790,
         "y": 1420,
         "wires": []
@@ -7632,8 +7674,8 @@
         "name": "a0",
         "group": "24345615.900bea",
         "order": 1,
-        "width": 0,
-        "height": 0,
+        "width": "3",
+        "height": "3",
         "gtype": "gage",
         "title": "{{msg.topic}}",
         "label": "{{msg.units}}",
@@ -7647,6 +7689,8 @@
         ],
         "seg1": "",
         "seg2": "",
+        "diff": false,
+        "className": "",
         "x": 790,
         "y": 1180,
         "wires": []
@@ -8304,8 +8348,8 @@
         "name": "",
         "label": "a0",
         "tooltip": "",
-        "group": "fd4cbea3.6101d",
-        "order": 19,
+        "group": "7194ab31f4d3b0cf",
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -8331,8 +8375,8 @@
         "name": "",
         "label": "a1",
         "tooltip": "",
-        "group": "fd4cbea3.6101d",
-        "order": 20,
+        "group": "7194ab31f4d3b0cf",
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -8358,8 +8402,8 @@
         "name": "",
         "label": "a2",
         "tooltip": "",
-        "group": "fd4cbea3.6101d",
-        "order": 21,
+        "group": "7194ab31f4d3b0cf",
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -8385,8 +8429,8 @@
         "name": "",
         "label": "a3",
         "tooltip": "",
-        "group": "fd4cbea3.6101d",
-        "order": 22,
+        "group": "7194ab31f4d3b0cf",
+        "order": 6,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -8899,8 +8943,8 @@
         "name": "",
         "label": "Enable demo",
         "tooltip": "",
-        "group": "89077c44.4a81c",
-        "order": 4,
+        "group": "7194ab31f4d3b0cf",
+        "order": 7,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -8931,10 +8975,10 @@
         "type": "ui_switch",
         "z": "caed099b.012a78",
         "name": "",
-        "label": "demo switch",
+        "label": "demo switch I0.1",
         "tooltip": "",
-        "group": "89077c44.4a81c",
-        "order": 4,
+        "group": "7194ab31f4d3b0cf",
+        "order": 8,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -8965,10 +9009,10 @@
         "type": "ui_switch",
         "z": "caed099b.012a78",
         "name": "",
-        "label": "demo switch",
+        "label": "demo switch I0.2",
         "tooltip": "",
-        "group": "ff960a8f.e8f448",
-        "order": 4,
+        "group": "7194ab31f4d3b0cf",
+        "order": 9,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -8999,10 +9043,10 @@
         "type": "ui_switch",
         "z": "caed099b.012a78",
         "name": "",
-        "label": "demo switch",
+        "label": "demo switch I0.3",
         "tooltip": "",
-        "group": "16b163eb.dd92bc",
-        "order": 8,
+        "group": "7194ab31f4d3b0cf",
+        "order": 10,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -9033,10 +9077,10 @@
         "type": "ui_switch",
         "z": "caed099b.012a78",
         "name": "",
-        "label": "demo switch",
+        "label": "demo switch I0.4",
         "tooltip": "",
-        "group": "1d6f4c90.182763",
-        "order": 4,
+        "group": "7194ab31f4d3b0cf",
+        "order": 11,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -10406,7 +10450,7 @@
         "wires": [
             [
                 "e22cbb0256e47cce",
-                "b78905ef90989353"
+                "a13fe03c15606d3d"
             ]
         ]
     },
@@ -11093,9 +11137,60 @@
         "links": [
             "f9e85fa0a38f2183"
         ],
-        "x": 1265,
-        "y": 440,
+        "x": 1355,
+        "y": 500,
         "wires": []
+    },
+    {
+        "id": "a7f21db3902c137c",
+        "type": "ui_led",
+        "z": "5643e3d0.aa409c",
+        "order": 16,
+        "group": "ce23d109.da42a",
+        "width": 0,
+        "height": 0,
+        "label": "Locked",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#008000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#ff0000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Locked",
+        "x": 1300,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "a13fe03c15606d3d",
+        "type": "function",
+        "z": "5643e3d0.aa409c",
+        "name": "function 24",
+        "func": "var locked = global.get(\"locked\");\nmsg.payload = locked;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1210,
+        "y": 500,
+        "wires": [
+            [
+                "a7f21db3902c137c",
+                "b78905ef90989353"
+            ]
+        ]
     },
     {
         "id": "6c08d843.6f6058",
@@ -17284,8 +17379,8 @@
         "type": "ui_chart",
         "z": "80125eca.4c773",
         "name": "",
-        "group": "820af12a.cbee8",
-        "order": 5,
+        "group": "ea2e39f7b78f6a20",
+        "order": 6,
         "width": "6",
         "height": "4",
         "label": "Day Run Hours",
@@ -17302,6 +17397,7 @@
         "removeOlderUnit": "60",
         "cutout": 0,
         "useOneColor": true,
+        "useUTC": false,
         "colors": [
             "#31f648",
             "#31f648",
@@ -17314,6 +17410,8 @@
             "#c5b0d5"
         ],
         "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
         "x": 720,
         "y": 380,
         "wires": [
@@ -20154,6 +20252,7 @@
         "removeOlderUnit": "86400",
         "cutout": 0,
         "useOneColor": false,
+        "useUTC": false,
         "colors": [
             "#1f77b4",
             "#aec7e8",
@@ -20166,6 +20265,8 @@
             "#c5b0d5"
         ],
         "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
         "x": 1160,
         "y": 580,
         "wires": [
@@ -22958,8 +23059,8 @@
         "name": "",
         "label": "Amps_Output_Test",
         "tooltip": "",
-        "group": "fd4cbea3.6101d",
-        "order": 17,
+        "group": "7194ab31f4d3b0cf",
+        "order": 1,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -23004,8 +23105,8 @@
         "name": "",
         "label": "VFD_Volts_Output_Test",
         "tooltip": "",
-        "group": "fd4cbea3.6101d",
-        "order": 18,
+        "group": "7194ab31f4d3b0cf",
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -23173,8 +23274,8 @@
         "name": "",
         "group": "820af12a.cbee8",
         "order": 1,
-        "width": 0,
-        "height": 0,
+        "width": "0",
+        "height": "0",
         "label": "Motor Amps",
         "chartType": "line",
         "legend": "false",
@@ -23189,6 +23290,7 @@
         "removeOlderUnit": "86400",
         "cutout": 0,
         "useOneColor": false,
+        "useUTC": false,
         "colors": [
             "#1f77b4",
             "#aec7e8",
@@ -23201,6 +23303,8 @@
             "#c5b0d5"
         ],
         "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
         "x": 1590,
         "y": 660,
         "wires": [
@@ -23672,10 +23776,12 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "",
+        "className": "",
         "icon": "",
         "payload": "",
         "payloadType": "str",
         "topic": "",
+        "topicType": "str",
         "x": 120,
         "y": 100,
         "wires": [
@@ -23869,7 +23975,6 @@
         "id": "f1c1a4d1.06c078",
         "type": "ui_button",
         "z": "453d3af3.ea4724",
-        "d": true,
         "name": "",
         "group": "8d058cd6.60efd",
         "order": 7,
@@ -23880,10 +23985,12 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "",
+        "className": "",
         "icon": "",
         "payload": "1",
         "payloadType": "num",
         "topic": "",
+        "topicType": "str",
         "x": 270,
         "y": 480,
         "wires": [
@@ -24410,7 +24517,6 @@
         "id": "3aa742e5.3288be",
         "type": "ui_button",
         "z": "8f6b533a.841f4",
-        "d": true,
         "name": "",
         "group": "ec47f52b.c79ae8",
         "order": 7,
@@ -24421,10 +24527,12 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "",
+        "className": "",
         "icon": "",
         "payload": "1",
         "payloadType": "num",
         "topic": "",
+        "topicType": "str",
         "x": 260,
         "y": 840,
         "wires": [
@@ -24812,21 +24920,6 @@
         ]
     },
     {
-        "id": "b75d4a80e602a1f4",
-        "type": "debug",
-        "z": "8f6b533a.841f4",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "x": 880,
-        "y": 1460,
-        "wires": []
-    },
-    {
         "id": "481a07491a9be73c",
         "type": "function",
         "z": "8f6b533a.841f4",
@@ -24921,7 +25014,6 @@
         "id": "782b89086798d4b5",
         "type": "ui_button",
         "z": "8f6b533a.841f4",
-        "d": true,
         "name": "",
         "group": "7598912555eb86ef",
         "order": 7,
@@ -24932,10 +25024,12 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "",
+        "className": "",
         "icon": "",
         "payload": "1",
         "payloadType": "num",
         "topic": "",
+        "topicType": "str",
         "x": 270,
         "y": 1720,
         "wires": [
@@ -25904,7 +25998,7 @@
         "type": "function",
         "z": "8f6b533a.841f4",
         "name": "function 13",
-        "func": "msg.payload = msg.topic;\nreturn msg;",
+        "func": "if (msg.payload) {msg.payload = \"Locked\"} \nelse {msg.payload = \"unlocked\";}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
