@@ -2,7 +2,22 @@
     "name": "sicdemo",
     "description": "A Node-RED Project",
     "version": "0.0.1",
-    "dependencies": {},
+    "dependencies": {
+        "node-red-contrib-bit": "1.0.1",
+        "node-red-contrib-countdown-2": "1.4.2",
+        "node-red-contrib-dashboard-bar-chart-data": "0.9.93",
+        "node-red-contrib-email-out": "0.1.1",
+        "node-red-contrib-fs": "1.4.1",
+        "node-red-contrib-influxdb": "0.6.1",
+        "node-red-contrib-ip": "1.0.1",
+        "node-red-contrib-modbus": "5.25.0",
+        "node-red-contrib-persist": "1.1.1",
+        "node-red-contrib-pid": "1.1.7",
+        "node-red-contrib-simple-gate": "0.5.2",
+        "node-red-contrib-ui-led": "0.4.11",
+        "node-red-contrib-ui-level": "0.1.46",
+        "node-red-dashboard": "3.3.1"
+    },
     "node-red": {
         "settings": {
             "flowFile": "flow.json",
