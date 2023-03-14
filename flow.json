@@ -2362,7 +2362,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "PID Stop LED",
         "x": 640,
         "y": 920,
@@ -2831,7 +2831,7 @@
         "id": "844b7825.ab6018",
         "type": "exec",
         "z": "7d24d67.5c3b728",
-        "command": "sudo top -d 0.5 -b -n2 | grep \"Cpu(s)\"|tail -n 1 | awk '{print $2 + $4}'",
+        "command": "top -d 0.5 -b -n2 | grep \"Cpu(s)\"|tail -n 1 | awk '{print $2 + $4}'",
         "addpay": false,
         "append": "",
         "useSpawn": "",
@@ -2924,7 +2924,7 @@
         "id": "e21c373c.d5d798",
         "type": "exec",
         "z": "7d24d67.5c3b728",
-        "command": "sudo cat /sys/class/net/wlan0/address",
+        "command": "cat /sys/class/net/wlan0/address",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
@@ -2932,7 +2932,7 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 210,
+        "x": 190,
         "y": 440,
         "wires": [
             [
@@ -2957,7 +2957,9 @@
         "x": 130,
         "y": 380,
         "wires": [
-            []
+            [
+                "844b7825.ab6018"
+            ]
         ]
     },
     {
@@ -3435,6 +3437,9 @@
         "func": "var emailaddr;\nemailaddr = msg.payload;\nglobal.set('emailaddr', emailaddr);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 470,
         "y": 940,
         "wires": [
@@ -4359,7 +4364,7 @@
         "z": "1842a961.504507",
         "group": "fd4cbea3.6101d",
         "name": "Clock Toolbar",
-        "order": 6,
+        "order": 17,
         "width": "0",
         "height": "0",
         "format": "<script id=\"titleScript\" type=\"text/javascript\">\n    $('#clock').remove();\n    var toolbar = $('.md-toolbar-tools');\n    var div = $('<div/>');\n    var p = $('<p/ id=\"clock\">');\n    \n    $('#titleScript').parent().hide();\n    div.append(p);\n    div[0].style.margin = '5px 5px 5px auto';\n    toolbar.append(div);\n\n    function displayTitle(lh) {\n        p.text(lh); \n    }\n    \n    function upTime() {\n        var d = new Date();\n      //  p.text(d.toLocaleTimeString('en-US'));\n    }\n\n    \n\n    // Watch the payload and update the title\n    (function(scope) {\n        scope.$watch('msg.payload', function(data) {\n            displayTitle(data);\n        });\n        setInterval(upTime,1000);\n    })(scope);\n</script>",
@@ -5099,7 +5104,7 @@
         "type": "function",
         "z": "caed099b.012a78",
         "name": "",
-        "func": "var alm;\nvar reset = global.get(\"reset\");\nalm = flow.get(\"almi0\") + flow.get(\"almi1\") \n+ flow.get(\"almi2\") + flow.get(\"almi3\") + flow.get(\"almi4\")  \n+ flow.get(\"alma0\")  + flow.get(\"alma1\")+ flow.get(\"alma2\")+ flow.get(\"alma3\")\n+ global.get(\"olalm\")+global.get(\"ulalm\") + global.get(\"vfdfault\");\nif (alm > 0) {global.set(\"alarm\", true)}\nif (reset){\n    global.set(\"alarm\", false); msg.payload = 0;\n    flow.set(\"almi0\", 0);\n    flow.set(\"almi1\", 0);\n    flow.set(\"almi2\", 0);\n    flow.set(\"almi3\", 0);\n    flow.set(\"almi4\", 0);\n    global.set(\"olalm\", 0);\n    global.set(\"ulalm\", 0);\n    global.set(\"vfdfault\", 0);\n}\n\nmsg.payload = alm;\nnode.status(alm);\nif (alm){global.set(\"vfdrun\", 0);}\nreturn msg;\n\n",
+        "func": "var alm;\nvar reset = global.get(\"reset\");\nalm = flow.get(\"almi0\") + flow.get(\"almi1\") \n+ flow.get(\"almi2\") + flow.get(\"almi3\") + flow.get(\"almi4\")  \n+ flow.get(\"alma0\")  + flow.get(\"alma1\")+ flow.get(\"alma2\")+ flow.get(\"alma3\")\n+ global.get(\"olalm\")+global.get(\"ulalm\") + global.get(\"vfdfault\");\nif (alm > 0) {global.set(\"alarm\", true)}\nif (reset){\n    global.set(\"alarm\", false); msg.payload = 0;\n    flow.set(\"almi0\", 0);\n    flow.set(\"almi1\", 0);\n    flow.set(\"almi2\", 0);\n    flow.set(\"almi3\", 0);\n    flow.set(\"almi4\", 0);\n    global.set(\"olalm\", 0);\n    global.set(\"ulalm\", 0);\n    global.set(\"vfdfault\", 0);\n    global.set(\"analogstop\", false);\n}\n\nmsg.payload = alm;\nnode.status(alm);\nif (alm){global.set(\"vfdrun\", 0);}\nreturn msg;\n\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5448,32 +5453,8 @@
         "rules": [
             {
                 "t": "delete",
-                "p": "becon",
+                "p": "a0runhi",
                 "pt": "global"
-            },
-            {
-                "t": "delete",
-                "p": "fan",
-                "pt": "global"
-            },
-            {
-                "t": "delete",
-                "p": "door",
-                "pt": "global"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "horn",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "i",
-                "tot": "str"
             }
         ],
         "action": "",
@@ -5481,7 +5462,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 300,
+        "x": 320,
         "y": 1160,
         "wires": [
             []
@@ -5959,7 +5940,7 @@
         "type": "function",
         "z": "caed099b.012a78",
         "name": "i0.1",
-        "func": "if (msg.payload === 0) {flow.set(\"i1\", 0)}else{flow.set(\"i1\", 1)}\nnode.status(msg.payload);\nmsg.topic = global.get(\"i1name\");\nreturn msg;",
+        "func": "if (msg.payload === 0) {flow.set(\"i1\", 0)}else{flow.set(\"i1\", 1)}\nnode.status(msg.payload);\nmsg.topic = global.get(\"i1name\") + \" \" + msg.payload; \nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5970,7 +5951,8 @@
         "wires": [
             [
                 "4c66f9f0.af11b8",
-                "3975b75726ab7d8d"
+                "3975b75726ab7d8d",
+                "05f2f8fae592be51"
             ]
         ]
     },
@@ -5979,7 +5961,7 @@
         "type": "function",
         "z": "caed099b.012a78",
         "name": "i0.2",
-        "func": "if (msg.payload === 0) {flow.set(\"i2\", 0)}else{flow.set(\"i2\", 1)}\nnode.status(msg.payload);\nmsg.topic = global.get(\"i2name\");\nreturn msg;",
+        "func": "if (msg.payload === 0) {flow.set(\"i2\", 0)}else{flow.set(\"i2\", 1)}\nnode.status(msg.payload);\nmsg.topic = global.get(\"i2name\") + \" \" + msg.payload; \nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5990,7 +5972,8 @@
         "wires": [
             [
                 "74010a1.d721ff4",
-                "3975b75726ab7d8d"
+                "3975b75726ab7d8d",
+                "05f2f8fae592be51"
             ]
         ]
     },
@@ -5999,7 +5982,7 @@
         "type": "function",
         "z": "caed099b.012a78",
         "name": "i0.3",
-        "func": "if (msg.payload === 0) {flow.set(\"i3\", 0)}else{flow.set(\"i3\", 1)}\nnode.status(msg.payload);\nmsg.topic = global.get(\"i3name\");\nreturn msg;",
+        "func": "if (msg.payload === 0) {flow.set(\"i3\", 0)}else{flow.set(\"i3\", 1)}\nnode.status(msg.payload);\nmsg.topic = global.get(\"i3name\") + \" \" + msg.payload; \nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6010,7 +5993,8 @@
         "wires": [
             [
                 "f3f1b414.0e4898",
-                "3975b75726ab7d8d"
+                "3975b75726ab7d8d",
+                "05f2f8fae592be51"
             ]
         ]
     },
@@ -6040,7 +6024,7 @@
         "type": "function",
         "z": "caed099b.012a78",
         "name": "i0.4",
-        "func": "if (msg.payload === 0) {flow.set(\"i4\", 0)}else{flow.set(\"i4\", 1)}\nnode.status(msg.payload);\nmsg.topic = global.get(\"i4name\");\nreturn msg;",
+        "func": "if (msg.payload === 0) {flow.set(\"i4\", 0)}else{flow.set(\"i4\", 1)}\nnode.status(msg.payload);\nmsg.topic = global.get(\"i4name\") + \" \" + msg.payload; \nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6051,7 +6035,8 @@
         "wires": [
             [
                 "dfe96028.ee108",
-                "3975b75726ab7d8d"
+                "3975b75726ab7d8d",
+                "05f2f8fae592be51"
             ]
         ]
     },
@@ -7269,7 +7254,7 @@
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#ff0000",
+                "color": "#808080",
                 "value": "0",
                 "valueType": "num"
             },
@@ -7281,7 +7266,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "i0 led",
         "x": 350,
         "y": 20,
@@ -7312,7 +7297,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "i0.0 led perm",
         "x": 590,
         "y": 20,
@@ -7331,7 +7316,7 @@
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#ff0000",
+                "color": "#808080",
                 "value": "0",
                 "valueType": "num"
             },
@@ -7343,7 +7328,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "i1 led",
         "x": 370,
         "y": 140,
@@ -7362,7 +7347,7 @@
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#ff0000",
+                "color": "#808080",
                 "value": "0",
                 "valueType": "num"
             },
@@ -7374,7 +7359,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "i2 led",
         "x": 370,
         "y": 200,
@@ -7393,7 +7378,7 @@
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#ff0000",
+                "color": "#808080",
                 "value": "0",
                 "valueType": "num"
             },
@@ -7405,7 +7390,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "i3 led",
         "x": 370,
         "y": 260,
@@ -7424,7 +7409,7 @@
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#ff0000",
+                "color": "#000000",
                 "value": "0",
                 "valueType": "num"
             },
@@ -7436,7 +7421,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "i4 led",
         "x": 370,
         "y": 320,
@@ -7455,7 +7440,7 @@
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#ff0000",
+                "color": "#808080",
                 "value": "0",
                 "valueType": "num"
             },
@@ -7467,7 +7452,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "alm Led",
         "x": 720,
         "y": 500,
@@ -7486,7 +7471,7 @@
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#ff0000",
+                "color": "#808080",
                 "value": "0",
                 "valueType": "num"
             },
@@ -7498,7 +7483,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "vfd run",
         "x": 710,
         "y": 560,
@@ -7529,7 +7514,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "Alarm",
         "x": 730,
         "y": 2620,
@@ -7765,11 +7750,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 240,
+        "x": 260,
         "y": 380,
         "wires": [
             [
-                "701f3734c334f844"
+                "d0040dd563789d25"
             ]
         ]
     },
@@ -7788,9 +7773,9 @@
         "y": 420,
         "wires": [
             [
-                "b47dd6933e39e533",
                 "c192cb9d98ecbce6",
-                "656fc5cacc7c2e49"
+                "656fc5cacc7c2e49",
+                "b47dd6933e39e533"
             ]
         ]
     },
@@ -7828,7 +7813,7 @@
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#ff0000",
+                "color": "#808080",
                 "value": "0",
                 "valueType": "num"
             },
@@ -7840,7 +7825,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "i5 led",
         "x": 510,
         "y": 360,
@@ -7859,7 +7844,7 @@
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#ff0000",
+                "color": "#808080",
                 "value": "0",
                 "valueType": "num"
             },
@@ -7871,7 +7856,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "i6 led",
         "x": 490,
         "y": 400,
@@ -7890,7 +7875,7 @@
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#ff0000",
+                "color": "#808080",
                 "value": "0",
                 "valueType": "num"
             },
@@ -7902,7 +7887,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "i7 led",
         "x": 310,
         "y": 560,
@@ -7922,9 +7907,7 @@
         "x": 260,
         "y": 620,
         "wires": [
-            [
-                "d0040dd563789d25"
-            ]
+            []
         ]
     },
     {
@@ -7963,7 +7946,7 @@
         "wires": [
             [
                 "6c28d5e73f2876ee",
-                "c192cb9d98ecbce6"
+                "701f3734c334f844"
             ]
         ]
     },
@@ -7992,7 +7975,10 @@
         "y": 420,
         "wires": [
             [
-                "6c28d5e73f2876ee"
+                "6c28d5e73f2876ee",
+                "c192cb9d98ecbce6",
+                "ded959213d87b028",
+                "701f3734c334f844"
             ]
         ]
     },
@@ -8021,7 +8007,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "i6 led perm",
         "x": 430,
         "y": 500,
@@ -8035,20 +8021,21 @@
         "links": [
             "9f08cd31f3bf9a3a"
         ],
-        "x": 355,
-        "y": 380,
+        "x": 845,
+        "y": 420,
         "wires": []
     },
     {
         "id": "d0040dd563789d25",
         "type": "link out",
         "z": "caed099b.012a78",
-        "name": "",
+        "name": "startinput",
+        "mode": "link",
         "links": [
             "56beab660f100ce9"
         ],
-        "x": 375,
-        "y": 620,
+        "x": 845,
+        "y": 460,
         "wires": []
     },
     {
@@ -9363,7 +9350,7 @@
         "precision": "",
         "retentionPolicy": "",
         "database": "database",
-        "precisionV18FluxV20": "ms",
+        "precisionV18FluxV20": "s",
         "retentionPolicyV18Flux": "",
         "org": "lewysystems",
         "bucket": "sicpi",
@@ -9381,7 +9368,7 @@
         "precision": "",
         "retentionPolicy": "",
         "database": "database",
-        "precisionV18FluxV20": "ms",
+        "precisionV18FluxV20": "s",
         "retentionPolicyV18Flux": "",
         "org": "lewysystems",
         "bucket": "sicpi",
@@ -9399,7 +9386,7 @@
         "precision": "",
         "retentionPolicy": "",
         "database": "database",
-        "precisionV18FluxV20": "ms",
+        "precisionV18FluxV20": "s",
         "retentionPolicyV18Flux": "",
         "org": "lewysystems",
         "bucket": "sicpi",
@@ -9417,7 +9404,7 @@
         "precision": "",
         "retentionPolicy": "",
         "database": "database",
-        "precisionV18FluxV20": "ms",
+        "precisionV18FluxV20": "s",
         "retentionPolicyV18Flux": "",
         "org": "lewysystems",
         "bucket": "sic",
@@ -9454,8 +9441,40 @@
             "4753be9061db51cc"
         ],
         "x": 665,
-        "y": 440,
+        "y": 460,
         "wires": []
+    },
+    {
+        "id": "dfe83f40a0f41b4b",
+        "type": "link out",
+        "z": "caed099b.012a78",
+        "name": "inputs",
+        "mode": "link",
+        "links": [
+            "e35aed271096c5be"
+        ],
+        "x": 1005,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "05f2f8fae592be51",
+        "type": "function",
+        "z": "caed099b.012a78",
+        "name": "function 39",
+        "func": "var txt;\nif (msg.payload == 0) {txt = \"Off\"} else {txt = \"On\"};\nmsg.payload = msg.topic + \" \" + txt;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 40,
+        "wires": [
+            [
+                "dfe83f40a0f41b4b"
+            ]
+        ]
     },
     {
         "id": "42adb2f2.72fb3c",
@@ -9826,7 +9845,7 @@
         "z": "5643e3d0.aa409c",
         "name": "start button",
         "group": "fd4cbea3.6101d",
-        "order": 12,
+        "order": 13,
         "width": "3",
         "height": "1",
         "passthru": false,
@@ -9852,7 +9871,7 @@
         "z": "5643e3d0.aa409c",
         "name": "stop button",
         "group": "fd4cbea3.6101d",
-        "order": 13,
+        "order": 14,
         "width": "3",
         "height": "1",
         "passthru": false,
@@ -9879,7 +9898,7 @@
         "z": "5643e3d0.aa409c",
         "name": "reset button",
         "group": "fd4cbea3.6101d",
-        "order": 14,
+        "order": 15,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -9936,6 +9955,15 @@
         "type": "inject",
         "z": "5643e3d0.aa409c",
         "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": true,
@@ -9947,7 +9975,9 @@
         "y": 980,
         "wires": [
             [
-                "d05a253b.2a1118"
+                "d05a253b.2a1118",
+                "3705958426b60e61",
+                "9df8bd76e9fe5876"
             ]
         ]
     },
@@ -10110,7 +10140,7 @@
         "type": "function",
         "z": "5643e3d0.aa409c",
         "name": "perm",
-        "func": "var alm = global.get(\"alarm\");\nvar enable = global.get(\"enable\");\nvar restart = global.get(\"restart\");\nvar locked = global.get(\"locked\");\nvar pidstop = global.get(\"pidstop\");\nvar stopinput = global.get(\"stopinput\");\nvar powerfail = global.get(\"powerfail\");\nvar backspindn = flow.get(\"backspindn\")\nif (!alm && restart == 0 && enable == 1 && !locked && !pidstop && !stopinput && !powerfail && backspindn) {global.set(\"perm\", true);}else{\n    global.set(\"perm\", false);\n    global.set(\"vfdrun\", 0);\n}\nnode.status(\"alm-\"+ alm + \" \" + \"enable-\"+enable + \"perm-\" + global.get(\"perm\"));\nreturn msg;",
+        "func": "var alm = global.get(\"alarm\");\nvar enable = global.get(\"enable\");\nvar restart = global.get(\"restart\");\nvar locked = global.get(\"locked\");\nvar pidstop = global.get(\"pidstop\");\nvar stopinput = global.get(\"stopinput\");\nvar powerfail = global.get(\"powerfail\");\nvar backspindn = flow.get(\"backspindn\")\nvar analogstop = global.get(\"analogstop\");\nif (!alm && restart == 0 && enable == 1 && !locked && !pidstop && !stopinput && !powerfail && backspindn && !analogstop) {global.set(\"perm\", true);}else{\n    global.set(\"perm\", false);\n    global.set(\"vfdrun\", 0);\n}\nnode.status(\"alm-\"+ alm + \" \" + \"enable-\"+enable + \"perm-\" + global.get(\"perm\"));\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -10218,7 +10248,8 @@
                 "4e9482a3.5dd3bc",
                 "304a061f.2e2cda",
                 "359b1467.4e35dc",
-                "2fafeba2.69f454"
+                "2fafeba2.69f454",
+                "2bbfc3b1d2c05d39"
             ]
         ]
     },
@@ -10305,7 +10336,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "restart led",
         "x": 600,
         "y": 280,
@@ -10336,7 +10367,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "activated led",
         "x": 630,
         "y": 340,
@@ -10367,7 +10398,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "alarm led",
         "x": 620,
         "y": 380,
@@ -10437,7 +10468,7 @@
         "group": "fd4cbea3.6101d",
         "name": "lockicon",
         "order": 5,
-        "width": "2",
+        "width": "1",
         "height": "1",
         "format": "<md-button class=\"vibrate filled touched bigfont rounded\" style=\"background-color:transparent!important\" ng-click=\"send({payload: 'lock'})\">\n       <i class=\"material-icons\" >\n           <span style=\"color:{{msg.payload.lock}}\"><div ng-bind-html=\"msg.topic\"></div></span>\n           </i>\n</md-button> ",
         "storeOutMessages": true,
@@ -10608,13 +10639,15 @@
         "z": "5643e3d0.aa409c",
         "group": "fd4cbea3.6101d",
         "name": "alarmicon",
-        "order": 6,
+        "order": 7,
         "width": "2",
         "height": "1",
         "format": "<md-button class=\"vibrate filled touched bigfont rounded\" style=\"background-color:transparent!important\" ng-click=\"send({payload: '2'})\">\n       <i class=\"material-icons\" >\n           <span style=\"color:{{msg.payload.alarm}}\">warning</span>\n           </i>\n</md-button> ",
         "storeOutMessages": true,
         "fwdInMessages": false,
+        "resendOnRefresh": false,
         "templateScope": "local",
+        "className": "",
         "x": 900,
         "y": 600,
         "wires": [
@@ -10688,8 +10721,8 @@
         "z": "5643e3d0.aa409c",
         "group": "fd4cbea3.6101d",
         "name": "runpermicon",
-        "order": 7,
-        "width": "2",
+        "order": 8,
+        "width": "1",
         "height": "1",
         "format": "<md-button class=\"vibrate filled touched bigfont rounded\" style=\"background-color:transparent!important\" ng-click=\"send({payload: '1'})\">\n       <i class=\"material-icons\" >\n           <span style=\"color:{{msg.payload.perm}}\">info</span>\n           </i>\n</md-button> ",
         "storeOutMessages": true,
@@ -10787,7 +10820,9 @@
             [
                 "9a0eee0285a8b89b",
                 "33176b7dc375bc31",
-                "495963bf7a351d9c"
+                "495963bf7a351d9c",
+                "09a064f698c75e15",
+                "1dcb0e6b7ffe934c"
             ]
         ]
     },
@@ -11028,7 +11063,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "backspin",
         "x": 710,
         "y": 920,
@@ -11243,7 +11278,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "Locked",
         "x": 1300,
         "y": 280,
@@ -11266,6 +11301,314 @@
             [
                 "a7f21db3902c137c",
                 "b78905ef90989353"
+            ]
+        ]
+    },
+    {
+        "id": "07ce3f9910e96534",
+        "type": "comment",
+        "z": "5643e3d0.aa409c",
+        "name": "Analog Run On High Stop On Low",
+        "info": "",
+        "x": 280,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "343bc5084cc36f78",
+        "type": "function",
+        "z": "5643e3d0.aa409c",
+        "name": "function 30",
+        "func": "var name;\nname = msg.payload;\nglobal.set('a0runsp', name);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3705958426b60e61",
+        "type": "function",
+        "z": "5643e3d0.aa409c",
+        "name": "function 31",
+        "func": "\n\nvar name = global.get('a0runsp');\nmsg.payload = name;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 1200,
+        "wires": [
+            [
+                "512105f70b7b8794"
+            ]
+        ]
+    },
+    {
+        "id": "512105f70b7b8794",
+        "type": "ui_text_input",
+        "z": "5643e3d0.aa409c",
+        "name": "",
+        "label": "Start Setpoint (0-none)",
+        "tooltip": "",
+        "group": "76ecb970.d80768",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 480,
+        "y": 1200,
+        "wires": [
+            [
+                "343bc5084cc36f78"
+            ]
+        ]
+    },
+    {
+        "id": "49778ccc147e8147",
+        "type": "ui_text_input",
+        "z": "5643e3d0.aa409c",
+        "name": "",
+        "label": "Stop Setpoint (0-none)",
+        "tooltip": "",
+        "group": "76ecb970.d80768",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 480,
+        "y": 1240,
+        "wires": [
+            [
+                "6c98c080439b6216"
+            ]
+        ]
+    },
+    {
+        "id": "9df8bd76e9fe5876",
+        "type": "function",
+        "z": "5643e3d0.aa409c",
+        "name": "function 32",
+        "func": "var name = global.get('a0stopsp');\nmsg.payload = name;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 1240,
+        "wires": [
+            [
+                "49778ccc147e8147"
+            ]
+        ]
+    },
+    {
+        "id": "6c98c080439b6216",
+        "type": "function",
+        "z": "5643e3d0.aa409c",
+        "name": "function 33",
+        "func": "var name;\nname = msg.payload;\nglobal.set('a0stopsp', name);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 1240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "09a064f698c75e15",
+        "type": "function",
+        "z": "5643e3d0.aa409c",
+        "name": "function 34",
+        "func": "var startsp = global.get(\"a0runsp\");\nvar stopsp  = global.get(\"a0stopsp\");\nvar perm = global.get(\"perm\");\nvar runhi = false;\nvar run = false;\nvar analogstop = global.get(\"analogstop\");\nif (startsp==0) {global.set(\"analogstop\", false)}else {\nvar a0 = global.get(\"a0\");\nif (startsp > stopsp) {runhi = true} else {runhi = false};\nif (runhi && (a0 > startsp)) {run = true;}\nif (runhi && (a0 < stopsp)) {run = false;}\nif (!runhi && (a0 < startsp)) { run = true; }\nif (!runhi && (a0 > stopsp)) { run = false; }\nif (run) {global.set(\"analogstop\", false)}\nif (!run) { global.set(\"analogstop\", true) }\n\nif(runhi) {\n    if (a0<startsp && a0>stopsp) {global.set(\"analogstop\", false)}\n}  \nif (!runhi) {\n        if (a0 > startsp && a0 < stopsp) { global.set(\"analogstop\", false) }\n    }  \n\nif (perm && run){global.set(\"vfdrun\",1);}}\nnode.status(run + \" \" + runhi + \" \" + a0 + \" \" + stopsp);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 1280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1dcb0e6b7ffe934c",
+        "type": "function",
+        "z": "5643e3d0.aa409c",
+        "name": "function 35",
+        "func": "msg.payload = global.get(\"analogstop\");\nnode.status(\"analogstop \" + msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 1340,
+        "wires": [
+            [
+                "9ef3cd0244575d64",
+                "7c3ea49489306b63"
+            ]
+        ]
+    },
+    {
+        "id": "9ef3cd0244575d64",
+        "type": "ui_led",
+        "z": "5643e3d0.aa409c",
+        "order": 9,
+        "group": "ce23d109.da42a",
+        "width": 0,
+        "height": 0,
+        "label": "Analog Stop Limit",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#008000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#ff0000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": false,
+        "name": "",
+        "x": 650,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "a32cd91fe19add6d",
+        "type": "link out",
+        "z": "5643e3d0.aa409c",
+        "name": "analogstop",
+        "mode": "link",
+        "links": [
+            "06386637c042aea2"
+        ],
+        "x": 875,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "7c3ea49489306b63",
+        "type": "function",
+        "z": "5643e3d0.aa409c",
+        "name": "function 36",
+        "func": "var stop = global.get(\"analogstop\");\n\n\n\nif (stop) {msg.payload = \"Analog Stop\"} \nif (!stop) { msg.payload = \"Analog Start\"}\nnode.status(stop + \" \" + msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 1280,
+        "wires": [
+            [
+                "c61f50e02b550ea8"
+            ]
+        ]
+    },
+    {
+        "id": "c61f50e02b550ea8",
+        "type": "rbe",
+        "z": "5643e3d0.aa409c",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "payload",
+        "topi": "topic",
+        "x": 870,
+        "y": 1260,
+        "wires": [
+            [
+                "a32cd91fe19add6d"
+            ]
+        ]
+    },
+    {
+        "id": "7415168a265fb747",
+        "type": "ui_template",
+        "z": "5643e3d0.aa409c",
+        "group": "fd4cbea3.6101d",
+        "name": "Eventsicon",
+        "order": 6,
+        "width": "2",
+        "height": "1",
+        "format": "<md-button class=\"vibrate filled touched bigfont rounded\" style=\"background-color:transparent!important\"\n    ng-click=\"send({payload: '9'})\">\n    <i class=\"material-icons\" >\n           <span style=\"color:{{msg.payload.event}}\">build</span>\n           </i>\n</md-button>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1250,
+        "y": 640,
+        "wires": [
+            [
+                "80cc429041e6028c"
+            ]
+        ]
+    },
+    {
+        "id": "80cc429041e6028c",
+        "type": "ui_ui_control",
+        "z": "5643e3d0.aa409c",
+        "name": "",
+        "events": "all",
+        "x": 1280,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2bbfc3b1d2c05d39",
+        "type": "function",
+        "z": "5643e3d0.aa409c",
+        "name": "function 37",
+        "func": "if (msg.payload) {\n    msg.payload = {\n        \"event\": \"#2730E8  \" };\n} else {\n    msg.payload = {\n        \"event\": \"#2730E8  \" }; }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 660,
+        "wires": [
+            [
+                "7415168a265fb747"
             ]
         ]
     },
@@ -11295,7 +11638,8 @@
         "wires": [
             [
                 "97de2978.522338",
-                "47c8ef0a.fbecf"
+                "47c8ef0a.fbecf",
+                "8a5a486d8c325f3f"
             ]
         ]
     },
@@ -11610,6 +11954,43 @@
         "peaktime": 3000,
         "x": 830,
         "y": 200,
+        "wires": []
+    },
+    {
+        "id": "8a5a486d8c325f3f",
+        "type": "function",
+        "z": "14c2a8c4.3c0637",
+        "name": "function 28",
+        "func": "var val = msg.payload;\nmsg.payload = [{\n\n    enctemp: val\n\n}\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 320,
+        "wires": [
+            [
+                "d08868c768a86010"
+            ]
+        ]
+    },
+    {
+        "id": "d08868c768a86010",
+        "type": "influxdb out",
+        "z": "14c2a8c4.3c0637",
+        "influxdb": "0696b699f0a77d63",
+        "name": "",
+        "measurement": "enctemp",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "s",
+        "retentionPolicyV18Flux": "",
+        "org": "lewysystems",
+        "bucket": "sic",
+        "x": 1270,
+        "y": 360,
         "wires": []
     },
     {
@@ -12292,8 +12673,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "outputs": 1,
-        "x": 1460,
-        "y": 180,
+        "x": 1100,
+        "y": 120,
         "wires": [
             [
                 "78662fa6.94c02"
@@ -12316,8 +12697,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "outputs": 1,
-        "x": 1460,
-        "y": 220,
+        "x": 1100,
+        "y": 160,
         "wires": [
             [
                 "7a00ba90.20ce74"
@@ -12340,8 +12721,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "outputs": 1,
-        "x": 1460,
-        "y": 260,
+        "x": 1100,
+        "y": 200,
         "wires": [
             [
                 "b759a495.4d20e8"
@@ -12364,8 +12745,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "outputs": 1,
-        "x": 1460,
-        "y": 300,
+        "x": 1100,
+        "y": 240,
         "wires": [
             [
                 "8b376e52.17d38"
@@ -12388,8 +12769,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "outputs": 1,
-        "x": 1460,
-        "y": 340,
+        "x": 1100,
+        "y": 280,
         "wires": [
             [
                 "8ad3756d.f06ff8"
@@ -12412,8 +12793,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "outputs": 1,
-        "x": 1460,
-        "y": 380,
+        "x": 1100,
+        "y": 320,
         "wires": [
             [
                 "4f1daa9e.a44534"
@@ -12436,8 +12817,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "outputs": 1,
-        "x": 1460,
-        "y": 420,
+        "x": 1100,
+        "y": 360,
         "wires": [
             [
                 "ad4999f.2974968"
@@ -12460,8 +12841,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "outputs": 1,
-        "x": 1460,
-        "y": 460,
+        "x": 1100,
+        "y": 400,
         "wires": [
             [
                 "64532e43.d02c1"
@@ -12476,8 +12857,8 @@
         "func": "msg.payload = 100;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1450,
-        "y": 540,
+        "x": 1090,
+        "y": 480,
         "wires": [
             []
         ]
@@ -12493,8 +12874,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1610,
-        "y": 160,
+        "x": 1250,
+        "y": 100,
         "wires": [
             []
         ]
@@ -12507,8 +12888,8 @@
         "func": "msg.payload = parseFloat(msg.payload) * global.get('mb0scale');\nif (parseInt(msg.payload) < 65535) {msg.payload = msg.payload;} \nelse {msg.payload = 65535;}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1610,
-        "y": 200,
+        "x": 1250,
+        "y": 140,
         "wires": [
             []
         ]
@@ -12521,8 +12902,8 @@
         "func": "msg.payload = parseFloat(msg.payload) * global.get('mb1scale');\nif (parseInt(msg.payload) < 65535) {msg.payload = msg.payload;} \nelse {msg.payload = 65535;}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1610,
-        "y": 240,
+        "x": 1250,
+        "y": 180,
         "wires": [
             []
         ]
@@ -12535,8 +12916,8 @@
         "func": "msg.payload = parseFloat(msg.payload) * global.get('mb1scale');\nif (parseInt(msg.payload) < 65535) {msg.payload = msg.payload;} \nelse {msg.payload = 65535;}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1610,
-        "y": 280,
+        "x": 1250,
+        "y": 220,
         "wires": [
             []
         ]
@@ -12549,8 +12930,8 @@
         "func": "msg.payload = parseFloat(msg.payload) * global.get('mb2scale');\nif (parseInt(msg.payload) < 65535) {msg.payload = msg.payload;} \nelse {msg.payload = 65535;}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1610,
-        "y": 320,
+        "x": 1250,
+        "y": 260,
         "wires": [
             []
         ]
@@ -12563,8 +12944,8 @@
         "func": "msg.payload = parseFloat(msg.payload) * global.get('mb2scale');\nif (parseInt(msg.payload) < 65535) {msg.payload = msg.payload;} \nelse {msg.payload = 65535;}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1610,
-        "y": 360,
+        "x": 1250,
+        "y": 300,
         "wires": [
             []
         ]
@@ -12577,8 +12958,8 @@
         "func": "msg.payload = parseFloat(msg.payload) * global.get('mb3scale');\nif (parseInt(msg.payload) < 65535) {msg.payload = msg.payload;} \nelse {msg.payload = 65535;}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1610,
-        "y": 400,
+        "x": 1250,
+        "y": 340,
         "wires": [
             []
         ]
@@ -12591,8 +12972,8 @@
         "func": "msg.payload = parseFloat(msg.payload) * global.get('mb3scale');\nif (parseInt(msg.payload) < 65535) {msg.payload = msg.payload;} \nelse {msg.payload = 65535;}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1610,
-        "y": 440,
+        "x": 1250,
+        "y": 380,
         "wires": [
             []
         ]
@@ -12670,6 +13051,9 @@
         "func": "if (parseInt(msg.payload) < 65535) {msg.payload = msg.payload;} \nelse {msg.payload = 65535;}\nglobal.set(\"a0hihi\", msg.payload);\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 770,
         "y": 560,
         "wires": [
@@ -13514,6 +13898,9 @@
         "func": "var name;\nname = msg.payload;\nglobal.set('i1nc', name);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 1060,
         "y": 1680,
         "wires": [
@@ -15710,7 +16097,7 @@
         "width": 0,
         "height": 0,
         "passthru": true,
-        "mode": "text",
+        "mode": "number",
         "delay": 300,
         "topic": "",
         "sendOnBlur": true,
@@ -17110,7 +17497,7 @@
         "d": true,
         "group": "fd4cbea3.6101d",
         "name": "",
-        "order": 8,
+        "order": 9,
         "width": 0,
         "height": 0,
         "format": "<div ng-bind-html=\"msg.payload\"></div>",
@@ -17128,7 +17515,7 @@
         "type": "ui_text",
         "z": "2a060dac.22fa72",
         "group": "fd4cbea3.6101d",
-        "order": 9,
+        "order": 10,
         "width": 0,
         "height": 0,
         "name": "",
@@ -17245,9 +17632,12 @@
         "width": 0,
         "height": 0,
         "passthru": false,
-        "mode": "text",
+        "mode": "number",
         "delay": 300,
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 620,
         "y": 540,
         "wires": [
@@ -19366,7 +19756,7 @@
         "z": "d505f30f.8dea9",
         "name": "Toggle Switch",
         "group": "fd4cbea3.6101d",
-        "order": 15,
+        "order": 16,
         "width": "0",
         "height": "0",
         "passthru": false,
@@ -19498,7 +19888,7 @@
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#ff0000",
+                "color": "#808080",
                 "value": "0",
                 "valueType": "num"
             },
@@ -19510,7 +19900,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "O 0.2",
         "x": 750,
         "y": 180,
@@ -19529,7 +19919,7 @@
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#ff0000",
+                "color": "#808080",
                 "value": "0",
                 "valueType": "num"
             },
@@ -19541,7 +19931,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "O 0.3",
         "x": 750,
         "y": 220,
@@ -19848,7 +20238,7 @@
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#ff0000",
+                "color": "#808080",
                 "value": "0",
                 "valueType": "num"
             },
@@ -19860,7 +20250,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "O0.4",
         "x": 850,
         "y": 460,
@@ -19891,7 +20281,7 @@
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#ff0000",
+                "color": "#808080",
                 "value": "0",
                 "valueType": "num"
             },
@@ -19903,7 +20293,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "I1.0 led",
         "x": 980,
         "y": 620,
@@ -21368,6 +21758,9 @@
         "func": "var num = Number(msg.payload);\nvar t =num;\nmsg.payload ={\n    \"max\": t,\n    \"ymax\": t\n};\nglobal.set(\"ampsscale\", msg.payload);\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 970,
         "y": 720,
         "wires": [
@@ -21416,6 +21809,9 @@
         "mode": "number",
         "delay": 300,
         "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
         "x": 1030,
         "y": 680,
         "wires": [
@@ -21432,6 +21828,9 @@
         "func": "msg.payload = global.get('ampsscale');\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 1070,
         "y": 620,
         "wires": [
@@ -22672,7 +23071,7 @@
         "id": "b487d048.141ef",
         "type": "ui_led",
         "z": "6157092d.8b7638",
-        "order": 10,
+        "order": 11,
         "group": "fd4cbea3.6101d",
         "width": 0,
         "height": 0,
@@ -22693,7 +23092,7 @@
         ],
         "allowColorForValueInMessage": false,
         "shape": "circle",
-        "showGlow": true,
+        "showGlow": false,
         "name": "vfd cmd",
         "x": 760,
         "y": 2040,
@@ -22705,7 +23104,7 @@
         "z": "6157092d.8b7638",
         "group": "fd4cbea3.6101d",
         "name": "ampsfreq",
-        "order": 11,
+        "order": 12,
         "width": 0,
         "height": 0,
         "format": "<style>\n    .table\n{\nwidth:300px;\nbackground:transparent!important; //color:transparent!important\nborder:1px white;\n//font-size:10px;\n}\n.main\n{\nheight:20px;\n\n}\n</style>\n<div class=\"main\">\n    <table class=\"table\">\n        <tr ng-repeat = \"payload in msg.payload\"><td ng-repeat =\"(key,value) in payload\">{{key}}: {{value}}</td></tr>\n\n    </table>\n    \n</div>",
@@ -23490,7 +23889,7 @@
         "pauseType": "rate",
         "timeout": "5",
         "timeoutUnits": "seconds",
-        "rate": "10",
+        "rate": "30",
         "nbRateUnits": "1",
         "rateUnits": "minute",
         "randomFirst": "1",
@@ -23503,7 +23902,8 @@
         "y": 660,
         "wires": [
             [
-                "31c085d6ade480f3"
+                "31c085d6ade480f3",
+                "b855600644f0dde0"
             ]
         ]
     },
@@ -23911,6 +24311,43 @@
         "wires": []
     },
     {
+        "id": "b855600644f0dde0",
+        "type": "function",
+        "z": "6157092d.8b7638",
+        "name": "function 38",
+        "func": "var val = msg.payload;\nval = Math.floor(val);\nmsg.payload = [{\n    mtramps: val\n}\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1710,
+        "y": 440,
+        "wires": [
+            [
+                "63f74f9b9d679cc6"
+            ]
+        ]
+    },
+    {
+        "id": "63f74f9b9d679cc6",
+        "type": "influxdb out",
+        "z": "6157092d.8b7638",
+        "influxdb": "0696b699f0a77d63",
+        "name": "",
+        "measurement": "motor_amps",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "s",
+        "retentionPolicyV18Flux": "",
+        "org": "lewysystems",
+        "bucket": "sicpi",
+        "x": 1820,
+        "y": 320,
+        "wires": []
+    },
+    {
         "id": "804a3297.4fd92",
         "type": "file in",
         "z": "453d3af3.ea4724",
@@ -24074,7 +24511,7 @@
         "id": "c6076dfe.52f3c",
         "type": "exec",
         "z": "453d3af3.ea4724",
-        "command": "sudo rm -r /data/docs/alms.csv",
+        "command": "rm -r /data/docs/alms.csv",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
@@ -24082,7 +24519,7 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 510,
+        "x": 490,
         "y": 420,
         "wires": [
             [
@@ -25114,7 +25551,7 @@
         "id": "7a6fed515f7390b4",
         "type": "exec",
         "z": "8f6b533a.841f4",
-        "command": "sudo rm -r /data/docs/eventlog.csv",
+        "command": "rm -r /data/docs/eventlog.csv",
         "addpay": false,
         "append": "",
         "useSpawn": "false",
@@ -25122,7 +25559,7 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 560,
+        "x": 540,
         "y": 1760,
         "wires": [
             [
@@ -25417,7 +25854,7 @@
         "id": "174af49afd970b0e",
         "type": "function",
         "z": "8f6b533a.841f4",
-        "name": "",
+        "name": "resetpb",
         "func": "msg.payload = \"Reset Pushbutton\";  \nreturn msg;",
         "outputs": 1,
         "noerr": 0,
@@ -25509,14 +25946,14 @@
         "id": "ce567389c0939567",
         "type": "function",
         "z": "8f6b533a.841f4",
-        "name": "",
+        "name": "o2pb",
         "func": "var name = global.get(\"o2name\");\nmsg.payload = name + \" Pushbutton\";  \nnode.status(msg.payload);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 550,
+        "x": 540,
         "y": 1080,
         "wires": [
             [
@@ -25792,14 +26229,14 @@
         "id": "fa73c27c9acdb7c1",
         "type": "function",
         "z": "8f6b533a.841f4",
-        "name": "",
+        "name": "cpu hitemp",
         "func": "msg.payload = \"CPU Temperature \" + msg.payload;  \nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 550,
+        "x": 560,
         "y": 1120,
         "wires": [
             [
@@ -26027,7 +26464,7 @@
         "id": "56beab660f100ce9",
         "type": "link in",
         "z": "8f6b533a.841f4",
-        "name": "stopinput",
+        "name": "startinput",
         "links": [
             "d0040dd563789d25"
         ],
@@ -26063,7 +26500,7 @@
         "type": "function",
         "z": "8f6b533a.841f4",
         "name": "StarInput",
-        "func": "\nreturn msg;",
+        "func": "msg.payload = \"I0.5 Start Input\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -26202,14 +26639,14 @@
         "id": "35217ee2bb0d990a",
         "type": "function",
         "z": "8f6b533a.841f4",
-        "name": "function 29",
+        "name": "power",
         "func": "msg.payload = \"Power Fail\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 530,
+        "x": 510,
         "y": 1240,
         "wires": [
             [
@@ -26238,7 +26675,7 @@
         "type": "function",
         "z": "8f6b533a.841f4",
         "name": "input 1.0",
-        "func": "if (msg.payload == 0) { msg.payload = \"Input 1.0 Off\" } else { msg.payload = \"Input 1.0 On\" }\nreturn msg;",
+        "func": "\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -26265,6 +26702,57 @@
         "libs": [],
         "x": 530,
         "y": 1360,
+        "wires": [
+            [
+                "4a955bdf07796aa2"
+            ]
+        ]
+    },
+    {
+        "id": "a95b25db9cb96ab9",
+        "type": "function",
+        "z": "8f6b533a.841f4",
+        "name": "analog",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 300,
+        "wires": [
+            [
+                "1c5c4737abab203f"
+            ]
+        ]
+    },
+    {
+        "id": "06386637c042aea2",
+        "type": "link in",
+        "z": "8f6b533a.841f4",
+        "name": "link in 4",
+        "links": [
+            "a32cd91fe19add6d"
+        ],
+        "x": 195,
+        "y": 300,
+        "wires": [
+            [
+                "a95b25db9cb96ab9"
+            ]
+        ]
+    },
+    {
+        "id": "e35aed271096c5be",
+        "type": "link in",
+        "z": "8f6b533a.841f4",
+        "name": "link in 5",
+        "links": [
+            "dfe83f40a0f41b4b"
+        ],
+        "x": 415,
+        "y": 1400,
         "wires": [
             [
                 "4a955bdf07796aa2"
@@ -29019,6 +29507,7 @@
         "append": "",
         "useSpawn": "",
         "timer": "",
+        "winHide": false,
         "name": "RPi Temp.",
         "x": 325.2221908569336,
         "y": 46.33333683013916,
@@ -29055,7 +29544,6 @@
         "y": 46.805556297302246,
         "wires": [
             [
-                "dc27b4db.0509c8",
                 "9de01ecf.3ad03",
                 "ec4c2dc6.23c33"
             ]
@@ -29111,11 +29599,12 @@
         "id": "402cefdc.32b76",
         "type": "exec",
         "z": "59b1278.5bbf0d8",
-        "command": "sudo reboot",
+        "command": "reboot",
         "addpay": false,
         "append": "",
         "useSpawn": "",
         "timer": "",
+        "winHide": false,
         "name": "Reboot",
         "x": 314.888916015625,
         "y": 330.0000457763672,
@@ -29158,11 +29647,12 @@
         "id": "7bf6b8cb.645718",
         "type": "exec",
         "z": "59b1278.5bbf0d8",
-        "command": "sudo shutdown -h now",
+        "command": "shutdown -h now",
         "addpay": false,
         "append": "",
         "useSpawn": "",
         "timer": "",
+        "winHide": false,
         "name": "Shutdown",
         "x": 324.1666564941406,
         "y": 386.6944923400879,
@@ -29222,6 +29712,7 @@
         "append": "",
         "useSpawn": "",
         "timer": "",
+        "winHide": false,
         "name": "CPU Load",
         "x": 325.2221908569336,
         "y": 126.33333683013916,
@@ -29243,6 +29734,7 @@
         "append": "",
         "useSpawn": "",
         "timer": "",
+        "winHide": false,
         "name": "Free Memory",
         "x": 325.2222099304199,
         "y": 190.55557250976562,
@@ -29311,11 +29803,12 @@
         "id": "3e1c0b81.0f03d4",
         "type": "exec",
         "z": "59b1278.5bbf0d8",
-        "command": "df -h",
+        "command": "df ",
         "addpay": false,
         "append": "",
         "useSpawn": "",
         "timer": "",
+        "winHide": false,
         "name": "Disk Usage",
         "x": 322.88884353637695,
         "y": 258.2222442626953,
@@ -29361,6 +29854,9 @@
         "func": "var re = /([0-9]{2})%/\nvar idx = msg.payload.search(re);\nvar str = msg.payload;\nif (idx >=0) {\n    str = msg.payload.substring(idx, idx + 2);\n}\nmsg.payload = str;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 470.66661071777344,
         "y": 244.88890171051025,
         "wires": [
@@ -29421,9 +29917,7 @@
         "x": 118.90821075439453,
         "y": 445.567081451416,
         "wires": [
-            [
-                "fb9d3a52.9d94f8"
-            ]
+            []
         ]
     },
     {
@@ -29435,6 +29929,7 @@
         "append": "-I",
         "useSpawn": "",
         "timer": "",
+        "winHide": false,
         "name": "Get Local IP",
         "x": 323.4637641906738,
         "y": 446.06709480285645,
@@ -29489,7 +29984,7 @@
         "type": "function",
         "z": "59b1278.5bbf0d8",
         "name": "function 27",
-        "func": "var val = msg.payload;\nval = val.slice(0, -1)\nval = Math.floor(val);\nmsg.measurement = \"cpu\";\nmsg.payload = [{\n measurement: \"cpu\",\n    cpuload: val\n    \n}\n];\n\nmsg.topic = \"\";\nmsg.color = null;\nreturn msg;",
+        "func": "var val = msg.payload;\nval = val.slice(0, -1)\nval = Math.floor(val);\nmsg.measurement = \"cpu\";\nmsg.payload = [{\n \n    cpuload: val\n    \n}\n];\n\nmsg.topic = \"\";\nmsg.color = null;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -29552,23 +30047,6 @@
         "bucket": "sic",
         "x": 1040,
         "y": 300,
-        "wires": []
-    },
-    {
-        "id": "74cd4046aaa7dd89",
-        "type": "debug",
-        "z": "59b1278.5bbf0d8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 870,
-        "y": 200,
         "wires": []
     },
     {
